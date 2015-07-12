@@ -1,0 +1,74 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Drop Stored Procedures, version 7.0.0 of the module does not use these anymore **/
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Add') AND type in (N'P', N'PC'))
+	DROP PROCEDURE {databaseOwner}{objectQualifier}dnnAnnouncements_Add
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Get') AND type in (N'P', N'PC'))
+	DROP PROCEDURE {databaseOwner}{objectQualifier}dnnAnnouncements_Get
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_GetAll') AND type in (N'P', N'PC'))
+	DROP PROCEDURE {databaseOwner}{objectQualifier}dnnAnnouncements_GetAll
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_GetCurrent') AND type in (N'P', N'PC'))
+	DROP PROCEDURE {databaseOwner}{objectQualifier}dnnAnnouncements_GetCurrent
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_GetExpired') AND type in (N'P', N'PC'))
+	DROP PROCEDURE {databaseOwner}{objectQualifier}dnnAnnouncements_GetExpired
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Update') AND type in (N'P', N'PC'))
+	DROP PROCEDURE {databaseOwner}{objectQualifier}dnnAnnouncements_Update
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Delete') AND type in (N'P', N'PC'))
+	DROP PROCEDURE {databaseOwner}{objectQualifier}dnnAnnouncements_Delete
+GO
+
+
+/* update table definition */
+ALTER TABLE dbo.Announcements DROP CONSTRAINT PK_Announcements
+GO
+
+ALTER TABLE dbo.Announcements ADD CONSTRAINT PK_Announcements PRIMARY KEY CLUSTERED  ( [ItemID] ASC )
+GO
+
+sp_RENAME '{databaseOwner}{objectQualifier}Announcements.[CreatedByUser]', 'CreatedByUserID', 'COLUMN' 
+GO
+
+sp_RENAME '{databaseOwner}{objectQualifier}Announcements.[CreatedDate]', 'CreatedOnDate', 'COLUMN' 
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD LastModifiedByUserID [int] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD LastModifiedOnDate [datetime] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}Announcements ALTER COLUMN [Description] NVARCHAR(MAX) NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD PortalID int NULL
+GO
+
+UPDATE {databaseOwner}{objectQualifier}Announcements 
+	SET {databaseOwner}{objectQualifier}Announcements.PortalID = {databaseOwner}{objectQualifier}Modules.PortalID 
+	FROM {databaseOwner}{objectQualifier}Announcements INNER JOIN {databaseOwner}{objectQualifier}Modules ON {databaseOwner}{objectQualifier}Announcements.ModuleID = {databaseOwner}{objectQualifier}Modules.ModuleID
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

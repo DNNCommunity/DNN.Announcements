@@ -1,0 +1,47 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE {databaseOwner}[{objectQualifier}Announcements](
+	[ItemID] [int] IDENTITY(0,1) NOT NULL,
+	[ModuleID] [int] NOT NULL,
+	[CreatedOnDate] [datetime] NULL,
+	[Title] [nvarchar](150) NULL,
+	[URL] [nvarchar](250) NULL,
+	[ExpireDate] [datetime] NULL,
+	[Description] [nvarchar](max) NULL,
+	[ViewOrder] [int] NULL,
+	[CreatedByUserID] [int] NOT NULL,
+	[PublishDate] [datetime] NULL,
+	[ImageSource] [nvarchar](250) NULL,
+	[LastModifiedByUserID] [int] NULL,
+	[LastModifiedOnDate] [datetime] NULL,
+	[PortalID] [int] NULL,
+ CONSTRAINT [PK_{objectQualifier}Announcements] PRIMARY KEY CLUSTERED ( [ItemID] ASC )
+) 
+
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Announcements]  WITH CHECK ADD  CONSTRAINT [FK_{objectQualifier}Announcements_Modules] FOREIGN KEY([ModuleID])
+REFERENCES {databaseOwner}[{objectQualifier}Modules] ([ModuleID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Announcements] CHECK CONSTRAINT [FK_{objectQualifier}Announcements_Modules]
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

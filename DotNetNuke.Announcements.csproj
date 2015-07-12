@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F2A89441-0CB8-4FB2-91BF-C81E9D2626E3}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DotNetNuke.Modules.Announcements</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotNetNuke.Modules.Announcements</RootNamespace>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>Windows</MyType>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>bin\DotNetNuke.Modules.Announcements.xml</DocumentationFile>
+    <BaseAddress>1117585408</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG;</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>full</DebugType>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>bin\DotNetNuke.Modules.Announcements.xml</DocumentationFile>
+    <BaseAddress>1117585408</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>none</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Import Include="DotNetNuke" />
+    <Import Include="DotNetNuke.Common" />
+    <Import Include="DotNetNuke.Common.Utilities" />
+    <Import Include="DotNetNuke.Data" />
+    <Import Include="DotNetNuke.Entities.Users" />
+    <Import Include="DotNetNuke.Framework" />
+    <Import Include="DotNetNuke.Services.Exceptions" />
+    <Import Include="DotNetNuke.Services.Localization" />
+    <Import Include="DotNetNuke.UI" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\Business\AnnouncementInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Business\AnnouncementsController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Business\AnnouncementsSubscriberInfo.cs" />
+    <Compile Include="Components\Business\IAnnouncementsController.cs" />
+    <Compile Include="Components\Business\SubscriberController.cs" />
+    <Compile Include="Components\Common\AnnouncementTokenReplace.cs" />
+    <Compile Include="Components\Settings\ISettingsController.cs" />
+    <Compile Include="Components\Common\EventArguments.cs" />
+    <Compile Include="Components\Common\GlobalConstants.cs" />
+    <Compile Include="Components\Common\ExtensionMethods.cs" />
+    <Compile Include="Components\Common\ModuleSecurity.cs" />
+    <Compile Include="Components\Settings\Settings.cs" />
+    <Compile Include="Components\Settings\SettingsController.cs" />
+    <Compile Include="Components\Template\ITemplateController.cs" />
+    <Compile Include="Components\Template\SimpleTemplate.cs" />
+    <Compile Include="Components\Template\BaseTemplate.cs" />
+    <Compile Include="Components\Template\ITemplate.cs" />
+    <Compile Include="Components\Template\TemplateController.cs" />
+    <Compile Include="Components\Template\TemplateInfo.cs" />
+    <Compile Include="MVP\Models\TemplateConfigurationModel.cs" />
+    <Compile Include="MVP\Presenters\AnnouncementsSettingsPresenter.cs" />
+    <Compile Include="MVP\Models\AnnouncementsSettingsModel.cs" />
+    <Compile Include="AnnouncementsEdit.ascx.cs">
+      <DependentUpon>AnnouncementsEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnouncementsEdit.ascx.designer.cs">
+      <DependentUpon>AnnouncementsEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Presenters\AnnouncementsEditPresenter.cs" />
+    <Compile Include="MVP\Presenters\AnnouncementsViewPresenter.cs" />
+    <Compile Include="Components\Common\Utilities.cs" />
+    <Compile Include="Components\Common\ViewTypes.cs" />
+    <Compile Include="MVP\Presenters\TemplateConfigurationPresenter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MVP\Models\AnnouncementsEditModel.cs" />
+    <Compile Include="MVP\Models\AnnouncementsViewModel.cs" />
+    <Compile Include="AnnouncementsView.ascx.cs">
+      <DependentUpon>AnnouncementsView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnouncementsView.ascx.designer.cs">
+      <DependentUpon>AnnouncementsView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AnnouncementInfo.cs" />
+    <Compile Include="Services\AnnouncementsController.cs" />
+    <Compile Include="Services\AnnouncementsModule.cs" />
+    <Compile Include="Services\RouteMapper.cs" />
+    <Compile Include="Services\SyndicationFeedFormatter.cs" />
+    <Compile Include="TemplateConfiguration.ascx.cs">
+      <DependentUpon>TemplateConfiguration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TemplateConfiguration.ascx.designer.cs">
+      <DependentUpon>TemplateConfiguration.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Views\IAnnouncementsSettings.cs" />
+    <Compile Include="MVP\Views\IAnnouncementsEdit.cs" />
+    <Compile Include="MVP\Views\IAnnouncementsView.cs" />
+    <Compile Include="AnnouncementsSettings.ascx.cs">
+      <DependentUpon>AnnouncementsSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnouncementsSettings.ascx.designer.cs">
+      <DependentUpon>AnnouncementsSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Views\ITemplateConfiguration.cs" />
+    <Content Include="07.00.00.txt" />
+    <Content Include="AnnouncementsEdit.ascx" />
+    <Content Include="Images\clock.gif" />
+    <Content Include="Images\icon-announcements-32px.png" />
+    <Content Include="AnnouncementsEdit.css" />
+    <Content Include="Documentation\License.txt" />
+    <Content Include="module.css" />
+    <Content Include="Documentation\releasenotes.txt" />
+    <Content Include="TemplateConfiguration.ascx" />
+    <Content Include="Templates\ModernAnnouncements\alternatingitem.htm" />
+    <Content Include="Templates\ModernAnnouncements\detail.htm" />
+    <Content Include="Templates\ModernAnnouncements\footer.htm" />
+    <Content Include="Templates\ModernAnnouncements\header.htm" />
+    <Content Include="Templates\ModernAnnouncements\item.htm" />
+    <Content Include="Templates\ModernAnnouncements\separator.htm" />
+    <Content Include="Templates\ModernAnnouncements\template.xml" />
+    <Content Include="Templates\SimpleAnnouncements\alternatingitem.htm" />
+    <Content Include="Templates\SimpleAnnouncements\detail.htm" />
+    <Content Include="Templates\SimpleAnnouncements\footer.htm" />
+    <Content Include="Templates\SimpleAnnouncements\header.htm" />
+    <Content Include="Templates\SimpleAnnouncements\item.htm" />
+    <Content Include="Templates\SimpleAnnouncements\separator.htm" />
+    <Content Include="Templates\SimpleAnnouncements\template.xml" />
+    <Content Include="AnnouncementsView.ascx" />
+    <Content Include="AnnouncementsSettings.ascx" />
+    <Content Include="_Dependencies\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\AnnouncementsView.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\AnnouncementsEdit.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\AnnouncementsSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\SharedResources.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Providers\DataProviders\SqlDataProvider\03.01.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\03.03.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\03.03.02.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\03.03.04.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\03.03.05.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\03.04.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\04.00.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Providers\DataProviders\SqlDataProvider\07.00.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\03.03.01.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\04.00.01.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\04.00.02.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\04.00.03.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DotNetNuke">
+      <HintPath>_Dependencies\DotNetNuke.dll</HintPath>
+      <Private>False</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="DotNetNuke.Instrumentation">
+      <HintPath>_Dependencies\DotNetNuke.Instrumentation.dll</HintPath>
+      <Private>False</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>_Dependencies\DotNetNuke.Web.dll</HintPath>
+      <Private>False</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Client">
+      <HintPath>_Dependencies\DotNetNuke.Web.Client.dll</HintPath>
+      <Private>False</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\System.Net.Http.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\System.Net.Http.Formatting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\System.Web.Http.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>_Dependencies\Telerik.Web.UI.dll</HintPath>
+      <Private>False</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="WebFormsMvp">
+      <HintPath>_Dependencies\WebFormsMvp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\TemplateConfiguration.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DotNetNuke.Announcements.dnn">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Installation\Project.targets">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Providers\DataProviders\SqlDataProvider\Install.07.00.00.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AutoInstallSourcePackage|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;</DefineConstants>
+    <BaseAddress>1117585408</BaseAddress>
+    <DocumentationFile>bin\DotNetNuke.Modules.Announcements.xml</DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugDeploy|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;</DefineConstants>
+    <BaseAddress>1117585408</BaseAddress>
+    <DocumentationFile>bin\DotNetNuke.Modules.Announcements.xml</DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="$(MSBuildProjectDirectory)\Installation\Project.Targets" Condition="Exists('$(MSBuildProjectDirectory)\Installation\Project.targets')" />
+</Project>

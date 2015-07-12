@@ -1,0 +1,70 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Drop Announcements Table **/
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Announcements] DROP CONSTRAINT [FK_{objectQualifier}Announcements_{objectQualifier}Modules]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Announcements] DROP CONSTRAINT [PK_{objectQualifier}Announcements]
+GO
+
+DROP INDEX {databaseOwner}[{objectQualifier}Announcements].[IX_{objectQualifier}Announcements]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}Announcements]
+GO
+
+/** Drop AnnouncementsSubscribers Table **/
+ALTER TABLE {databaseOwner}[{objectQualifier}AnnouncementsSubscribers] DROP CONSTRAINT [FK_{objectQualifier}AnnouncementsSubscribers_Users]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}AnnouncementsSubscribers] DROP CONSTRAINT [FK_{objectQualifier}AnnouncementsSubscribers_Modules]
+GO
+
+
+DROP TABLE {databaseOwner}[{objectQualifier}AnnouncementsSubscribers]
+GO
+
+
+/** Drop Stored Procedures **/
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_GetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_GetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_GetCurrent]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_GetCurrent
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_GetExpired]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_GetExpired
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Delete
+GO
+
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

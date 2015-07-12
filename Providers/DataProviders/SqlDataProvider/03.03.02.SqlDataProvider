@@ -1,0 +1,159 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Add PublishDate field  **/
+IF (SELECT COLUMNPROPERTY( OBJECT_ID('{databaseOwner}{objectQualifier}Announcements'),'PublishDate ','AllowsNull')) IS NULL 
+ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD
+	PublishDate DateTime NULL
+GO
+
+/** Set value for publishDate for existing records to CreatedDate  **/
+UPDATE {databaseOwner}{objectQualifier}Announcements 
+	SET PublishDate = CreatedDate
+GO
+
+/** Drop Existing Stored Procedures **/
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}AddAnnouncement]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}AddAnnouncement
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GetAnnouncement]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}GetAnnouncement
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GetAnnouncements]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}GetAnnouncements
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}UpdateAnnouncement]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}UpdateAnnouncement
+GO
+
+
+/** Create Optimized Stored Procedures **/
+
+create procedure {databaseOwner}{objectQualifier}AddAnnouncement
+
+	@ModuleId      int,
+	@CreatedByUser int,
+	@CreatedDate   datetime,
+	@Title         nvarchar(150),
+	@Url           nvarchar(150),
+	@Description   nvarchar(2000),
+	@ViewOrder     int,
+	@PublishDate   datetime
+
+as
+
+insert into {objectQualifier}Announcements (
+	ModuleId,
+	CreatedByUser,
+	CreatedDate,
+	Title,
+	Url,
+	Description,
+	ViewOrder,
+	PublishDate
+)
+values (
+	@ModuleId,
+	@CreatedByUser,
+	@CreatedDate,
+	@Title,
+	@Url,
+	@Description,
+	@ViewOrder,
+	@PublishDate
+)
+
+select SCOPE_IDENTITY()
+
+GO
+
+CREATE procedure {databaseOwner}{objectQualifier}GetAnnouncement
+
+@ItemId   int,
+@ModuleId int
+
+as
+
+select  {objectQualifier}Announcements.ItemId,
+	    {objectQualifier}Announcements.ModuleId,
+        {objectQualifier}Announcements.CreatedByUser,
+        {objectQualifier}Announcements.CreatedDate,
+	    {objectQualifier}Announcements.Title,
+	    {objectQualifier}Announcements.URL,
+        {objectQualifier}Announcements.Description,
+        {objectQualifier}Announcements.ViewOrder,
+        {objectQualifier}Announcements.PublishDate,
+        {objectQualifier}UrlTracking.TrackClicks,
+        {objectQualifier}UrlTracking.NewWindow
+from    {objectQualifier}Announcements
+left outer join {objectQualifier}UrlTracking on {objectQualifier}Announcements.URL = {objectQualifier}UrlTracking.Url and {objectQualifier}UrlTracking.ModuleId = @ModuleID 
+where  {objectQualifier}Announcements.ItemId = @ItemId
+and    {objectQualifier}Announcements.ModuleId = @ModuleId
+
+GO
+
+CREATE procedure {databaseOwner}{objectQualifier}GetAnnouncements
+
+@ModuleId int,
+@StartDate datetime,
+@EndDate datetime
+
+as
+
+select {objectQualifier}Announcements.ItemId,
+       {objectQualifier}Announcements.ModuleId,
+       {objectQualifier}Announcements.CreatedByUser,
+       {objectQualifier}Announcements.CreatedDate,
+       {objectQualifier}Announcements.Title,
+       {objectQualifier}Announcements.URL,
+       {objectQualifier}Announcements.Description,
+       {objectQualifier}Announcements.ViewOrder,
+       {objectQualifier}Announcements.PublishDate,
+       {objectQualifier}UrlTracking.TrackClicks,
+       {objectQualifier}UrlTracking.NewWindow
+from   {objectQualifier}Announcements
+left outer join {objectQualifier}UrlTracking on {objectQualifier}Announcements.URL = {objectQualifier}UrlTracking.Url and {objectQualifier}UrlTracking.ModuleId = @ModuleID 
+where  {objectQualifier}Announcements.ModuleId = @ModuleId
+and    ( (({objectQualifier}Announcements.CreatedDate >= @StartDate) or @StartDate is null) and (({objectQualifier}Announcements.CreatedDate <= @EndDate) or @EndDate is null) )
+order by {objectQualifier}Announcements.ViewOrder asc, {objectQualifier}Announcements.PublishDate desc
+
+GO
+
+create procedure {databaseOwner}{objectQualifier}UpdateAnnouncement
+
+	@ItemId        int,
+	@CreatedByUser int,
+	@CreatedDate   datetime,
+	@Title         nvarchar(100),
+	@Url           nvarchar(250),
+	@Description   nvarchar(2000),
+	@ViewOrder     int,
+	@PublishDate   datetime
+
+as
+
+update {objectQualifier}Announcements
+set    CreatedByUser = @CreatedByUser,
+       CreatedDate   = @CreatedDate,
+       Title         = @Title,
+       Url           = @Url,
+       Description   = @Description,
+       ViewOrder     = @ViewOrder,
+       PublishDate	 = @PublishDate
+where  ItemId = @ItemId
+
+GO
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

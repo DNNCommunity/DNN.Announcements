@@ -1,0 +1,70 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD ContentItemID int NULL
+GO
+
+
+CREATE TABLE {databaseOwner}[{objectQualifier}AnnouncementsSubscribers]
+(
+[AnnouncementsSubscriberID] [int] NOT NULL IDENTITY(1, 1),
+[ModuleID] [int] NOT NULL,
+[UserID] [int] NOT NULL,
+[CreatedByUserID] [int] NULL,
+[CreatedOnDate] [datetime] NULL,
+[LastModifiedByUserID] [int] NULL,
+[LastModifiedOnDate] [datetime] NULL
+)
+
+ALTER TABLE {databaseOwner}[{objectQualifier}AnnouncementsSubscribers] ADD CONSTRAINT [PK_{objectQualifier}AnnouncementsSubscribers] PRIMARY KEY CLUSTERED  ([AnnouncementsSubscriberID])
+GO
+ALTER TABLE {databaseOwner}[{objectQualifier}AnnouncementsSubscribers] ADD CONSTRAINT [FK_{objectQualifier}AnnouncementsSubscribers_Modules] FOREIGN KEY ([ModuleID]) REFERENCES {databaseOwner}[{objectQualifier}Modules] ([ModuleID]) ON DELETE CASCADE
+GO
+ALTER TABLE {databaseOwner}[{objectQualifier}AnnouncementsSubscribers] ADD CONSTRAINT [FK_{objectQualifier}AnnouncementsSubscribers_Users] FOREIGN KEY ([UserID]) REFERENCES {databaseOwner}[{objectQualifier}Users] ([UserID]) ON DELETE CASCADE
+GO
+
+/* add journal types */
+
+DECLARE @NewJournalTypeId INT
+SELECT  @NewJournalTypeId = MAX(JournalTypeId)
+FROM   {databaseOwner}{objectQualifier}Journal_Types
+
+
+IF NOT EXISTS (SELECT * FROM {databaseOwner}{objectQualifier}Journal_Types WHERE JournalType = 'AnnouncementAdd')
+	INSERT  INTO {databaseOwner}[{objectQualifier}Journal_Types]
+        ( [JournalTypeId], [JournalType], [icon], [PortalId], [IsEnabled], [AppliesToProfile], [AppliesToGroup], [AppliesToStream], [Options], [SupportsNotify], [EnableComments])
+	VALUES  ( @NewJournalTypeId + 1, 'AnnouncementAdd', '', -1, 1,  1, 1, 1, NULL, 1, 1)
+
+IF NOT EXISTS (SELECT * FROM {databaseOwner}{objectQualifier}Journal_Types WHERE JournalType = 'AnnouncementUpdate')
+	INSERT  INTO {databaseOwner}[{objectQualifier}Journal_Types]
+        ( [JournalTypeId], [JournalType], [icon], [PortalId], [IsEnabled], [AppliesToProfile], [AppliesToGroup], [AppliesToStream], [Options], [SupportsNotify], [EnableComments])
+	VALUES  ( @NewJournalTypeId + 2, 'AnnouncementUpdate', '', -1, 1,  1, 1, 1, NULL, 1, 1)
+
+IF NOT EXISTS (SELECT * FROM {databaseOwner}{objectQualifier}CoreMessaging_NotificationTypes WHERE Name = 'DNNAnnouncements')
+	INSERT INTO {databaseOwner}[{objectQualifier}CoreMessaging_NotificationTypes]
+           ([Name],[Description],[TTL],[DesktopModuleID],[CreatedByUserID],[CreatedOnDate],[LastModifiedByUserID],[LastModifiedOnDate])
+	VALUES  ( 'DNNAnnouncements', 'Announcement Notification', NULL, NULL, -1, GETDATE(), -1, GETDATE() )
+
+GO
+
+
+GO
+
+
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

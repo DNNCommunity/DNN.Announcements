@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="plHistory.Text" xml:space="preserve">
+    <value>History (Days)</value>
+  </data>
+  <data name="History.ErrorMessage" xml:space="preserve">
+    <value>You Must Enter A Valid Number Of Days</value>
+  </data>
+  <data name="plTemplate.Text" xml:space="preserve">
+    <value>Item Template</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;
+    About the Announcements Module&lt;/h1&gt;
+&lt;p&gt;
+    The Announcements Module produces a list of simple text announcements consisting
+    of a title and brief description. Options include a read more link to a file, page
+    or other site. Link click tracking and logging are also available. Announcements
+    are ordered from newest to oldest, unless a view order is specified.&lt;/p&gt;
+&lt;h2&gt;
+    Module Specific Settings&lt;/h2&gt;
+&lt;p&gt;
+    The following module specific settings are available:&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;&lt;b&gt;History Day(s)&lt;/b&gt;: this is the number of days to display announcements for.
+        Announcements published longer than the entered number of days ago will not be displayed.
+        Eg. if you enter a value of 4, all announcements older than 4 days will not be displayed.
+        If you leave this field blank, then all announcements will be displayed&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Default View&lt;/b&gt;: you can select which view is visible for regular users (with
+        no edit rights for this module). &lt;b&gt;Tip&lt;/b&gt;: if you put a copy of the same module
+        on a different page, this will allow you so easily make available archived/expired
+        items&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Description Length (Search and RSS)&lt;/strong&gt;: with this option you can define
+        how many characters should be used to display a content sample for search and rss.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Editor Height&lt;/b&gt;: this allows you to modify the height of the editor in the
+        edit view of the module&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Templates&lt;/b&gt;: This is the template that is used to display each announcement.
+        In this template you can use tokens to define where specific information of the
+        announcement items should be placed. NOTE: all tokens are case sensitive, and should
+        be capitals only. The following templates are available: Header, Item, Alternate
+        (odd), Separator and Footer&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+    &lt;b&gt;This is the default template:&lt;br /&gt;
+    &lt;/b&gt;
+    &lt;table border="1" style="border-collapse: collapse"&gt;
+        &lt;tr&gt;
+            &lt;td valign="top" class="normalbold"&gt;
+                &lt;strong&gt;Header Template &lt;/strong&gt;
+            &lt;/td&gt;
+            &lt;td class="style5" valign="top" style="width: 901px"&gt;
+                &lt;span style="font-family: Courier New"&gt;&amp;lt;table class=&amp;quot;DNN_ANN_DesignTable&amp;quot;
+                    cellspacing=&amp;quot;0&amp;quot; Summary=&amp;quot;Announcements Design Table&amp;quot; border=&amp;quot;0&amp;quot;
+                    style=&amp;quot;border-collapse:collapse;&amp;quot;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&lt;/span&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td valign="top" class="normalbold"&gt;
+                &lt;strong&gt;Item Template &lt;/strong&gt;
+            &lt;/td&gt;
+            &lt;td class="style5" valign="top" style="width: 901px"&gt;
+                &lt;span style="font-family: Courier New"&gt;&amp;lt;table&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;[IMAGESOURCE]&amp;lt;/td&amp;gt;&amp;lt;td
+                    valign="top"&amp;gt;&amp;lt;span class="SubHead"&amp;gt;[EDIT][TITLE] - [PUBLISHDATE]&amp;lt;/span&amp;gt;&amp;lt;div
+                    class="Normal DNN_ANN_Description"&amp;gt;[DESCRIPTION]&amp;amp;nbsp;[READMORE]&amp;lt;/div&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;&lt;/span&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td valign="top" class="normalbold"&gt;
+                &lt;strong&gt;Alternate Item Template &lt;/strong&gt;
+            &lt;/td&gt;
+            &lt;td class="style5" valign="top" style="width: 901px"&gt;
+                &amp;nbsp;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td valign="top" class="normalbold"&gt;
+                &lt;strong&gt;Separator Template &lt;/strong&gt;
+            &lt;/td&gt;
+            &lt;td class="style5" valign="top" style="width: 901px"&gt;
+                &amp;nbsp;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td valign="top" class="normalbold"&gt;
+                &lt;strong&gt;Footer Template &lt;/strong&gt;
+            &lt;/td&gt;
+            &lt;td class="style5" valign="top" style="width: 901px"&gt;
+                &lt;span style="font-family: Courier New"&gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;&lt;/span&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/p&gt;
+&lt;p class="subhead"&gt;
+    the following tokens can be used in templates:&lt;/p&gt;
+&lt;table border="1" style="border-collapse: collapse" class="normal"&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[EDIT] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will render an edit pencil, if, and only if, the logged on user had edit rights
+            for the module. You MUST add this token to the Item Template (and alternate item
+            template if you are using that), in order to be able to edit items
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[ITEMID] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will render the item id of the announcement
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[MODULEID] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will render the module id of the module the announcement belongs to
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[CREATEDBYUSER] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will display the display name of the user that created the Announcement. &lt;b&gt;NOTE&lt;/b&gt;:
+            on sites with many users adding this token to a template will cause a performance
+            hit, as for every Announcement a user record has to be found and displayed. Many
+            announcements and many users will cause a large amount of extra database hits.
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top" height="25"&gt;
+            &lt;strong&gt;[CREATEDDATE] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" height="25" class="Normal"&gt;
+            This will show the item creation date, in localized long date forum
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[DESCRIPTION] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will display the announcement discription
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[EXPIREDATE] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will display the announcements expire date
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[RAWIMAGE] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            Thsi will display the raw image url
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[IMAGESOURCE] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will display the announcement image as defined in the announcement. A complete
+            image tag will be rendered
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[MODULEID] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will display the moduleid of the module.&lt;br&gt;
+            &lt;b&gt;TIP&lt;/b&gt;: You could use this value to use a module specific css classname, for
+            instance like this: &lt;font face="Courier New"&gt;
+                &lt;br&gt;
+                &amp;lt;span class=&amp;quot;SubHead_[MODULEID]&amp;quot;&amp;gt;[TITLE]&amp;lt;/span&amp;gt;&lt;/font&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[MORE] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will display the &amp;quot;read more...&amp;quot; text, without hyperlink. A full read
+            more hyperlink would look like this:&lt;br&gt;
+            &lt;font face="Courier New"&gt;&amp;lt;a href=&amp;quot;[URL]&amp;quot; target=&amp;quot;[NEWWINDOW]&amp;quot;&amp;gt;[MORE]&amp;lt;/a&amp;gt;&lt;/font&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[READMORE] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will display a complete &amp;quot;read more...&amp;quot; link. If no url is defined
+            in the announcement, no link will be rendered
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[NEWWINDOW] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This token can be used to open the link in a new window, based on the selection
+            made in the announcement, for example: br&gt; &lt;font face="Courier New"&gt;&amp;lt;a href=&amp;quot;[URL]&amp;quot;
+                target=&amp;quot;[NEWWINDOW]&amp;quot;&amp;gt;[MORE]&amp;lt;/a&amp;gt;&lt;/font&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[PUBLISHDATE] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will show the item publish date, in localized long date forum
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[TITLE] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will display the announcement title
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[TRACKCLICKS] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will render &amp;quot;Yes&amp;quot; or &amp;quot;No&amp;quot;, depending on whether to track
+            clicks or not
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[URL] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will display the url the announcement should point to. In order to use this
+            url as a clickable hyperlink, use something like this:&lt; /br&gt; &lt;font face="Courier New"&gt;
+                &amp;lt;a href=&amp;quot;[URL]&amp;quot;&amp;gt;[MORE]&amp;lt;/a&amp;gt;&lt;/font&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;
+            &lt;strong&gt;[VIEWORDER] &lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td valign="top" class="Normal"&gt;
+            This will show the view order of the item
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Announcements Settings</value>
+  </data>
+  <data name="plTemplate.Help" xml:space="preserve">
+    <value>This is the template that is used to display each item.&lt;br&gt;&lt;b&gt;NOTE:&lt;/b&gt; See Module Help for information about which tokens can be used.</value>
+  </data>
+  <data name="plHistory.Help" xml:space="preserve">
+    <value>Enter a number of days to display announcements for. Announcements published longer than the entered number of days ago will not be displayed. Leave blank to display all announcements.</value>
+  </data>
+  <data name="plFuture.Help" xml:space="preserve">
+    <value>This option lets you select wether you want to display items that have not been published yet (due to a publish date that lies in the future)</value>
+  </data>
+  <data name="plFuture.Text" xml:space="preserve">
+    <value>Display Future Items</value>
+  </data>
+  <data name="plDescriptionLength.Text" xml:space="preserve">
+    <value>Description Length (Search &amp; RSS)</value>
+  </data>
+  <data name="plDescriptionLength.Help" xml:space="preserve">
+    <value>Specify the number of characters in the description used in search results and rss feeds&lt;br /&gt;&lt;b&gt;Tip: &lt;/b&gt;use 0 to use the maximum text length (2000 characters)</value>
+  </data>
+  <data name="plAltItemTemplate.Help" xml:space="preserve">
+    <value>This is the template that is used to display alternate items. If no template is defined, then the normal item template is used for alternate items.</value>
+  </data>
+  <data name="plAltItemTemplate.Text" xml:space="preserve">
+    <value>Alternate Item Template</value>
+  </data>
+  <data name="plFooterTemplate.Help" xml:space="preserve">
+    <value>This is the template that is used after displaying the last item</value>
+  </data>
+  <data name="plFooterTemplate.Text" xml:space="preserve">
+    <value>Footer Template</value>
+  </data>
+  <data name="plHeaderTemplate.Help" xml:space="preserve">
+    <value>This is the template that is used prior to displaying the first item</value>
+  </data>
+  <data name="plHeaderTemplate.Text" xml:space="preserve">
+    <value>Header Template</value>
+  </data>
+  <data name="plSeparator.Help" xml:space="preserve">
+    <value>This is the template for the seperator</value>
+  </data>
+  <data name="plSeparator.Text" xml:space="preserve">
+    <value>Separator Template</value>
+  </data>
+  <data name="LoadDefault.Confirm" xml:space="preserve">
+    <value>Are you sure? This will overwrite the existing template.</value>
+  </data>
+  <data name="LoadDefault.Text" xml:space="preserve">
+    <value>Load Default</value>
+  </data>
+  <data name="LoadDefault.Help" xml:space="preserve">
+    <value>This will load the default template for this item from the resource file</value>
+  </data>
+  <data name="plDefaultView.Help" xml:space="preserve">
+    <value>Select here the default view for the module</value>
+  </data>
+  <data name="plDefaultView.Text" xml:space="preserve">
+    <value>Default view</value>
+  </data>
+  <data name="plEditorHeight.Help" xml:space="preserve">
+    <value>Enter a height for the editor. If empty, the default value of 300 will be used</value>
+  </data>
+  <data name="plEditorHeight.Text" xml:space="preserve">
+    <value>Editor Height (px)</value>
+  </data>
+</root>

@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="plTitle.Text" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="plTitle.Help" xml:space="preserve">
+    <value>Enter a Title for the Announcment.  Depending on the Skin and the template for this module, this title will appear in bold.</value>
+  </data>
+  <data name="plDescription.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="plDescription.Help" xml:space="preserve">
+    <value>Enter a description of the Announcement</value>
+  </data>
+  <data name="plURL.Text" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="plURL.Help" xml:space="preserve">
+    <value>The Announcment can optionally link to an external URL, a Page within this site or to a File within this site.</value>
+  </data>
+  <data name="plPublishDate.Text" xml:space="preserve">
+    <value>Publish Date</value>
+  </data>
+  <data name="plPublishDate.Help" xml:space="preserve">
+    <value>Enter an Publish Date for the Announcement.  The Announcement will only display from this date.</value>
+  </data>
+  <data name="Title.ErrorMessage" xml:space="preserve">
+    <value>&lt;br /&gt;You must enter a title for the announcement</value>
+  </data>
+  <data name="Description.ErrorMessage" xml:space="preserve">
+    <value>&lt;br /&gt;You must enter a description of the announcement</value>
+  </data>
+  <data name="PublishDate.ErrorMessage" xml:space="preserve">
+    <value>&lt;br /&gt;You have entered an invalid date!</value>
+  </data>
+  <data name="plViewOrder.Text" xml:space="preserve">
+    <value>View Order</value>
+  </data>
+  <data name="plViewOrder.Help" xml:space="preserve">
+    <value>Enter the View Order for the Announcement.</value>
+  </data>
+  <data name="ViewOrder.ErrorMessage" xml:space="preserve">
+    <value>&lt;br /&gt;View order must be an integer value.</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;About the Announcements Module&lt;/h1&gt;
+&lt;p&gt;The Announcements Module produces a list of simple text announcements consisting 
+of a title and brief description. Options include a read more link to a file, page 
+or other site. Link click tracking and logging are also available. Announcements 
+are ordered from newest to oldest, unless a view order is specified.&lt;/p&gt;
+&lt;h2&gt;Adding or updating an announcement&lt;/h2&gt;
+&lt;div&gt;
+&lt;ol&gt;
+	&lt;li&gt;Add an &lt;b&gt;Announcements&lt;/b&gt; module, or go to an existing &lt;b&gt;Announcements&lt;/b&gt; 
+	module.&lt;/li&gt;
+	&lt;li&gt;Click &lt;b&gt;Add New Announcement&lt;/b&gt;. &lt;/li&gt;
+    &lt;li&gt;At least complete the following &lt;b&gt;required&lt;/b&gt; fields:&lt;ol style="list-style-type:lower-alpha"&gt;
+        &lt;li&gt;At &lt;b&gt;Title&lt;/b&gt;, enter a title for the announcement.&lt;/li&gt;
+        &lt;li&gt;At &lt;b&gt;Description&lt;/b&gt;, enter a description of the Announcement.&lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Additionally, you can enter information for the following &lt;b&gt;optional&lt;/b&gt; 
+        fields:&lt;ol style="list-style-type:lower-alpha"&gt;
+        &lt;li&gt;At &lt;b&gt;Image&lt;/b&gt;, select an image to be displayed with this announcement&lt;/li&gt;
+            &lt;li&gt;At &lt;b&gt;Link Type&lt;/b&gt;, select &lt;b&gt;URL&lt;/b&gt;, &lt;b&gt;Page&lt;/b&gt;, &lt;b&gt;File 
+	or User&lt;/b&gt; 
+	and then at &lt;b&gt;Link&lt;/b&gt; select or enter the required link, page, file or 
+	user 
+	&lt;/li&gt;
+            &lt;li&gt;At &lt;b&gt;Track Number Of Times This Link Is Clicked?&lt;/b&gt; , check 
+	the box if required.&lt;/li&gt;
+            &lt;li&gt;At &lt;b&gt;Log The User, Date, And Time For Every Link Click&lt;/b&gt;, 
+	check the box if required.&lt;/li&gt;
+            &lt;li&gt;At &lt;b&gt;Publish Date&lt;/b&gt;, enter the date and time you want to publish the 
+                announcement&lt;/li&gt;
+            &lt;li&gt;At &lt;b&gt;Expire Date&lt;/b&gt;, enter the date and time the announcement should expire 
+                (hidden from view)&lt;/li&gt;
+            &lt;li&gt;At &lt;b&gt;View Order&lt;/b&gt;, enter the View Order for the Announcement. &lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Click &lt;b&gt;Add &lt;/b&gt;or&lt;b&gt; Update&lt;/b&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>Edit Announcements</value>
+  </data>
+  <data name="PublishDateRequired.ErrorMessage" xml:space="preserve">
+    <value>&lt;br /&gt;You must enter a date</value>
+  </data>
+  <data name="plExpireDate.Text" xml:space="preserve">
+    <value>Expire Date</value>
+  </data>
+  <data name="ExpireDate.ErrorMessage" xml:space="preserve">
+    <value>&lt;br /&gt;You have entered an invalid date!</value>
+  </data>
+  <data name="plExpireDate.Help" xml:space="preserve">
+    <value>The expiration date is the date from when the Announcement will be hidden from the normal view.</value>
+  </data>
+  <data name="plImage.Text" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="plImage.Help" xml:space="preserve">
+    <value>Select and Image for the Announcement.</value>
+  </data>
+  <data name="content.Tab" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="imageLinks.Tab" xml:space="preserve">
+    <value>Image &amp; Link</value>
+  </data>
+  <data name="publishing.Tab" xml:space="preserve">
+    <value>Publishing</value>
+  </data>
+  <data name="plExpireTime.Help" xml:space="preserve">
+    <value>Optionally enter an exact expiration time. In conjuction with the expiration date, this will cause the Announcement to be hidden at this exact time.</value>
+  </data>
+  <data name="plExpireTime.Text" xml:space="preserve">
+    <value>Expiration Time</value>
+  </data>
+  <data name="plPublishTime.Help" xml:space="preserve">
+    <value>Optionaly, also enter a specific Publish Time. If ommited, the announcement will be published at midnight of the Publish Date exactly.</value>
+  </data>
+  <data name="plPublishTime.Text" xml:space="preserve">
+    <value>Publish Time</value>
+  </data>
+  <data name="auditing.Tab" xml:space="preserve">
+    <value>Auditing</value>
+  </data>
+  <data name="plAudit.Text" xml:space="preserve">
+    <value>Audit</value>
+  </data>
+  <data name="plTracking.Text" xml:space="preserve">
+    <value>URL Tracking</value>
+  </data>
+</root>

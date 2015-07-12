@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- 
+	 
+   requirements
+		
+		MSBuildExtensionPack: https://msbuildextensionpack.codeplex.com/
+
+	 modifiations to project file:
+	
+		  <Import Project="$(MSBuildProjectDirectory)\Installation\Project.Targets" Condition="Exists('$(MSBuildProjectDirectory)\Installation\Project.targets')" />
+
+	 personalization:
+		
+  	CompanyName: Your Company Name
+		ModuleName: name of module
+  -->
+  <PropertyGroup>
+    <CompanyName>DotNetNuke</CompanyName>
+    <ModuleName>Announcements</ModuleName>
+    <ModuleIconFile>Images\icon-announcements-32px.png</ModuleIconFile>
+    <DotNetNukeDir>E:\websites\DotNetNuke_Enterprise_7.1.1.382_Install</DotNetNukeDir>
+    <DotNetNukeUrl>http://dnndev.me</DotNetNukeUrl>
+    <DeployModuleFolder>$(DotNetNukeDir)\DesktopModules\Announcements</DeployModuleFolder>
+
+    <InstallDir>$(MSBuildProjectDirectory)\Installation</InstallDir>
+    <BinDir>$(MSBuildProjectDirectory)\bin</BinDir>
+  </PropertyGroup>
+
+  <!-- Locate ExtensionTasksPath  for MSBuild Extension pack - works for both x32 and x64 versions. -->
+  <PropertyGroup>
+    <!-- Path to ExtensionPack required for TFS operations -->
+    <ExtensionTasksPath Condition=" ('$(ExtensionTasksPath)' == '') And Exists('$(MSBuildExtensionsPath64)\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks') ">$(MSBuildExtensionsPath64)\ExtensionPack\4.0\</ExtensionTasksPath>
+    <ExtensionTasksPath Condition=" ('$(ExtensionTasksPath)' == '') And Exists('$(MSBuildExtensionsPath32)\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks') ">$(MSBuildExtensionsPath32)\ExtensionPack\4.0\</ExtensionTasksPath>
+  </PropertyGroup>
+
+  <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" Condition=" Exists('$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks') "/>
+  
+  <ItemGroup>
+    <AssemblyInfoFile Include="$(MSBuildProjectDirectory)\Properties\AssemblyInfo.cs" />
+    <dnnFile Include="$(MSBuildProjectDirectory)\$(MSBuildProjectName).dnn" />
+  </ItemGroup>
+
+  <Target Name="BeforeBuild">
+    <CallTarget Targets="SetVersionInfo" />
+  </Target>
+  <Target Name="AfterBuild">
+    <CallTarget Targets="DeployFiles" />
+  </Target>
+
+  <!-- Set the version numbers in DNN file and Assembly -->
+  <Target Name="SetVersionInfo">
+    
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="ReadAttribute" File="@(dnnFile)" XPath="/dotnetnuke/packages/package/@version">
+      <Output PropertyName="ModuleVersion" TaskParameter="Value"/>
+    </MSBuild.ExtensionPack.Xml.XmlFile>
+
+    <MSBuild.ExtensionPack.Framework.AssemblyInfo AssemblyInfoFiles="@(AssemblyInfoFile)" AssemblyVersion="$(ModuleVersion).00" AssemblyBuildNumberType="NoIncrement"/>
+
+    <Message Text="MSBUILD: Assembly version set to: $(ModuleVersion)" Importance="high"></Message>
+
+  </Target>
+
+ 
+  <Target Name="DeployFiles">
+
+    <MakeDir Directories="$(InstallDir)\$(ModuleVersion)\" />
+
+    <CallTarget Targets="RemoveZips" />
+    <CallTarget Targets="ZipInstall" />
+    <CallTarget Targets="ZipSource" />
+    <CallTarget Targets="InstallModule" />
+    <CallTarget Targets="CopyFilesToDotNetNuke" Condition="('$(DotNetNukeDir)'!='') And (Exists($(DotNetNukeDir)))" />
+
+  </Target>
+
+  <!-- remove files with same version number from installation dir -->
+  <Target Name="RemoveZips" Condition="('$(ConfigurationName)'=='Release') Or ('$(ConfigurationName)'=='DebugDeploy')">
+    <Message Text="MSBUILD: removing old zips with version $(ModuleVersion) from $(InstallDir)\$(ModuleVersion)\" Importance="high"></Message>
+    <CreateItem Include="$(InstallDir)\$(ModuleVersion)\$(CompanyName).$(ModuleName).$(ModuleVersion).Source.zip;
+				     $(InstallDir)\$(ModuleVersion)\$(CompanyName).$(ModuleName).$(ModuleVersion).Install.zip;">
+      <Output TaskParameter="Include" ItemName="deleteFiles" />
+    </CreateItem>
+    <Delete ContinueOnError="true" Files="@(deleteFiles)"></Delete>
+  </Target>
+
+  <!-- create zip source installer, "manual" approach for greater flexibility -->
+  <Target Name="ZipSource" Condition="('$(ConfigurationName)'=='Release') Or ('$(ConfigurationName)'=='DebugDeploy')">
+    <MSBuild.ExtensionPack.Framework.Path TaskAction="GetPathRoot" Filepath="$(MSBuildProjectDirectory)">
+      <Output TaskParameter="Value" PropertyName="PathRoot" />
+    </MSBuild.ExtensionPack.Framework.Path>
+    <MSBuild.ExtensionPack.Framework.TextString TaskAction="Replace" OldString="$(MSBuildProjectDirectory)" OldValue="$(PathRoot)" NewValue="\">
+      <Output PropertyName="UnRootedProjectDirectory" TaskParameter="NewString"/>
+    </MSBuild.ExtensionPack.Framework.TextString>
+
+    <Message Text="MSBUILD: creating Source Zip file: $(InstallDir)\$(ModuleVersion)\$(CompanyName).$(ModuleName).$(ModuleVersion).Source.zip" Importance="high"></Message>
+
+    <!-- delete resource zip to make it is not there -->
+    <Delete ContinueOnError="true" Files="$(MSBuildProjectDirectory)\resources.zip"></Delete>
+
+    <!-- get files for resource zip-->
+    <CreateItem	Include="$(MSBuildProjectDirectory)\**"
+            Exclude="$(MSBuildProjectDirectory)\**\.svn\**;
+						$(MSBuildProjectDirectory)\_ReSharper.$(MSBuildProjectName)\**;
+						$(MSBuildProjectDirectory)\**\obj\**;
+						$(MSBuildProjectDirectory)\**\bin\**;
+						$(MSBuildProjectDirectory)\**\*.user;
+						$(MSBuildProjectDirectory)\**\*.suo;
+						$(MSBuildProjectDirectory)\*.dnn;
+						$(MSBuildProjectDirectory)\_Dependencies\*.dll;
+						$(MSBuildProjectDirectory)\**\Installation\**">
+      <Output TaskParameter="Include" ItemName="sourceResources" />
+    </CreateItem>
+
+    <!--get files for source install zip-->
+    <CreateItem Include="$(MSBuildProjectDirectory)\bin\$(CompanyName).*.dll;
+					    $(MSBuildProjectDirectory)\resources.zip;
+					    $(MSBuildProjectDirectory)\**\*.SqlDataProvider;
+					    $(MSBuildProjectDirectory)\Documentation\*.txt;
+					    $(MSBuildProjectDirectory)\$(ModuleIconFile);
+					    $(MSBuildProjectDirectory)\*.dnn;"
+     Exclude="**.*">
+      <Output TaskParameter="Include" ItemName="source"/>
+    </CreateItem>
+
+    <Message Text="MSBUILD: UnRootedProjectDirectory $(UnRootedProjectDirectory)" Importance="high"></Message>
+
+    <!-- Create resources.zip -->
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Create" RemoveRoot="$(UnRootedProjectDirectory)" CompressFiles="@(sourceResources)" ZipFileName="$(MSBuildProjectDirectory)\resources.zip"/>
+
+    <!-- create source install zip. file will contain folder structure -->
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Create" RemoveRoot="$(UnRootedProjectDirectory)" CompressFiles="@(source)" ZipFileName="$(InstallDir)\$(ModuleVersion)\$(CompanyName).$(ModuleName).$(ModuleVersion).Source.zip"/>
+
+    <!-- cleanup -->
+    <Delete Files="$(MSBuildProjectDirectory)\resources.zip"></Delete>
+  </Target>
+
+  <!-- creat install zip file -->
+  <Target Name="ZipInstall" Condition="('$(ConfigurationName)'=='Release') Or ('$(ConfigurationName)'=='DebugDeploy')">
+    <MSBuild.ExtensionPack.Framework.Path TaskAction="GetPathRoot" Filepath="$(MSBuildProjectDirectory)">
+      <Output TaskParameter="Value" PropertyName="PathRoot" />
+    </MSBuild.ExtensionPack.Framework.Path>
+    <MSBuild.ExtensionPack.Framework.TextString TaskAction="Replace" OldString="$(MSBuildProjectDirectory)" OldValue="$(PathRoot)" NewValue="\">
+      <Output PropertyName="UnRootedProjectDirectory" TaskParameter="NewString"/>
+    </MSBuild.ExtensionPack.Framework.TextString>
+    
+    <Message Text="MSBUILD: creating Installation Zip file: $(InstallDir)\$(ModuleVersion)\$(CompanyName).$(ModuleName).$(ModuleVersion).Install.zip" Importance="high"></Message>
+    <!-- delete resource zip to make sure it is not there -->
+    <Delete Files="$(MSBuildProjectDirectory)\resources.zip"></Delete>
+
+    <!-- get files for resource zip-->
+    <CreateItem Exclude="$(MSBuildProjectDirectory)\**\.svn\**;
+						$(MSBuildProjectDirectory)\_ReSharper.$(MSBuildProjectName)\**;
+						$(MSBuildProjectDirectory)\**\obj\**;
+						$(MSBuildProjectDirectory)\**\bin\**;
+						$(MSBuildProjectDirectory)\**\My Project\**;
+						$(MSBuildProjectDirectory)\_Dependencies\**;
+						$(MSBuildProjectDirectory)\**\Properties\**;
+						$(MSBuildProjectDirectory)\*.dnn;
+						$(MSBuildProjectDirectory)\**\Installation\**"
+      Include="$(MSBuildProjectDirectory)\**\*.ascx;
+						$(MSBuildProjectDirectory)\**\*.aspx;
+						$(MSBuildProjectDirectory)\**\*.ashx;
+						$(MSBuildProjectDirectory)\**\*.css;
+						$(MSBuildProjectDirectory)\**\*.js;
+					  $(MSBuildProjectDirectory)\**\*.resx;
+						$(MSBuildProjectDirectory)\**\*.gif;
+						$(MSBuildProjectDirectory)\**\*.jpg;
+						$(MSBuildProjectDirectory)\**\*.png;
+						$(MSBuildProjectDirectory)\Templates\**\**;
+						$(MSBuildProjectDirectory)\Documentation\*.txt;
+						$(MSBuildProjectDirectory)\Documentation\*.htm;"
+					>
+      <Output TaskParameter="Include" ItemName="resources" />
+    </CreateItem>
+
+    <!--get files for install zip-->
+    <CreateItem Include="$(MSBuildProjectDirectory)\bin\$(CompanyName).*.dll;
+					    $(MSBuildProjectDirectory)\resources.zip;
+					    $(MSBuildProjectDirectory)\**\*.SqlDataProvider;
+					    $(MSBuildProjectDirectory)\Documentation\*.txt;
+					    $(MSBuildProjectDirectory)\$(ModuleIconFile);
+					    $(MSBuildProjectDirectory)\*.dnn;"
+     Exclude="**.*">
+      <Output TaskParameter="Include" ItemName="install"/>
+    </CreateItem>
+
+    <!-- Create resources.zip -->
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Create" RemoveRoot="$(UnRootedProjectDirectory)" CompressFiles="@(resources)" ZipFileName="$(MSBuildProjectDirectory)\resources.zip"/>
+
+    <!-- create  install zip. file will contain folder structure -->
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Create" RemoveRoot="$(UnRootedProjectDirectory)" CompressFiles="@(install)" ZipFileName="$(InstallDir)\$(ModuleVersion)\$(CompanyName).$(ModuleName).$(ModuleVersion).Install.zip"/>
+
+    <!-- cleanup -->
+    <Delete Files="$(MSBuildProjectDirectory)\resources.zip"></Delete>
+  </Target>
+
+  <Target Name="CopyFilesToDotNetNuke" Condition="'$(ConfigurationName)'=='Debug'">
+    <Delete Files="$(MSBuildProjectDirectory)\DebugCopy.zip"></Delete>
+
+    <MSBuild.ExtensionPack.Framework.Path TaskAction="GetPathRoot" Filepath="$(MSBuildProjectDirectory)">
+      <Output TaskParameter="Value" PropertyName="PathRoot" />
+    </MSBuild.ExtensionPack.Framework.Path>
+    <MSBuild.ExtensionPack.Framework.TextString TaskAction="Replace" OldString="$(MSBuildProjectDirectory)" OldValue="$(PathRoot)" NewValue="\">
+      <Output PropertyName="UnRootedProjectDirectory" TaskParameter="NewString"/>
+    </MSBuild.ExtensionPack.Framework.TextString>
+
+    <!-- Copy assemblies and Debug Info to DNN Bin Dir -->
+    <CreateItem Include="$(BinDir)\*.pdb;$(BinDir)\*.dll">
+      <Output TaskParameter="Include" ItemName="Assemblies" />
+    </CreateItem>
+    <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(DotNetNukeDir)\bin\" SkipUnchangedFiles="false" ContinueOnError="true" />
+
+    <CreateItem Exclude="$(MSBuildProjectDirectory)\**\.svn\**;
+						$(MSBuildProjectDirectory)\_ReSharper.$(MSBuildProjectName)\**;
+						$(MSBuildProjectDirectory)\**\obj\**;
+						$(MSBuildProjectDirectory)\**\bin\**;
+						$(MSBuildProjectDirectory)\**\My Project\**;
+						$(MSBuildProjectDirectory)\_Dependencies\**;
+						$(MSBuildProjectDirectory)\**\Properties\**;
+						$(MSBuildProjectDirectory)\*.dnn;
+						$(MSBuildProjectDirectory)\**\Installation\**"
+      Include="$(MSBuildProjectDirectory)\**\*.ascx;
+						$(MSBuildProjectDirectory)\**\*.aspx;
+						$(MSBuildProjectDirectory)\**\*.ashx;
+						$(MSBuildProjectDirectory)\**\*.css;
+						$(MSBuildProjectDirectory)\**\*.js;
+					  $(MSBuildProjectDirectory)\**\*.resx;
+						$(MSBuildProjectDirectory)\**\*.gif;
+						$(MSBuildProjectDirectory)\**\*.jpg;
+						$(MSBuildProjectDirectory)\**\*.png;
+						$(MSBuildProjectDirectory)\Templates\**\**;
+						$(MSBuildProjectDirectory)\Documentation\*.txt;
+						$(MSBuildProjectDirectory)\Documentation\*.htm;"
+					>
+      <Output TaskParameter="Include" ItemName="DebugCopy" />
+    </CreateItem>
+    <!-- Create resources.zip -->
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Create" RemoveRoot="$(UnRootedProjectDirectory)" CompressFiles="@(DebugCopy)" ZipFileName="$(MSBuildProjectDirectory)\DebugCopy.zip"/>
+    <!-- Unzip Resources in deploy directory.zip -->
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Extract" ExtractPath="$(DeployModuleFolder)" ZipFileName="$(MSBuildProjectDirectory)\DebugCopy.zip"/>
+    <!-- cleanup -->
+    <Delete Files="$(MSBuildProjectDirectory)\DebugCopy.zip"></Delete>
+
+    <!-- restarting site -->
+    <MSBuild.ExtensionPack.Web.HttpWebRequest TaskAction="GetResponse" Url="$(DotNetNukeUrl)"></MSBuild.ExtensionPack.Web.HttpWebRequest>
+    
+    <Message Text="MSBUILD: Copied @(Assemblies) to $(DotNetNukeDir)\bin\" Importance="high"></Message>
+  </Target>
+
+  <Target Name="InstallModule" Condition="'$(ConfigurationName)'=='DebugDeploy'">
+    <!-- Copy assemblies and Debug Info to DNN Bin Dir -->
+    <CreateItem Include="$(InstallDir)\$(ModuleVersion)\$(CompanyName).$(ModuleName).$(ModuleVersion).Install.zip">
+      <Output TaskParameter="Include" ItemName="InstallZip" />
+    </CreateItem>
+    <Copy SourceFiles="@(InstallZip)" DestinationFolder="$(DotNetNukeDir)\Install\Module" SkipUnchangedFiles="false" ContinueOnError="true" />
+    <Message Text="MSBUILD: copied module install package to $(DotNetNukeDir)\Install\Module\" Importance="high"></Message>
+    <Message Text="MSBUILD: calling $(DotNetNukeUrl)/install/install.aspx?mode=installResources" Importance="high"></Message>
+
+    <!-- install package -->
+    <MSBuild.ExtensionPack.Web.HttpWebRequest TaskAction="GetResponse" Url="$(DotNetNukeUrl)/install/install.aspx?mode=installResources">
+      <Output TaskParameter="Response" ItemName="ResponseDetail"/>
+      <Output TaskParameter="Status" PropertyName="ResponseStatus"/>
+    </MSBuild.ExtensionPack.Web.HttpWebRequest>
+    <Message Text="Status: $(ResponseStatus)" Importance="high"/>
+    <Message Text="StatusDescription: %(ResponseDetail.StatusDescription)" Importance="high"/>
+    <Message Text="StatusCode: %(ResponseDetail.StatusCode)" Importance="high"/>
+    <Message Text="CharacterSet: %(ResponseDetail.CharacterSet)" Importance="high"/>
+    <Message Text="ProtocolVersion: %(ResponseDetail.ProtocolVersion)" Importance="high"/>
+    <Message Text="ResponseUri: %(ResponseDetail.ResponseUri)" Importance="high"/>
+    <Message Text="Server: %(ResponseDetail.Server)" Importance="high"/>
+    <Message Text="ResponseText: %(ResponseDetail.ResponseText)" Importance="high"/>
+
+    <!-- restart site -->
+    <MSBuild.ExtensionPack.Web.HttpWebRequest TaskAction="GetResponse" Url="$(DotNetNukeUrl)"></MSBuild.ExtensionPack.Web.HttpWebRequest>
+
+    <Message Text="MSBUILD: Installed the module to $(DotNetNukeUrl)" Importance="high"></Message>
+  </Target>
+</Project>
+
+

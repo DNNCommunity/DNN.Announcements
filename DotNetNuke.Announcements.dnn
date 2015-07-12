@@ -1,0 +1,205 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="DNN_Announcements" type="Module" version="07.01.00">
+      <friendlyName>Announcements</friendlyName>
+      <description>This module renders a list of announcements. The way the announcements are rendered is completely customizable by templating.</description>
+      <iconFile>DesktopModules/Announcements/Images/icon-announcements-32px.png</iconFile>
+      <owner>
+        <name>DotNetNuke</name>
+        <organization>DotNetNuke Corporation</organization>
+        <url>http://www.dotnetnuke.com</url>
+        <email>support@dotnetnuke.com</email>
+      </owner>
+      <license src="Documentation/License.txt"/>
+      <releaseNotes src="Documentation/ReleaseNotes.txt" />
+      <azureCompatible>true</azureCompatible>
+      <dependencies>
+        <dependency type="CoreVersion">07.01.01</dependency>
+      </dependencies>
+      <components>
+        <component type="Script">
+          <scripts>
+            <basePath>DesktopModules\Announcements</basePath>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>03.01.00.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\03.01.00.SqlDataProvider</sourceFileName>
+              <version>03.01.00</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>03.03.00.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\03.03.00.SqlDataProvider</sourceFileName>
+              <version>03.03.00</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>03.03.01.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\03.03.01.SqlDataProvider</sourceFileName>
+              <version>03.03.01</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>03.03.02.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\03.03.02.SqlDataProvider</sourceFileName>
+              <version>03.03.02</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>03.03.04.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\03.03.04.SqlDataProvider</sourceFileName>
+              <version>03.03.04</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>03.03.05.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\03.03.05.SqlDataProvider</sourceFileName>
+              <version>03.03.05</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>03.04.00.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\03.04.00.SqlDataProvider</sourceFileName>
+              <version>03.04.00</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.00.00.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\04.00.00.SqlDataProvider</sourceFileName>
+              <version>04.00.00</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.00.01.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\04.00.01.SqlDataProvider</sourceFileName>
+              <version>04.00.01</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.00.02.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\04.00.02.SqlDataProvider</sourceFileName>
+              <version>04.00.02</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.00.03.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\04.00.03.SqlDataProvider</sourceFileName>
+              <version>04.00.03</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>07.00.00.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\07.00.00.SqlDataProvider</sourceFileName>
+              <version>07.00.00</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>Install.07.00.00.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\Install.07.00.00.SqlDataProvider</sourceFileName>
+              <version>07.00.00</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>07.00.01.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider</sourceFileName>
+              <version>07.00.01</version>
+            </script>
+            <script type="UnInstall">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>Uninstall.SqlDataProvider</name>
+              <sourceFileName>Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider</sourceFileName>
+              <version>07.00.01</version>
+            </script>
+          </scripts>
+        </component>
+        <component type="Cleanup" fileName="07.00.00.txt" version="07.00.00" />
+        <component type="Module">
+          <desktopModule>
+            <moduleName>DNN_Announcements</moduleName>
+            <foldername>Announcements</foldername>
+            <businessControllerClass>DotNetNuke.Modules.Announcements.Components.Business.AnnouncementsController, DotNetNuke.Modules.Announcements</businessControllerClass>
+            <supportedFeatures>
+              <supportedFeature type="Portable" />
+              <supportedFeature type="Searchable" />
+            </supportedFeatures>
+            <shareable>Supported</shareable>
+            <moduleDefinitions>
+              <moduleDefinition>
+                <friendlyName>Announcements</friendlyName>
+                <defaultCacheTime>-1</defaultCacheTime>
+                <moduleControls>
+                  <moduleControl>
+                    <controlKey />
+                    <controlSrc>DesktopModules/Announcements/AnnouncementsView.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle />
+                    <controlType>View</controlType>
+                    <iconFile />
+                    <helpUrl>http://help.dotnetnuke.com/070000/default.htm#Building Your Site/Project Modules/Announcements/About the Announcements Module.htm</helpUrl>
+                    <supportsPopUps>False</supportsPopUps>
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Edit</controlKey>
+                    <controlSrc>DesktopModules/Announcements/AnnouncementsEdit.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Edit Announcements</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl/>
+                    <supportsPopUps>True</supportsPopUps>
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Template</controlKey>
+                    <controlSrc>DesktopModules/Announcements/TemplateConfiguration.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Template Configuration</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl/>
+                    <supportsPopUps>True</supportsPopUps>
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Settings</controlKey>
+                    <controlSrc>DesktopModules/Announcements/AnnouncementsSettings.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Announcement Settings</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl/>
+                    <supportsPopUps>False</supportsPopUps>
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                </moduleControls>
+              </moduleDefinition>
+            </moduleDefinitions>
+          </desktopModule>
+          <permissions>
+            <permission code="DNNANNOUNCEMENTS" key="EDITTEMPLATE" name="Edit Template" />
+            <permission code="DNNANNOUNCEMENTS" key="CANSUBSCRIBE" name="Can Subscribe" />
+          </permissions>
+        </component>
+        <component type="Assembly">
+          <assemblies>
+            <basePath>bin</basePath>
+            <assembly>
+              <path>bin</path>
+              <name>DotNetNuke.Modules.Announcements.dll</name>
+              <sourceFileName>bin\DotNetNuke.Modules.Announcements.dll</sourceFileName>
+            </assembly>
+          </assemblies>
+        </component>
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>DesktopModules\Announcements</basePath>
+            <resourceFile>
+              <name>resources.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>

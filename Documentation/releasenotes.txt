@@ -1,0 +1,11 @@
+﻿MODULE: DotNetNuke Announcements Module
+Version: 07.00.00 CTP
+Minimum Required DNN Version: 7.0.0 RC
+
+This is a major new version of the module. Changes in this version include
+
+* Update of the UI of the module to match the DotNetNuke 7 UI
+* Replacement of DAL 1 by DAL 2, the module now uses the DotNetNuke PetaPoco MicroORM, and does not use any SQL Stored Procedures anymore
+* Addition of support for the DotNetNuke WebAPI Service Framework
+* Rewritten in C#
+* Updated to .NET 4.0

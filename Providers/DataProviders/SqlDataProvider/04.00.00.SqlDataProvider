@@ -1,0 +1,250 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {databaseOwner}{objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Alter Table, change url to nvarchar 250 **/
+
+  ALTER TABLE {databaseOwner}{objectQualifier}Announcements ALTER COLUMN [URL] [nvarchar] (250) NULL
+
+
+/** To make sure, also drop new sprocs **/
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_GetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_GetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_GetCurrent]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_GetCurrent
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_GetExpired]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_GetExpired
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}dnnAnnouncements_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Delete
+GO
+
+/** Create Stored Procedures **/
+
+create procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Add
+
+	@ModuleId      int,
+	@CreatedByUser int,
+	@CreatedDate   datetime,
+	@Title         nvarchar(150),
+	@ImageSource   nvarchar(250),
+	@Url           nvarchar(250),
+	@Description   ntext,
+	@ViewOrder     int,
+	@PublishDate   datetime,
+	@ExpireDate    datetime
+
+as
+
+insert into {databaseOwner}{objectQualifier}Announcements (
+	ModuleId,
+	CreatedByUser,
+	CreatedDate,
+	Title,
+	ImageSource,
+	Url,
+	Description,
+	ViewOrder,
+	PublishDate,
+	ExpireDate
+)
+values (
+	@ModuleId,
+	@CreatedByUser,
+	@CreatedDate,
+	@Title,
+	@ImageSource,
+	@Url,
+	@Description,
+	@ViewOrder,
+	@PublishDate,
+	@ExpireDate
+)
+
+select SCOPE_IDENTITY()
+
+GO
+
+CREATE procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Get
+
+@ItemId   int,
+@ModuleId int
+
+as
+
+select  {databaseOwner}{objectQualifier}Announcements.ItemId,
+	    {databaseOwner}{objectQualifier}Announcements.ModuleId,
+        {databaseOwner}{objectQualifier}Announcements.CreatedByUser,
+        {databaseOwner}{objectQualifier}Announcements.CreatedDate,
+	    {databaseOwner}{objectQualifier}Announcements.Title,
+	    {databaseOwner}{objectQualifier}Announcements.ImageSource,
+	    {databaseOwner}{objectQualifier}Announcements.URL,
+        {databaseOwner}{objectQualifier}Announcements.Description,
+        {databaseOwner}{objectQualifier}Announcements.ViewOrder,
+        {databaseOwner}{objectQualifier}Announcements.PublishDate,
+        {databaseOwner}{objectQualifier}Announcements.ExpireDate,
+        {databaseOwner}{objectQualifier}UrlTracking.TrackClicks,
+        {databaseOwner}{objectQualifier}UrlTracking.NewWindow
+from    {databaseOwner}{objectQualifier}Announcements
+left outer join {databaseOwner}{objectQualifier}UrlTracking on {databaseOwner}{objectQualifier}Announcements.URL = {databaseOwner}{objectQualifier}UrlTracking.Url and {databaseOwner}{objectQualifier}UrlTracking.ModuleId = @ModuleID 
+where  {databaseOwner}{objectQualifier}Announcements.ItemId = @ItemId
+and    {databaseOwner}{objectQualifier}Announcements.ModuleId = @ModuleId
+
+GO
+
+CREATE procedure {databaseOwner}{objectQualifier}dnnAnnouncements_GetCurrent
+
+@ModuleId int,
+@StartDate datetime
+
+as
+
+select {databaseOwner}{objectQualifier}Announcements.ItemId,
+       {databaseOwner}{objectQualifier}Announcements.ModuleId,
+       {databaseOwner}{objectQualifier}Announcements.CreatedByUser,
+       {databaseOwner}{objectQualifier}Announcements.CreatedDate,
+       {databaseOwner}{objectQualifier}Announcements.Title,
+       {databaseOwner}{objectQualifier}Announcements.ImageSource,
+       {databaseOwner}{objectQualifier}Announcements.URL,
+       {databaseOwner}{objectQualifier}Announcements.Description,
+       {databaseOwner}{objectQualifier}Announcements.ViewOrder,
+       {databaseOwner}{objectQualifier}Announcements.PublishDate,
+       {databaseOwner}{objectQualifier}Announcements.ExpireDate,
+       {databaseOwner}{objectQualifier}UrlTracking.TrackClicks,
+       {databaseOwner}{objectQualifier}UrlTracking.NewWindow
+from   {databaseOwner}{objectQualifier}Announcements
+       left outer join {databaseOwner}{objectQualifier}UrlTracking on {databaseOwner}{objectQualifier}Announcements.URL = {databaseOwner}{objectQualifier}UrlTracking.Url and {databaseOwner}{objectQualifier}UrlTracking.ModuleId = @ModuleID 
+where  {databaseOwner}{objectQualifier}Announcements.ModuleId = @ModuleId
+       and ( (({databaseOwner}{objectQualifier}Announcements.PublishDate >= @StartDate) or @StartDate is null) and ({databaseOwner}{objectQualifier}Announcements.PublishDate <= GETDATE()) )
+       and ( ({databaseOwner}{objectQualifier}Announcements.ExpireDate > getDate()) or ({databaseOwner}{objectQualifier}Announcements.ExpireDate is null) )
+order by {databaseOwner}{objectQualifier}Announcements.ViewOrder asc, {databaseOwner}{objectQualifier}Announcements.PublishDate desc
+
+GO
+
+CREATE procedure {databaseOwner}{objectQualifier}dnnAnnouncements_GetExpired
+
+@ModuleId int
+
+as
+
+select {databaseOwner}{objectQualifier}Announcements.ItemId,
+       {databaseOwner}{objectQualifier}Announcements.ModuleId,
+       {databaseOwner}{objectQualifier}Announcements.CreatedByUser,
+       {databaseOwner}{objectQualifier}Announcements.CreatedDate,
+       {databaseOwner}{objectQualifier}Announcements.Title,
+       {databaseOwner}{objectQualifier}Announcements.ImageSource,
+       {databaseOwner}{objectQualifier}Announcements.URL,
+       {databaseOwner}{objectQualifier}Announcements.Description,
+       {databaseOwner}{objectQualifier}Announcements.ViewOrder,
+       {databaseOwner}{objectQualifier}Announcements.PublishDate,
+       {databaseOwner}{objectQualifier}Announcements.ExpireDate,
+       {databaseOwner}{objectQualifier}UrlTracking.TrackClicks,
+       {databaseOwner}{objectQualifier}UrlTracking.NewWindow
+from   {databaseOwner}{objectQualifier}Announcements
+       left outer join {databaseOwner}{objectQualifier}UrlTracking on {databaseOwner}{objectQualifier}Announcements.URL = {databaseOwner}{objectQualifier}UrlTracking.Url and {databaseOwner}{objectQualifier}UrlTracking.ModuleId = @ModuleID 
+where  {databaseOwner}{objectQualifier}Announcements.ModuleId = @ModuleId
+       and {databaseOwner}{objectQualifier}Announcements.ExpireDate <=  getDate()
+order by {databaseOwner}{objectQualifier}Announcements.ViewOrder asc, {databaseOwner}{objectQualifier}Announcements.PublishDate desc
+
+GO
+
+
+CREATE procedure {databaseOwner}{objectQualifier}dnnAnnouncements_GetAll
+
+@ModuleId int,
+@StartDate datetime,
+@EndDate datetime
+
+as
+
+select {databaseOwner}{objectQualifier}Announcements.ItemId,
+       {databaseOwner}{objectQualifier}Announcements.ModuleId,
+       {databaseOwner}{objectQualifier}Announcements.CreatedByUser,
+       {databaseOwner}{objectQualifier}Announcements.CreatedDate,
+       {databaseOwner}{objectQualifier}Announcements.Title,
+       {databaseOwner}{objectQualifier}Announcements.ImageSource,
+       {databaseOwner}{objectQualifier}Announcements.URL,
+       {databaseOwner}{objectQualifier}Announcements.Description,
+       {databaseOwner}{objectQualifier}Announcements.ViewOrder,
+       {databaseOwner}{objectQualifier}Announcements.PublishDate,
+       {databaseOwner}{objectQualifier}Announcements.ExpireDate,
+       {databaseOwner}{objectQualifier}UrlTracking.TrackClicks,
+       {databaseOwner}{objectQualifier}UrlTracking.NewWindow
+from   {databaseOwner}{objectQualifier}Announcements
+left outer join {databaseOwner}{objectQualifier}UrlTracking on {databaseOwner}{objectQualifier}Announcements.URL = {databaseOwner}{objectQualifier}UrlTracking.Url and {databaseOwner}{objectQualifier}UrlTracking.ModuleId = @ModuleID 
+where  {databaseOwner}{objectQualifier}Announcements.ModuleId = @ModuleId
+and    ( (({databaseOwner}{objectQualifier}Announcements.PublishDate >= @StartDate) or @StartDate is null) and (({databaseOwner}{objectQualifier}Announcements.PublishDate <= @EndDate) or @EndDate is null) )
+order by {databaseOwner}{objectQualifier}Announcements.ViewOrder asc, {databaseOwner}{objectQualifier}Announcements.PublishDate desc
+
+GO
+
+create procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Update
+
+	@ItemId        int,
+	@ModuleId      int,
+	@CreatedByUser int,
+	@CreatedDate   datetime,
+	@Title         nvarchar(150),
+	@ImageSource   nvarchar(250),
+	@Url           nvarchar(250),
+	@Description   ntext,
+	@ViewOrder     int,
+	@PublishDate   datetime,
+	@ExpireDate    datetime
+
+as
+
+update {databaseOwner}{objectQualifier}Announcements
+set    CreatedByUser = @CreatedByUser,
+       CreatedDate   = @CreatedDate,
+       Title         = @Title,
+       ImageSource   = @ImageSource,
+       Url           = @Url,
+       Description   = @Description,
+       ViewOrder     = @ViewOrder,
+       PublishDate	 = @PublishDate,
+       ExpireDate	 = @ExpireDate
+where  ItemId = @ItemId
+  and ModuleID = @ModuleID
+
+GO
+
+create procedure {databaseOwner}{objectQualifier}dnnAnnouncements_Delete
+	@ModuleId int,
+	@ItemId int
+
+as
+
+delete
+from {databaseOwner}{objectQualifier}Announcements
+where  ItemId = @ItemId
+	and ModuleId = @ModuleID
+
+GO
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

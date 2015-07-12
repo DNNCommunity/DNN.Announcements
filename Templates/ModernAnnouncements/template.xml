@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TemplateInfo>
+  <Type>SimpleTemplate</Type>
+  <ItemTemplate>item.htm</ItemTemplate>
+  <AltItemTemplate></AltItemTemplate>
+  <HeaderTemplate>header.htm</HeaderTemplate>
+  <FooterTemplate>footer.htm</FooterTemplate>
+  <SeparatorTemplate></SeparatorTemplate>
+  <DetailTemplate></DetailTemplate>
+  <CssFile></CssFile>
+  <JsFile></JsFile>
+  <Version>01.00.00</Version>
+  <LastModifiedDate>2012-11-28T23:30:00</LastModifiedDate>
+</TemplateInfo>

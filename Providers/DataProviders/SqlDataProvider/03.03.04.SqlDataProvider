@@ -1,0 +1,48 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GetAnnouncements]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	drop procedure {databaseOwner}{objectQualifier}GetAnnouncements
+GO
+
+
+/** Create Stored Procedures **/
+
+
+CREATE procedure {databaseOwner}{objectQualifier}GetAnnouncements
+
+@ModuleId int,
+@StartDate datetime,
+@EndDate datetime
+
+as
+
+select {objectQualifier}Announcements.ItemId,
+       {objectQualifier}Announcements.ModuleId,
+       {objectQualifier}Announcements.CreatedByUser,
+       {objectQualifier}Announcements.CreatedDate,
+       {objectQualifier}Announcements.Title,
+       {objectQualifier}Announcements.URL,
+       {objectQualifier}Announcements.Description,
+       {objectQualifier}Announcements.ViewOrder,
+       {objectQualifier}Announcements.PublishDate,
+       {objectQualifier}UrlTracking.TrackClicks,
+       {objectQualifier}UrlTracking.NewWindow
+from   {objectQualifier}Announcements
+left outer join {objectQualifier}UrlTracking on {objectQualifier}Announcements.URL = {objectQualifier}UrlTracking.Url and {objectQualifier}UrlTracking.ModuleId = @ModuleID 
+where  {objectQualifier}Announcements.ModuleId = @ModuleId
+and    ( (({objectQualifier}Announcements.PublishDate >= @StartDate) or @StartDate is null) and (({objectQualifier}Announcements.PublishDate <= @EndDate) or @EndDate is null) )
+order by {objectQualifier}Announcements.ViewOrder asc, {objectQualifier}Announcements.PublishDate desc
+
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/
