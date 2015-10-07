@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Xml.Serialization;
 
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Modules.Announcements.Components.Business;
-using DotNetNuke.Modules.Announcements.Components.Common;
 using DotNetNuke.Modules.Announcements.Components.Settings;
 
 namespace DotNetNuke.Modules.Announcements.Components.Template
 {
+    [Serializable]
     public abstract class BaseTemplate : ITemplate
     {
 
