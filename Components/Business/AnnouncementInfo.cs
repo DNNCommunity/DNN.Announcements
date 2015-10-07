@@ -392,7 +392,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                     }
 
                     //Retrieve the path to the imagefile
-                    if (strValue != "")
+                    if (!string.IsNullOrEmpty(strValue))
                     {
                         //Get path from filesystem only when the image comes from within DNN.
                         // this is now legacy, from version 7.0.0, a real filename is saved in the DB
