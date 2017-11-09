@@ -44,7 +44,7 @@ namespace DotNetNuke.Modules.Announcements
 
     /// <summary>
     /// The Settings ModuleSettingsBase is used to manage the 
-    /// settings for the Links Module
+    /// settings for the Announcements Module
     /// </summary>
     /// <remarks>
     /// </remarks>
@@ -53,34 +53,36 @@ namespace DotNetNuke.Modules.Announcements
     {
         public event EventHandler GetSettings;
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            try
-            {
-                GetSettings(this, EventArgs.Empty);
-            }
-            catch (Exception exc)
-            {
-                Exceptions.ProcessModuleLoadException(this, exc);
-            }
-
-        }
-
+        /// <summary>
+        /// OnSettingsLoaded gets called BEFORE OnLoad!!!
+        /// So, oyu need to load the settings here??  Why isn't GetSettings called on it's own?  It's an event handler?
+        /// One would think that by the time OnSettingsLoaded is called, GetSettings was already called!
+        /// </summary>
         protected override void OnSettingsLoaded()
         {
             base.OnSettingsLoaded();
 
             try
             {
+                GetSettings?.Invoke(this, EventArgs.Empty);
+
                 txtHistory.Text = Model.Settings.History.ToDnnString();
                 txtDescriptionLength.Text = Model.Settings.DescriptionLength.ToDnnString();
                 txtEditorHeight.Text = Model.Settings.EditorHeight.ToDnnString();
                 foreach (Enum i in Enum.GetValues(typeof(ViewTypes)))
                 {
-                    ddlViewType.Items.Add(new ListItem(Localization.GetString(Enum.GetName(typeof(ViewTypes), i), LocalResourceFile), Enum.GetName(typeof(ViewTypes), i)));
+                    try
+                    {
+                        ddlViewType.Items.Add(new ListItem(
+                            Localization.GetString(Enum.GetName(typeof(ViewTypes), i), LocalResourceFile),
+                            Enum.GetName(typeof(ViewTypes), i)));
+                    }
+                    catch (Exception ex)
+                    {
+                        Exceptions.ProcessModuleLoadException(this, new Exception("inloop", ex));
+                    }
                 }
-                ddlViewType.SelectedValue = Utilities.ViewTypeToString(Model.Settings.DefaultViewType);
+                ddlViewType.SelectedValue = Model.Settings == null ? ViewTypes.Current.ToString() : Utilities.ViewTypeToString(Model.Settings.DefaultViewType);
             }
             catch (Exception exc)
             {
@@ -93,7 +95,6 @@ namespace DotNetNuke.Modules.Announcements
             base.OnSavingSettings();
             try
             {
-
                 Model.Settings.DefaultViewType = Utilities.StringToViewType(ddlViewType.SelectedValue);
                 Model.Settings.History = txtHistory.Text.ToDnnInt();
                 Model.Settings.DescriptionLength = txtDescriptionLength.Text.ToDnnInt();
