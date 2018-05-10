@@ -53,7 +53,8 @@ namespace DotNetNuke.Modules.Announcements.MVP.Presenters
 
         private void GetPermissions(object sender, EventArgs e)
         {
-            View.Model.CanEdit = PortalSecurity.HasNecessaryPermission(SecurityAccessLevel.Edit, ModuleContext.PortalSettings, ModuleInfo, ModuleContext.PortalSettings.UserInfo);
+            //View.Model.CanEdit = PortalSecurity.HasNecessaryPermission(SecurityAccessLevel.Edit, ModuleContext.PortalSettings, ModuleInfo, ModuleContext.PortalSettings.UserInfo);
+            View.Model.CanEdit = ModulePermissionController.CanEditModuleContent(ModuleInfo);
             View.Model.EditEnabled = (ModuleContext.PortalSettings.UserMode != PortalSettings.Mode.View) && View.Model.CanEdit;
             View.Model.CanSubscribe = ModulePermissionController.HasModulePermission(ModuleInfo.ModulePermissions, PermissionName.HasSubscribePermission);
         }

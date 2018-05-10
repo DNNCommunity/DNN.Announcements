@@ -42,6 +42,8 @@ namespace DotNetNuke.Modules.Announcements.Services
 {
     public class AnnouncementsController : DnnApiController
     {
+        private static readonly ILog Logger = LoggerSource.Instance.GetLogger(typeof(AnnouncementsController));
+
         [DnnModuleAuthorize(AccessLevel = SecurityAccessLevel.View)]
         [HttpGet]
         [ActionName("Current")]
@@ -58,7 +60,7 @@ namespace DotNetNuke.Modules.Announcements.Services
             }
             catch (Exception ex)
             {
-                DnnLog.Error(ex);
+                Logger.Error(ex);                
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
 
@@ -92,7 +94,7 @@ namespace DotNetNuke.Modules.Announcements.Services
             }
             catch (Exception ex)
             {
-                DnnLog.Error(ex);
+                Logger.Error(ex);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
 

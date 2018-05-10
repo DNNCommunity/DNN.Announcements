@@ -9,7 +9,7 @@
 <%@ Register TagPrefix="dnn" TagName="FilePickerUploader" Src="~/controls/filepickeruploader.ascx" %>
 <%@ Import Namespace="DotNetNuke.Services.Localization" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
-<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <div class="dnnForm dnnAnnouncementForm dnnClear" id="AnnouncementsForm">
     <ul class="dnnAdminTabNav dnnClear" id="">
         <li id="contentTab" runat="server"><a href="#dnnContent"><%=LocalizeString("content.Tab")%></a></li>

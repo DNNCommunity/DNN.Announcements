@@ -40,7 +40,9 @@ namespace DotNetNuke.Modules.Announcements
             var localTemplate = (BaseTemplate)Model.Template;
             if (!string.IsNullOrEmpty(localTemplate.JsFile) && File.Exists(Server.MapPath(localTemplate.JsFile)))
             {
-                Framework.jQuery.RegisterJQuery(Page);
+                // Framework.jQuery.RegisterJQuery(Page);
+                // Should not be required, jQuery is loaded by default
+
                     ClientResourceManager.RegisterScript(Page, localTemplate.JsFile);
             }
             if (!string.IsNullOrEmpty(localTemplate.CssFile) && File.Exists(Server.MapPath(localTemplate.CssFile)))

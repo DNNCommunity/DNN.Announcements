@@ -41,6 +41,7 @@
 .builds
 *.dotCover
 *.ldf
+*.zip
 
 # git merge artifacts
 *.orig

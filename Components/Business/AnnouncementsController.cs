@@ -41,6 +41,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Journal;
 using DotNetNuke.Services.Search;
+using DotNetNuke.Services.Search.Entities;
 using DotNetNuke.Services.Social.Messaging;
 using DotNetNuke.Services.Social.Notifications;
 
@@ -53,7 +54,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
     /// The AnnouncementsController Class represents the Announcments Business Layer
     /// Methods in this class call methods in the Data Layer
     /// </summary>
-    public class AnnouncementsController : IAnnouncementsController, ISearchable, IPortable
+    public class AnnouncementsController : ModuleSearchBase, IAnnouncementsController, IPortable
     {
 
         #region Public Methods
@@ -191,7 +192,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
         }
 
 
-        public void AddAnnouncementToJournal(AnnouncementInfo announcement, int tabId, String journalType)
+        public void AddAnnouncementToJournal(AnnouncementInfo announcement, String journalType, ModuleInfo moduleInfo)
         {
 
             var objJournalType = JournalController.Instance.GetJournalType(journalType);
@@ -214,7 +215,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             journalItem.JournalTypeId = objJournalType.JournalTypeId;
             journalItem.SecuritySet = "E,";
 
-            JournalController.Instance.SaveJournalItem(journalItem, tabId);
+            JournalController.Instance.SaveJournalItem(journalItem, moduleInfo);
 
         }
 
@@ -248,47 +249,45 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
 
         #endregion
 
-        #region ISearchable Implementation
+        #region ModuleSearchBase Implementation
 
-        /// <summary>
-        /// GetSearchItems implements the ISearchable Interface
-        /// </summary>
-        /// <remarks>
-        /// </remarks>
-        public SearchItemInfoCollection GetSearchItems(ModuleInfo ModInfo)
+        public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo moduleInfo, DateTime beginDateUtc)
         {
-            Hashtable moduleSettings = Entities.Portals.PortalSettings.GetModuleSettings(ModInfo.ModuleID);
-            int descriptionLength = 100;
-            if (Convert.ToString(moduleSettings["descriptionLength"]) != "")
+            var moduleSettings = moduleInfo.ModuleSettings;
+            int descriptionLenght = 100;
+            if (moduleSettings["descriptionLength"].ToString() != "")
             {
-                descriptionLength = int.Parse(Convert.ToString(moduleSettings["descriptionLength"]));
-                if (descriptionLength < 1)
-                {
-                    descriptionLength = 1950;
-                    //max length of description is 2000 char, take a bit less to make sure it fits...
-                }
+                int.TryParse(moduleSettings["descriptionLength"].ToString(), out descriptionLenght);
+                if (descriptionLenght < 1) { descriptionLenght = 1950; }                    
+                    //max length of description is 2000 char, take a bit less to make sure it fits...                
             }
-
-            var searchItemCollection = new SearchItemInfoCollection();
-
-            IEnumerable<AnnouncementInfo> announcements = GetCurrentAnnouncements(ModInfo.ModuleID, Null.NullDate);
-
-            foreach (AnnouncementInfo objAnnouncement in announcements)
+            var searchDocuments = new List<SearchDocument>();
+            var announcements = GetAnnouncements(moduleInfo.ModuleID, beginDateUtc, DateTime.MaxValue);
+            foreach (var announcement in announcements)
             {
-                var tempVar = objAnnouncement;
-                string strContent = System.Web.HttpUtility.HtmlDecode(tempVar.Title + " " + tempVar.Description);
-                string strDescription =
-                    HtmlUtils.Shorten(HtmlUtils.Clean(System.Web.HttpUtility.HtmlDecode(tempVar.Description), false),
-                                      descriptionLength, "...");
-                var searchItem = new SearchItemInfo(ModInfo.ModuleTitle + " - " + tempVar.Title, strDescription,
-                                                               tempVar.CreatedByUserID, tempVar.PublishDate.Value, ModInfo.ModuleID,
-                                                               tempVar.ItemID.ToString(CultureInfo.InvariantCulture), strContent,
-                                                               "ItemID=" + tempVar.ItemID.ToString(CultureInfo.InvariantCulture));
-                searchItemCollection.Add(searchItem);
+                var document = new SearchDocument();
+                document.AuthorUserId = announcement.CreatedByUserID;
+                document.Body = announcement.Description;
+                document.CultureCode = moduleInfo.CultureCode;
+                document.Description = announcement.Description;
+                document.IsActive = CheckIfAnnouncementIsActive(announcement);
+                document.ModifiedTimeUtc = announcement.LastModifiedOnDate;
+                document.ModuleDefId = moduleInfo.ModuleDefID;
+                document.ModuleId = moduleInfo.ModuleID;
+                document.PortalId = moduleInfo.PortalID;
+                document.TabId = moduleInfo.TabID;
+                document.Title = announcement.Title;
+                document.UniqueKey = moduleInfo.ModuleID.ToString();
+                searchDocuments.Add(document);
             }
-
-            return searchItemCollection;
+            return searchDocuments;
         }
+
+        private bool CheckIfAnnouncementIsActive(AnnouncementInfo announcement)
+        {
+            return (announcement.PublishDate < DateTime.Now && (announcement.ExpireDate == null || announcement.ExpireDate > DateTime.Now));
+        }
+
 
         #endregion
 
@@ -440,7 +439,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             {
                 return null;
             }
-        }
+        }        
 
         #endregion
 
