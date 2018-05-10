@@ -15,6 +15,7 @@
 ## Ignore VS2015/Roslyn artifacts
 *.sln.ide/
 .vs/
+*.lock
 
 ## Ignore Webstorm artifacts
 *.idea/
@@ -47,6 +48,7 @@
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 [Pp]ackages/
+[Bb]in/
 
 # Visual Studio profiler
 *.psess
