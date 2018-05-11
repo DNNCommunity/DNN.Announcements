@@ -14,7 +14,7 @@
       <releaseNotes src="Documentation\ReleaseNotes.txt" />
       <azureCompatible>true</azureCompatible>
       <dependencies>
-        <dependency type="CoreVersion">07.01.01</dependency>
+        <dependency type="CoreVersion">08.00.00</dependency>
       </dependencies>
       <components>
         <component type="Script">
