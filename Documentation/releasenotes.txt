@@ -1,4 +1,13 @@
 ﻿MODULE: DotNetNuke Announcements Module
+
+Version: 07.02.00
+Minimum Required DNN Version: 8.0.0
+
+* Replaced all deprecated APIs usage
+* Tested for Dnn 9.2.0 compatibility
+
+------------------------------------
+
 Version: 07.00.00 CTP
 Minimum Required DNN Version: 7.0.0 RC
 
