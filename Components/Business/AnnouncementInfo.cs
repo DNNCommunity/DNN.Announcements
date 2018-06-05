@@ -239,8 +239,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                 // the link is a file. Check wether it exists in the portal
                 if (Int32.TryParse(link.Replace("FileID=", ""), out intId))
                 {
-                    var objFileController = new FileController();
-                    FileInfo objFile = objFileController.GetFileById(intId, portal.PortalId);
+                    var objFile = FileManager.Instance.GetFile(intId);
                     if (objFile != null)
                     {
                         if ((!(string.IsNullOrEmpty(contentType))) && (!(objFile.ContentType.StartsWith(contentType, StringComparison.OrdinalIgnoreCase))))
@@ -354,7 +353,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
 
         public string GetProperty(string strPropertyName, string strFormat, CultureInfo formatProvider, UserInfo AccessingUser, Scope AccessLevel, ref bool PropertyNotFound)
         {
-            PortalSettings portalSettings = PortalController.GetCurrentPortalSettings();
+            PortalSettings portalSettings = PortalController.Instance.GetCurrentPortalSettings();
             string outputFormat = strFormat == string.Empty ? "D" : strFormat;
             switch (strPropertyName.ToLowerInvariant())
             {
@@ -398,9 +397,8 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                         // this is now legacy, from version 7.0.0, a real filename is saved in the DB
                         if (ImageSource.StartsWith("FileID="))
                         {
-                            var fileCnt = new FileController();
-                            FileInfo objFile = fileCnt.GetFileById(Convert.ToInt32(strValue.Substring(7)),
-                                                                   portalSettings.PortalId);
+
+                            var objFile = FileManager.Instance.GetFile(Convert.ToInt32(strValue.Substring(7)));
                             if (objFile != null)
                             {
                                 strValue = portalSettings.HomeDirectory + objFile.Folder + objFile.FileName;

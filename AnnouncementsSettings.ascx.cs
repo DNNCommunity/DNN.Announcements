@@ -73,14 +73,30 @@ namespace DotNetNuke.Modules.Announcements
 
             try
             {
-                txtHistory.Text = Model.Settings.History.ToDnnString();
-                txtDescriptionLength.Text = Model.Settings.DescriptionLength.ToDnnString();
-                txtEditorHeight.Text = Model.Settings.EditorHeight.ToDnnString();
                 foreach (Enum i in Enum.GetValues(typeof(ViewTypes)))
                 {
                     ddlViewType.Items.Add(new ListItem(Localization.GetString(Enum.GetName(typeof(ViewTypes), i), LocalResourceFile), Enum.GetName(typeof(ViewTypes), i)));
                 }
-                ddlViewType.SelectedValue = Utilities.ViewTypeToString(Model.Settings.DefaultViewType);
+                
+                // This is not perfect, but the only way I found how to fix the settings reading issue, original code commented below.
+                if (Model.ModuleSettings != null)
+                {
+                    if (Model.ModuleSettings.ContainsKey("history"))
+                        txtHistory.Text = Model.ModuleSettings["history"].ToString();
+                    if (Model.ModuleSettings.ContainsKey("descriptionLength"))
+                        txtDescriptionLength.Text = Model.ModuleSettings["descriptionLength"].ToString();
+                    if (Model.ModuleSettings.ContainsKey("editorHeight"))
+                        txtEditorHeight.Text = Model.ModuleSettings["editorHeight"].ToString();
+                    if (Model.ModuleSettings.ContainsKey("defaultViewType"))
+                        ddlViewType.SelectedValue = Model.ModuleSettings["defaultViewType"].ToString();
+                }
+                //if (Model.Settings != null)
+                //{
+                //    txtHistory.Text = Model.Settings.History.ToDnnString();
+                //    txtDescriptionLength.Text = Model.Settings.DescriptionLength.ToDnnString();
+                //    txtEditorHeight.Text = Model.Settings.EditorHeight.ToDnnString();                    
+                //    ddlViewType.SelectedValue = Utilities.ViewTypeToString(Model.Settings.DefaultViewType);
+                //}
             }
             catch (Exception exc)
             {

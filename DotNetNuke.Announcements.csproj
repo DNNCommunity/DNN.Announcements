@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ExcludeFoldersFromDeployment>.vs</ExcludeFoldersFromDeployment>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,8 +39,10 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <OldToolsVersion>4.0</OldToolsVersion>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
@@ -69,9 +74,10 @@
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningLevel>1</WarningLevel>
+    <WarningLevel>3</WarningLevel>
     <DebugType>none</DebugType>
     <Prefer32Bit>false</Prefer32Bit>
+    <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <ItemGroup>
     <Import Include="DotNetNuke" />
@@ -169,6 +175,20 @@
     <Content Include="Documentation\License.txt" />
     <Content Include="module.css" />
     <Content Include="Documentation\releasenotes.txt" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\ClientDependency.Core.dll" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\ClientDependency.Core.pdb" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.HttpModules.dll" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.HttpModules.pdb" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Modules.DigitalAssets.dll" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Modules.DigitalAssets.pdb" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Tests.Data.dll" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Tests.Data.pdb" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Tests.Utilities.dll" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Tests.Utilities.pdb" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.WebControls.dll" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\lib\FiftyOne.Foundation.dll" />
+    <Content Include="packages\MSBuildTasks.1.5.0.235\tools\MSBuild.Community.Tasks.dll" />
+    <Content Include="packages\MSBuildTasks.1.5.0.235\tools\MSBuild.Community.Tasks.xml" />
     <Content Include="TemplateConfiguration.ascx" />
     <Content Include="Templates\ModernAnnouncements\alternatingitem.htm" />
     <Content Include="Templates\ModernAnnouncements\detail.htm" />
@@ -220,64 +240,6 @@
     <Content Include="Providers\DataProviders\SqlDataProvider\04.00.03.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DotNetNuke">
-      <HintPath>_Dependencies\DotNetNuke.dll</HintPath>
-      <Private>False</Private>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="DotNetNuke.Instrumentation">
-      <HintPath>_Dependencies\DotNetNuke.Instrumentation.dll</HintPath>
-      <Private>False</Private>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="DotNetNuke.Web">
-      <HintPath>_Dependencies\DotNetNuke.Web.dll</HintPath>
-      <Private>False</Private>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="DotNetNuke.Web.Client">
-      <HintPath>_Dependencies\DotNetNuke.Web.Client.dll</HintPath>
-      <Private>False</Private>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\System.Net.Http.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\System.Net.Http.Formatting.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\System.Web.Http.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="Telerik.Web.UI">
-      <HintPath>_Dependencies\Telerik.Web.UI.dll</HintPath>
-      <Private>False</Private>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="WebFormsMvp">
-      <HintPath>_Dependencies\WebFormsMvp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\TemplateConfiguration.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
@@ -298,7 +260,111 @@
   <ItemGroup>
     <Content Include="Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\DotNetNuke.Bundle.9.1.1.129.nupkg" />
+    <Content Include="packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets" />
+    <Content Include="packages\MSBuildTasks.1.5.0.235\MSBuildTasks.1.5.0.235.nupkg" />
+    <Content Include="packages\MSBuildTasks.1.5.0.235\tools\MSBuild.Community.Tasks.Targets" />
+    <None Include="packages\MSBuildTasks.1.5.0.235\tools\MSBuild.Community.Tasks.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ClientDependency.Core">
+      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\ClientDependency.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke, Version=9.1.1.129, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Core.9.1.1.129\lib\net40\DotNetNuke.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.HttpModules">
+      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.HttpModules.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.Instrumentation, Version=9.1.1.105, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Instrumentation.9.1.1.105\lib\net40\DotNetNuke.Instrumentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.Log4Net, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Instrumentation.9.1.1.105\lib\net40\DotNetNuke.Log4Net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.DigitalAssets">
+      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Modules.DigitalAssets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.Tests.Data">
+      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Tests.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.Tests.Utilities">
+      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Tests.Utilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.Web, Version=9.1.1.129, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Web.9.1.1.129\lib\net40\DotNetNuke.Web.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Client, Version=9.1.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DotNetNuke.Web.Client.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Deprecated, Version=9.1.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DotNetNuke.Web.Deprecated.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.WebControls">
+      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.WebControls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility, Version=4.2.1.783, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Web.9.1.1.129\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FiftyOne.Foundation">
+      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\FiftyOne.Foundation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Core.9.1.1.129\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\System.Net.Http.Formatting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\System.Web.Http.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.XML" />
+    <Reference Include="Telerik.Web.UI, Version=2013.2.717.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Telerik.Web.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WebFormsMvp, Version=1.4.1.0, Culture=neutral, PublicKeyToken=537f18701145dff0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\WebFormsMvp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -346,4 +412,13 @@
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Import Project="$(MSBuildProjectDirectory)\Installation\Project.Targets" Condition="Exists('$(MSBuildProjectDirectory)\Installation\Project.targets')" />
+  <Import Project="packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets" Condition="Exists('packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets'))" />
+  </Target>
+  <Import Project="packages\MSBuild.Extension.Pack.1.9.1\build\net40\MSBuild.Extension.Pack.targets" Condition="Exists('packages\MSBuild.Extension.Pack.1.9.1\build\net40\MSBuild.Extension.Pack.targets')" />
+  <Import Project="packages\MSBuilder.WriteItemsToFile.0.1.2\build\MSBuilder.WriteItemsToFile.targets" Condition="Exists('packages\MSBuilder.WriteItemsToFile.0.1.2\build\MSBuilder.WriteItemsToFile.targets')" />
 </Project>
