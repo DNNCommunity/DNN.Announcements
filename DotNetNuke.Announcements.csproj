@@ -261,7 +261,9 @@
     <Content Include="Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="packages\DotNetNuke.Bundle.9.1.1.129\DotNetNuke.Bundle.9.1.1.129.nupkg" />
     <Content Include="packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets" />
     <Content Include="packages\MSBuildTasks.1.5.0.235\MSBuildTasks.1.5.0.235.nupkg" />
@@ -280,18 +282,20 @@
     </Reference>
     <Reference Include="DotNetNuke, Version=9.1.1.129, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DotNetNuke.Core.9.1.1.129\lib\net40\DotNetNuke.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="DotNetNuke.HttpModules">
       <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.HttpModules.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetNuke.Instrumentation, Version=9.1.1.105, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DotNetNuke.Instrumentation.9.1.1.105\lib\net40\DotNetNuke.Instrumentation.dll</HintPath>
+    <Reference Include="DotNetNuke.Instrumentation">
+      <HintPath>packages\DotNetNuke.Instrumentation.9.1.1.129\lib\net40\DotNetNuke.Instrumentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DotNetNuke.Log4Net, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DotNetNuke.Instrumentation.9.1.1.105\lib\net40\DotNetNuke.Log4Net.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\DotNetNuke.Instrumentation.9.1.1.129\lib\net40\DotNetNuke.Log4Net.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DotNetNuke.Modules.DigitalAssets">
@@ -308,6 +312,7 @@
     </Reference>
     <Reference Include="DotNetNuke.Web, Version=9.1.1.129, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DotNetNuke.Web.9.1.1.129\lib\net40\DotNetNuke.Web.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="DotNetNuke.Web.Client, Version=9.1.1.3, Culture=neutral, processorArchitecture=MSIL">
@@ -326,6 +331,7 @@
     </Reference>
     <Reference Include="DotNetNuke.WebUtility, Version=4.2.1.783, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DotNetNuke.Web.9.1.1.129\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="FiftyOne.Foundation">
@@ -334,6 +340,7 @@
     </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DotNetNuke.Core.9.1.1.129\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
