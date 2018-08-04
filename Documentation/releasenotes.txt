@@ -1,5 +1,12 @@
 ﻿MODULE: DotNetNuke Announcements Module
 
+Version: 07.02.01
+Minimum Required DNN Version: 8.0.0
+
+* Issue 17 : Fixed an issue where the module would fail after an upgrade with null for images
+
+------------------------------------
+
 Version: 07.02.00
 Minimum Required DNN Version: 8.0.0
 
