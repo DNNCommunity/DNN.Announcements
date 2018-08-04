@@ -31,6 +31,7 @@ using System.Globalization;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Framework;
+using DotNetNuke.Framework.JavaScriptLibraries;
 using DotNetNuke.Modules.Announcements.Components.Business;
 using DotNetNuke.Modules.Announcements.Components.Common;
 using DotNetNuke.Modules.Announcements.MVP.Models;
@@ -67,8 +68,8 @@ namespace DotNetNuke.Modules.Announcements
         override protected void OnInit(EventArgs e)
         {
             base.OnInit(e);
-
-            jQuery.RequestDnnPluginsRegistration();
+            
+            JavaScript.RequestRegistration(CommonJs.DnnPlugins);
 
             ClientResourceManager.RegisterStyleSheet(Page, Globals.ApplicationPath + "/DesktopModules/Announcements/AnnouncementsEdit.css", FileOrder.Css.ModuleCss);
 

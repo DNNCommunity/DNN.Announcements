@@ -12,6 +12,7 @@ namespace DotNetNuke.Modules.Announcements.MVP.Presenters
     public class AnnouncementsSettingsPresenter : ModuleSettingsPresenter<IAnnouncementsSettings, AnnouncementsSettingsModel>
     {
         private readonly IAnnouncementsController _announcementsController;
+        
 
         public AnnouncementsSettingsPresenter(IAnnouncementsSettings announcementsSettings)
             : base(announcementsSettings)

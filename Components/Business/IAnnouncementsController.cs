@@ -26,7 +26,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
 
 #endregion
@@ -53,7 +53,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
 
         IEnumerable<AnnouncementInfo> GetExpiredAnnouncements(int moduleId);
 
-        void AddAnnouncementToJournal(AnnouncementInfo announcement, int tabId, String journalType);
+        void AddAnnouncementToJournal(AnnouncementInfo announcement, String journalType, ModuleInfo moduleInfo);
 
         void SendNotifications(AnnouncementInfo announcement);
 

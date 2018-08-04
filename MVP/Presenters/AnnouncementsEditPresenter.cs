@@ -38,13 +38,13 @@ namespace DotNetNuke.Modules.Announcements.MVP.Presenters
             if (View.Model.IsAddMode)
             {
                 _announcementsController.AddAnnouncement(e.Item);
-                _announcementsController.AddAnnouncementToJournal(e.Item, TabId, JournalType.AnnouncementAdd);
+                _announcementsController.AddAnnouncementToJournal(e.Item, JournalType.AnnouncementAdd, ModuleInfo);
                 _announcementsController.SendNotifications(e.Item);
             }
             else
             {
                 _announcementsController.UpdateAnnouncement(e.Item);
-                _announcementsController.AddAnnouncementToJournal(e.Item, TabId, JournalType.AnnouncementUpdate);
+                _announcementsController.AddAnnouncementToJournal(e.Item, JournalType.AnnouncementUpdate, ModuleInfo);
             }
 
         }

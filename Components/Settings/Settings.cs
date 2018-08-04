@@ -80,9 +80,9 @@ namespace DotNetNuke.Modules.Announcements.Components.Settings
             _moduleId = moduleId;
             _tabModuleId = tabModuleId;
 
-            var mc = new ModuleController();
-            ModuleSettings = mc.GetModuleSettings(_moduleId);
-            TabModuleSettings = mc.GetTabModuleSettings(_tabModuleId);
+            var moduleInfo = new ModuleController().GetModule(_moduleId);
+            ModuleSettings = moduleInfo.ModuleSettings;
+            TabModuleSettings = moduleInfo.TabModuleSettings;
 
             History = TabModuleSettings.GetInteger(SettingName.History, _History);
             DescriptionLength = TabModuleSettings.GetInteger(SettingName.DescriptionLength, _DescriptionLength);
@@ -120,7 +120,9 @@ namespace DotNetNuke.Modules.Announcements.Components.Settings
 
 
             ModuleController.SynchronizeModule(_moduleId);
-            DataCache.RemoveCache(ModuleController.CacheKey(_moduleId) + "_viewType");
+            // DataCache.RemoveCache(ModuleController.CacheKey(_moduleId) + "_viewType");
+            // Module caching has been updated in 5.2.0, this method is no longer used
+
             DataCache.RemoveCache(CacheConstants.SettingsCacheKeyFormat(_moduleId, _tabModuleId));
 
         }
