@@ -30,19 +30,16 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-
-using DotNetNuke.Framework;
 using DotNetNuke.Instrumentation;
 using DotNetNuke.Modules.Announcements.Components.Business;
 using DotNetNuke.Modules.Announcements.Components.Common;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.Tokens;
 
 #endregion
 
 namespace DotNetNuke.Modules.Announcements.Components.Template
 {
-
+    [Serializable]
     public class SimpleTemplate : BaseTemplate
     {
 
