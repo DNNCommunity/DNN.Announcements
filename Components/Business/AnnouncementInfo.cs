@@ -360,11 +360,9 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                 case "edit":
                     if (IsEditable)
                     {
-                        string editUrl = Globals.NavigateURL(portalSettings.ActiveTab.TabID, false, portalSettings,
-                                                                               "Edit",
-                                                                               CultureInfo.CurrentCulture.Name,
-                                                                               "mid=" + ModuleID.ToString(CultureInfo.InvariantCulture),
-                                                                               "itemid=" + ItemID.ToString(CultureInfo.InvariantCulture));
+                        string editUrl = Globals.NavigateURL("Edit",
+                            $"mid={ModuleID.ToString(CultureInfo.InvariantCulture)}",
+                            $"itemid={ItemID.ToString(CultureInfo.InvariantCulture)}");
                         if (portalSettings.EnablePopUps)
                         {
                             editUrl = UrlUtils.PopUpUrl(editUrl, null, portalSettings, false, false);
