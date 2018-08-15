@@ -395,7 +395,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                     {
                         //Get path from filesystem only when the image comes from within DNN.
                         // this is now legacy, from version 7.0.0, a real filename is saved in the DB
-                        if (ImageSource.StartsWith("FileID="))
+                        if (ImageSource != null && ImageSource.StartsWith("FileID="))
                         {
 
                             var objFile = FileManager.Instance.GetFile(Convert.ToInt32(strValue.Substring(7)));
@@ -410,14 +410,24 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                         }
                         else
                         {
-                            if (!ImageSource.ToLowerInvariant().StartsWith("http"))
+                            if (ImageSource != null && !ImageSource.ToLowerInvariant().StartsWith("http"))
                             {
                                 strValue = portalSettings.HomeDirectory + ImageSource;
                             }
                         }
-                        strValue = PropertyAccess.FormatString(strValue, strFormat);
+                        if (strValue != null)
+                        {
+                            strValue = PropertyAccess.FormatString(strValue, strFormat);
+                        }
                     }
-                    return strValue;
+                    if (strValue == null)
+                    {
+                        return "";
+                    }
+                    else
+                    {
+                        return strValue;
+                    }
                 case "vieworder":
                     return (ViewOrder.ToString(outputFormat, formatProvider));
                 case "createdbyuserid":
