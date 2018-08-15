@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace DotNetNuke.Modules.Announcements.Components.Template
 {
+    [Serializable]
     public class TemplateInfo
     {
         public string Type { get; set; }

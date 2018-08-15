@@ -40,28 +40,52 @@ GO
 
 
 /* update table definition */
-ALTER TABLE dbo.Announcements DROP CONSTRAINT PK_Announcements
+ALTER TABLE {databaseOwner}{objectQualifier}Announcements DROP CONSTRAINT PK_{objectQualifier}Announcements
 GO
 
-ALTER TABLE dbo.Announcements ADD CONSTRAINT PK_Announcements PRIMARY KEY CLUSTERED  ( [ItemID] ASC )
+ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD CONSTRAINT PK_{objectQualifier}Announcements PRIMARY KEY CLUSTERED  ( [ItemID] ASC )
 GO
 
-sp_RENAME '{databaseOwner}{objectQualifier}Announcements.[CreatedByUser]', 'CreatedByUserID', 'COLUMN' 
+if not Exists(select * from sys.columns where Name = N'CreatedByUserID'  
+            and Object_ID = Object_ID(N'{objectQualifier}Announcements'))
+begin
+	exec sp_RENAME '{databaseOwner}{objectQualifier}Announcements.[CreatedByUser]', 'CreatedByUserID', 'COLUMN' 
+end
 GO
 
-sp_RENAME '{databaseOwner}{objectQualifier}Announcements.[CreatedDate]', 'CreatedOnDate', 'COLUMN' 
+if not Exists(select * from sys.columns where Name = N'CreatedOnDate'  
+            and Object_ID = Object_ID(N'{objectQualifier}Announcements'))
+begin
+	exec sp_RENAME '{databaseOwner}{objectQualifier}Announcements.[CreatedDate]', 'CreatedOnDate', 'COLUMN' 
+END
 GO
 
-ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD LastModifiedByUserID [int] NULL
+if not Exists(select * from sys.columns where Name = N'LastModifiedByUserID'  
+            and Object_ID = Object_ID(N'{objectQualifier}Announcements'))
+begin
+	ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD LastModifiedByUserID [int] NULL
+end
 GO
 
-ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD LastModifiedOnDate [datetime] NULL
+if not Exists(select * from sys.columns where Name = N'LastModifiedOnDate'  
+            and Object_ID = Object_ID(N'{objectQualifier}Announcements'))
+begin
+	ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD LastModifiedOnDate [datetime] NULL
+end
 GO
 
-ALTER TABLE {databaseOwner}{objectQualifier}Announcements ALTER COLUMN [Description] NVARCHAR(MAX) NULL
+if not Exists(select * from sys.columns where Name = N'Description'  
+            and Object_ID = Object_ID(N'{objectQualifier}Announcements'))
+begin
+	ALTER TABLE {databaseOwner}{objectQualifier}Announcements ALTER COLUMN [Description] NVARCHAR(MAX) NULL
+END
 GO
 
-ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD PortalID int NULL
+if not Exists(select * from sys.columns where Name = N'PortalID'  
+            and Object_ID = Object_ID(N'{objectQualifier}Announcements'))
+begin
+	ALTER TABLE {databaseOwner}{objectQualifier}Announcements ADD PortalID int NULL
+END
 GO
 
 UPDATE {databaseOwner}{objectQualifier}Announcements 

@@ -36,6 +36,7 @@ using DotNetNuke.Modules.Announcements.Components.Common;
 
 namespace DotNetNuke.Modules.Announcements.Components.Settings
 {
+    [Serializable]
     public class Settings
     {
         #region constants
