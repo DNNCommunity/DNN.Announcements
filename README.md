@@ -17,3 +17,8 @@ DNN Announcements is a basic module used for displaying news items on your DNN s
 7. In Visual Studio, create a new branch to isolate your changes.
 8. In Visual studio, to test any changes, you need to build in debug mode, this will compile and copy all files from Dnn.Announcements (the source code) to Announcements (the deployment folder). To debug, use the attach to process feature and attach it to the w3wp process that matches the running site.
 9. Commit and push your changes with clear descritions, then in github, create a pull request from the branch you created to the Dnn.Community repository, again please add a good description of the changes. You can also mention issues with #issueNumber to automatically associte your pull request with existing issues.
+
+## Maintainers
+This module is currently maintained by @erikvb and Joseph Craig
+
+Please coordinate with them before publishing any new release and mark them as reviewers on pull requests

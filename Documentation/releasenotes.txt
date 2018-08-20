@@ -1,5 +1,16 @@
 ﻿MODULE: DotNetNuke Announcements Module
 
+Version: 07.02.01
+Minimum Required DNN Version: 8.0.0
+
+* Fixed an issue where the module would fail after an upgrade with null for images
+* Tested for Dnn 9.2.1 compatibility
+* Templates are now serializable to support redis cache
+* Fixed sql scripts for upgrades involving 7.0.0 when using object qualifiers
+* Fixed an issue where the edit url would be wrong when not using advanced urls
+
+------------------------------------
+
 Version: 07.02.00
 Minimum Required DNN Version: 8.0.0
 

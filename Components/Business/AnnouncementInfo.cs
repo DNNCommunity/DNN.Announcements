@@ -360,11 +360,9 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                 case "edit":
                     if (IsEditable)
                     {
-                        string editUrl = Globals.NavigateURL(portalSettings.ActiveTab.TabID, false, portalSettings,
-                                                                               "Edit",
-                                                                               CultureInfo.CurrentCulture.Name,
-                                                                               "mid=" + ModuleID.ToString(CultureInfo.InvariantCulture),
-                                                                               "itemid=" + ItemID.ToString(CultureInfo.InvariantCulture));
+                        string editUrl = Globals.NavigateURL("Edit",
+                            $"mid={ModuleID.ToString(CultureInfo.InvariantCulture)}",
+                            $"itemid={ItemID.ToString(CultureInfo.InvariantCulture)}");
                         if (portalSettings.EnablePopUps)
                         {
                             editUrl = UrlUtils.PopUpUrl(editUrl, null, portalSettings, false, false);
@@ -391,11 +389,11 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                     }
 
                     //Retrieve the path to the imagefile
-                    if (strValue != "")
+                    if (!string.IsNullOrEmpty(strValue))
                     {
                         //Get path from filesystem only when the image comes from within DNN.
                         // this is now legacy, from version 7.0.0, a real filename is saved in the DB
-                        if (ImageSource.StartsWith("FileID="))
+                        if (ImageSource != null && ImageSource.StartsWith("FileID="))
                         {
 
                             var objFile = FileManager.Instance.GetFile(Convert.ToInt32(strValue.Substring(7)));
@@ -410,14 +408,24 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                         }
                         else
                         {
-                            if (!ImageSource.ToLowerInvariant().StartsWith("http"))
+                            if (ImageSource != null && !ImageSource.ToLowerInvariant().StartsWith("http"))
                             {
                                 strValue = portalSettings.HomeDirectory + ImageSource;
                             }
                         }
-                        strValue = PropertyAccess.FormatString(strValue, strFormat);
+                        if (strValue != null)
+                        {
+                            strValue = PropertyAccess.FormatString(strValue, strFormat);
+                        }
                     }
-                    return strValue;
+                    if (strValue == null)
+                    {
+                        return "";
+                    }
+                    else
+                    {
+                        return strValue;
+                    }
                 case "vieworder":
                     return (ViewOrder.ToString(outputFormat, formatProvider));
                 case "createdbyuserid":
