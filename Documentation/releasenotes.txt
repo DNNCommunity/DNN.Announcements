@@ -7,6 +7,7 @@ Minimum Required DNN Version: 8.0.0
 * Tested for Dnn 9.2.1 compatibility
 * Templates are now serializable to support redis cache
 * Fixed sql scripts for upgrades involving 7.0.0 when using object qualifiers
+* Fixed an issue where the edit url would be wrong when not using advanced urls
 
 ------------------------------------
 
