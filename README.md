@@ -24,4 +24,4 @@ This module is currently maintained by @erikvb and Joseph Craig
 Please coordinate with them before publishing any new release and mark them as reviewers on pull requests
 
 ## Contributing
-If you would like to contribute to this project, please read (CONTRIBUTING.md)[https://github.com/DNNCommunity/DNN.Announcements/blob/development/.github/CONTRIBUTING.md]
+If you would like to contribute to this project, please read [CONTRIBUTING.md](https://github.com/DNNCommunity/DNN.Announcements/blob/development/.github/CONTRIBUTING.md)
