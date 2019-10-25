@@ -170,10 +170,11 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             }
         }
 
- 
+
 
         private UrlTrackingInfo _urlTrackingInfo;
-
+        
+        [IgnoreColumn]
         private UrlTrackingInfo UrlTrackingInfo
         {
             get { return _urlTrackingInfo ?? (_urlTrackingInfo = new UrlController().GetUrlTracking(PortalID, URL, ModuleID)); }
