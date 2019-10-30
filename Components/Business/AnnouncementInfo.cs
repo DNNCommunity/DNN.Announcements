@@ -1,7 +1,7 @@
 #region License
 
 //
-// DotNetNuke® - http://www.dotnetnuke.com
+// DotNetNukeï¿½ - http://www.dotnetnuke.com
 // Copyright (c) 2002-2012
 // by DotNetNuke Corporation
 //
@@ -173,7 +173,8 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
  
 
         private UrlTrackingInfo _urlTrackingInfo;
-
+ 
+        [IgnoreColumn]
         private UrlTrackingInfo UrlTrackingInfo
         {
             get { return _urlTrackingInfo ?? (_urlTrackingInfo = new UrlController().GetUrlTracking(PortalID, URL, ModuleID)); }
