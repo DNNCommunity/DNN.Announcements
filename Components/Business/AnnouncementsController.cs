@@ -253,13 +253,19 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
 
         public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo moduleInfo, DateTime beginDateUtc)
         {
-            var moduleSettings = moduleInfo.ModuleSettings;
             int descriptionLenght = 100;
-            if (moduleSettings["descriptionLength"].ToString() != "")
+
+            //to control the moduleSettings lengh 
+            //added by sabja
+            if (moduleInfo.ModuleSettings.Count > 0)
             {
-                int.TryParse(moduleSettings["descriptionLength"].ToString(), out descriptionLenght);
-                if (descriptionLenght < 1) { descriptionLenght = 1950; }                    
+                var moduleSettings = moduleInfo.ModuleSettings;
+                if (moduleSettings["descriptionLength"].ToString() != "")
+                {
+                    int.TryParse(moduleSettings["descriptionLength"].ToString(), out descriptionLenght);
+                    if (descriptionLenght < 1) { descriptionLenght = 1950; }
                     //max length of description is 2000 char, take a bit less to make sure it fits...                
+                }
             }
             var searchDocuments = new List<SearchDocument>();
             var announcements = GetAnnouncements(moduleInfo.ModuleID, beginDateUtc, DateTime.MaxValue);

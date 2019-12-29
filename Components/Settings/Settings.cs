@@ -117,6 +117,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Settings
             objModules.UpdateModuleSetting(_moduleId, SettingName.Legacy, Legacy.ToString(CultureInfo.InvariantCulture));
             objModules.UpdateTabModuleSetting(_tabModuleId, SettingName.TemplateType, TemplateType);
             objModules.UpdateTabModuleSetting(_tabModuleId, SettingName.TemplateName, TemplateName);
+            objModules.UpdateModuleSetting(_moduleId, SettingName.TemplateName, TemplateName);
             objModules.UpdateTabModuleSetting(_tabModuleId, SettingName.TemplateLocation, TemplateLocation);
 
 

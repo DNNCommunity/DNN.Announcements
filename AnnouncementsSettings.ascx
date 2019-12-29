@@ -29,6 +29,15 @@
     </fieldset>
     <fieldset>
         <div class="dnnFormItem">
+            <dnn:Label ID="plTemplateName" Suffix=":" ControlName="txtTemplateName" runat="server" />
+            <asp:TextBox ID="txtTemplateName" runat="server" Width="100px"></asp:TextBox>
+            <asp:CompareValidator ID="valTemplateName" runat="server" Operator="DataTypeCheck"
+                Type="String" Display="Dynamic" ErrorMessage="<br />You must enter a valid template name"
+                ControlToValidate="txtTemplateName" CssClass="dnnFormMessage dnnFormError" resourcekey="String.ErrorMessage" />
+        </div>
+    </fieldset>
+    <fieldset>
+        <div class="dnnFormItem">
             <dnn:Label ID="plEditorHeight" Suffix=":" ControlName="txtEditorHeight" runat="server" />
             <asp:TextBox ID="txtEditorHeight" runat="server" Width="100px" />
             <asp:CompareValidator ID="valEditorHeight" runat="server" Operator="DataTypeCheck"

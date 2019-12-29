@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="plHistory.Text" xml:space="preserve">
     <value>History (Days)</value>
@@ -439,5 +439,11 @@
   </data>
   <data name="plEditorHeight.Text" xml:space="preserve">
     <value>Editor Height (px)</value>
+  </data>
+  <data name="plTemplateName.Help" xml:space="preserve">
+    <value>Enter the template's Name that you would use for this TabModule</value>
+  </data>
+  <data name="plTemplateName.Text" xml:space="preserve">
+    <value>Template Name</value>
   </data>
 </root>

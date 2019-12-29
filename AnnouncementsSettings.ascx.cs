@@ -85,6 +85,8 @@ namespace DotNetNuke.Modules.Announcements
                         txtHistory.Text = Model.ModuleSettings["history"].ToString();
                     if (Model.ModuleSettings.ContainsKey("descriptionLength"))
                         txtDescriptionLength.Text = Model.ModuleSettings["descriptionLength"].ToString();
+                    if (Model.ModuleSettings.ContainsKey("TemplateName"))
+                        txtTemplateName.Text = Model.ModuleSettings["TemplateName"].ToString();
                     if (Model.ModuleSettings.ContainsKey("editorHeight"))
                         txtEditorHeight.Text = Model.ModuleSettings["editorHeight"].ToString();
                     if (Model.ModuleSettings.ContainsKey("defaultViewType"))
@@ -113,6 +115,7 @@ namespace DotNetNuke.Modules.Announcements
                 Model.Settings.DefaultViewType = Utilities.StringToViewType(ddlViewType.SelectedValue);
                 Model.Settings.History = txtHistory.Text.ToDnnInt();
                 Model.Settings.DescriptionLength = txtDescriptionLength.Text.ToDnnInt();
+                Model.Settings.TemplateName = txtTemplateName.Text;
                 Model.Settings.EditorHeight = txtEditorHeight.Text.ToDnnInt();
 
                 Model.Settings.Update();
