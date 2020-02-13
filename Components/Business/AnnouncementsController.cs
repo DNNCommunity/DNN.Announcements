@@ -100,7 +100,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                     ContentTypeId = 4
                 };
 
-                if (objContentItem.ContentItemId == Null.NullInteger)
+                if (objContentItem.ContentItemId == Null.NullInteger || objContentItem.ContentItemId == 0)
                 {
                     announcement.ContentItemID = new ContentController().AddContentItem(objContentItem);
                 }
