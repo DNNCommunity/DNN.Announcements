@@ -51,11 +51,14 @@ namespace DotNetNuke.Modules.Announcements.Components.Common
             int resultValue = defaultValue;
             if ((valueTable[valueName] != null))
             {
-                if (!int.TryParse((string)valueTable[valueName],out resultValue))
-                {
-                    resultValue = defaultValue;
-                }
+                resultValue = int.TryParse((string)valueTable[valueName], out resultValue) ? resultValue : Null.NullInteger;
             }
+
+            if (resultValue == Null.NullInteger)
+            {
+                resultValue = defaultValue;
+            }
+
             return resultValue;
         }
 
