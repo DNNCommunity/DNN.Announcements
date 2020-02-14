@@ -2,11 +2,11 @@
 <TemplateInfo>
   <Type>SimpleTemplate</Type>
   <ItemTemplate>item.htm</ItemTemplate>
-  <AltItemTemplate></AltItemTemplate>
+  <AltItemTemplate>alternatingitem.htm</AltItemTemplate>
   <HeaderTemplate>header.htm</HeaderTemplate>
   <FooterTemplate>footer.htm</FooterTemplate>
-  <SeparatorTemplate></SeparatorTemplate>
-  <DetailTemplate></DetailTemplate>
+  <SeparatorTemplate>separator.htm</SeparatorTemplate>
+  <DetailTemplate>detail.htm</DetailTemplate>
   <CssFile></CssFile>
   <JsFile></JsFile>
   <Version>01.00.00</Version>
