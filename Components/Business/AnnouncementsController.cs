@@ -277,7 +277,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                 document.PortalId = moduleInfo.PortalID;
                 document.TabId = moduleInfo.TabID;
                 document.Title = announcement.Title;
-                document.UniqueKey = moduleInfo.ModuleID.ToString();
+                document.UniqueKey = "Dnn_Announcements_" + announcement.ItemID.ToString(CultureInfo.InvariantCulture);
                 searchDocuments.Add(document);
             }
             return searchDocuments;
