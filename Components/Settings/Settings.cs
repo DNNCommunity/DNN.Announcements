@@ -81,9 +81,15 @@ namespace DotNetNuke.Modules.Announcements.Components.Settings
             _moduleId = moduleId;
             _tabModuleId = tabModuleId;
 
-            var moduleInfo = new ModuleController().GetModule(_moduleId);
-            ModuleSettings = moduleInfo.ModuleSettings;
-            TabModuleSettings = moduleInfo.TabModuleSettings;
+            foreach (ModuleInfo modInfo in (new ModuleController()).GetTabModulesByModule(_moduleId))
+            {
+                if (modInfo.TabModuleID == _tabModuleId)
+                {
+                    ModuleSettings = modInfo.ModuleSettings;
+                    TabModuleSettings = modInfo.TabModuleSettings;
+                    break;
+                }
+            }
 
             History = TabModuleSettings.GetInteger(SettingName.History, _History);
             DescriptionLength = TabModuleSettings.GetInteger(SettingName.DescriptionLength, _DescriptionLength);
