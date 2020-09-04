@@ -201,7 +201,7 @@ namespace DotNetNuke.Modules.Announcements
                     {
                         var portalDateTime = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.PublishDate.Value, ModuleContext.PortalSettings.TimeZone);
                         publishDate.SelectedDate = portalDatetime;
-                        publishTime.SelectedDate = portalDatetime;
+                        publishTime.SelectedDate = portalDateTime;
                     }
                     if ((!Null.IsNull(Model.AnnouncementInfo.ExpireDate)) &&
                         (Model.AnnouncementInfo.ExpireDate != (DateTime)SqlDateTime.Null))
