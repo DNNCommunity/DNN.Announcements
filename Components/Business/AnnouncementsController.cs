@@ -1,7 +1,7 @@
 #region License
 
 //
-// DotNetNuke® - http://www.dotnetnuke.com
+// DotNetNukeÂ® - http://www.dotnetnuke.com
 // Copyright (c) 2002-2012
 // by DotNetNuke Corporation
 //
@@ -277,7 +277,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
         public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo moduleInfo, DateTime beginDateUtc)
         {
             var moduleSettings = moduleInfo.ModuleSettings;
-            int descriptionLenght = 100;
+            int descriptionLength = 100;
             if (!string.IsNullOrWhiteSpace(moduleSettings["descriptionLength"].ToString()))
             {
                 int.TryParse(moduleSettings["descriptionLength"].ToString(), out descriptionLenght);
@@ -533,4 +533,3 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
     }
 
 }
-
