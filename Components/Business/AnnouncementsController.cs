@@ -292,7 +292,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                 document.AuthorUserId = announcement.CreatedByUserID;
                 document.Body = announcement.Description;
                 document.CultureCode = moduleInfo.CultureCode;
-                document.Description = HtmlUtils.Shorten(announcement.Description, descriptionLenght, "...");
+                document.Description = HtmlUtils.Shorten(announcement.Description, descriptionLength, "...");
                 document.IsActive = CheckIfAnnouncementIsActive(announcement);
                 document.ModifiedTimeUtc = announcement.LastModifiedOnDate.ToUniversalTime();
                 document.ModuleDefId = moduleInfo.ModuleDefID;
