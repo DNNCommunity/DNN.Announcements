@@ -280,7 +280,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             int descriptionLength = 100;
             if (!string.IsNullOrWhiteSpace(moduleSettings["descriptionLength"].ToString()))
             {
-                int.TryParse(moduleSettings["descriptionLength"].ToString(), out descriptionLenght);
+                int.TryParse(moduleSettings["descriptionLength"].ToString(), out descriptionLength);
                 if (descriptionLenght < 1) { descriptionLenght = 1950; }                    
                     //max length of description is 2000 char, take a bit less to make sure it fits...                
             }
