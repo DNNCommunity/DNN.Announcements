@@ -89,9 +89,17 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
         public int ModuleID { get; set; }
         public string Title { get; set; }
         public string URL { get; set; }
+
+        /// <summary>
+        /// Gets or sets the UTC expiration date and time.
+        /// </summary>
         public DateTime? ExpireDate { get; set; }
         public string Description { get; set; }
         public int ViewOrder { get; set; }
+
+        /// <summary>
+        /// Gets or sets the UTC publish date and time.
+        /// </summary>
         public DateTime? PublishDate { get; set; }
         public string ImageSource { get; set; }
         public int PortalID { get; set; }
@@ -100,10 +108,18 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
         public bool IsEditable { get; set; }
         [Browsable(false), XmlIgnore]
         public int CreatedByUserID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the UTC creation date.
+        /// </summary>
         [Browsable(false), XmlIgnore]
         public DateTime CreatedOnDate { get; set; }
         [Browsable(false), XmlIgnore]
         public int LastModifiedByUserID { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the UTC last modification date.
+        /// </summary>
         [Browsable(false), XmlIgnore]
         public DateTime LastModifiedOnDate { get; set; }
 
@@ -355,6 +371,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
         public string GetProperty(string strPropertyName, string strFormat, CultureInfo formatProvider, UserInfo AccessingUser, Scope AccessLevel, ref bool PropertyNotFound)
         {
             PortalSettings portalSettings = PortalController.Instance.GetCurrentPortalSettings();
+            var userInfo = UserController.Instance.GetCurrentUserInfo();
             string outputFormat = strFormat == string.Empty ? "D" : strFormat;
             switch (strPropertyName.ToLowerInvariant())
             {
@@ -445,13 +462,13 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                     return NewWindow ? "_blank" : "_self";
                 case "createddate":
                 case "createdondate":
-                    return (CreatedOnDate.ToString(outputFormat, formatProvider));
+                    return FormatDisplayDateTime(CreatedOnDate, userInfo, portalSettings, outputFormat, formatProvider);
                 case "lastmodifiedondate":
-                    return (LastModifiedOnDate.ToString(outputFormat, formatProvider));
+                    return FormatDisplayDateTime(LastModifiedOnDate, userInfo, portalSettings, outputFormat, formatProvider);
                 case "publishdate":
-                    return PublishDate.HasValue ? (PublishDate.Value.ToString(outputFormat, formatProvider)) : "";
+                    return PublishDate.HasValue ? FormatDisplayDateTime(PublishDate.Value, userInfo, portalSettings, outputFormat, formatProvider) : "";
                 case "expiredate":
-                    return ExpireDate.HasValue ? (ExpireDate.Value.ToString(outputFormat, formatProvider)) : "";
+                    return ExpireDate.HasValue ? FormatDisplayDateTime(ExpireDate.Value, userInfo, portalSettings, outputFormat, formatProvider) : "";
                 case "more":
                     return Localization.GetString("More.Text", _localResourceFile);
                 case "readmore":
@@ -484,6 +501,21 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
         }
 
         #endregion
+
+        private static string FormatDisplayDateTime(DateTime dateTime, UserInfo userInfo, PortalSettings portalSettings, string outputFormat, CultureInfo formatProvider)
+        {
+            if (userInfo != null)
+            {
+                return userInfo.LocalTime(dateTime).ToString(outputFormat, formatProvider);
+            }
+
+            if (portalSettings.TimeZone != null)
+            {
+                return TimeZoneInfo.ConvertTimeFromUtc(dateTime, portalSettings.TimeZone).ToString(outputFormat, formatProvider);
+            }
+
+            return (dateTime.ToString(outputFormat, formatProvider));
+        }
     }
 }
 

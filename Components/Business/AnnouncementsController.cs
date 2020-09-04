@@ -54,7 +54,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
     /// The AnnouncementsController Class represents the Announcments Business Layer
     /// Methods in this class call methods in the Data Layer
     /// </summary>
-    public class AnnouncementsController : ModuleSearchBase, IAnnouncementsController, IPortable
+    public class AnnouncementsController : ModuleSearchBase, IAnnouncementsController, IPortable, IUpgradeable
     {
 
         #region Public Methods
@@ -152,6 +152,19 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                             a => a.ViewOrder).ThenByDescending(a => a.PublishDate);
             }
             return announcements;
+        }
+
+        /// <summary>
+        /// Gets all the announcements for all modules.
+        /// </summary>
+        /// <returns>A list of all the announcements.</returns>
+        internal IEnumerable<AnnouncementInfo> GetAnnouncements()
+        {
+            using (IDataContext context = DataContext.Instance())
+            {
+                var repository = context.GetRepository<AnnouncementInfo>();
+                return repository.Get();
+            }
         }
 
         public IEnumerable<AnnouncementInfo> GetCurrentAnnouncements(int moduleId)
@@ -288,6 +301,30 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             return (announcement.PublishDate < DateTime.Now && (announcement.ExpireDate == null || announcement.ExpireDate > DateTime.Now));
         }
 
+
+        #endregion
+
+        #region IUpgreadable implementation
+        public string UpgradeModule(string Version)
+        {
+            try
+            {
+                switch (Version)
+                {
+                    case "07.02.04":
+                        this.AdjustTimesToUTC();
+                        break;
+                    default:
+                        break;
+                }
+
+                return "Success";
+            }
+            catch (Exception)
+            {
+                return "Announcements module upgrade failed.";
+            }
+        }
 
         #endregion
 
@@ -439,10 +476,29 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             {
                 return null;
             }
-        }        
+        }
 
         #endregion
 
+
+        private void AdjustTimesToUTC()
+        {
+            var announcements = this.GetAnnouncements();
+            foreach (var announcement in announcements)
+            {
+                announcement.CreatedOnDate = TimeZoneInfo.ConvertTimeToUtc(announcement.CreatedOnDate);
+                announcement.LastModifiedOnDate = TimeZoneInfo.ConvertTimeToUtc(announcement.LastModifiedOnDate);
+                if (announcement.ExpireDate.HasValue)
+                {
+                    announcement.ExpireDate = TimeZoneInfo.ConvertTimeToUtc(announcement.ExpireDate.Value);
+                }
+                if (announcement.PublishDate.HasValue)
+                {
+                    announcement.PublishDate = TimeZoneInfo.ConvertTimeToUtc(announcement.PublishDate.Value);
+                }
+                this.UpdateAnnouncement(announcement);
+            }
+        }
     }
 
 }
