@@ -199,7 +199,7 @@ namespace DotNetNuke.Modules.Announcements
                     if ((!Null.IsNull(Model.AnnouncementInfo.PublishDate)) &&
                         (Model.AnnouncementInfo.PublishDate != (DateTime)SqlDateTime.Null))
                     {
-                        var portalDatetime = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.PublishDate.Value, ModuleContext.PortalSettings.TimeZone);
+                        var portalDateTime = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.PublishDate.Value, ModuleContext.PortalSettings.TimeZone);
                         publishDate.SelectedDate = portalDatetime;
                         publishTime.SelectedDate = portalDatetime;
                     }
