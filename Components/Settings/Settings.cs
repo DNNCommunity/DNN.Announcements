@@ -125,13 +125,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Settings
             objModules.UpdateTabModuleSetting(_tabModuleId, SettingName.TemplateName, TemplateName);
             objModules.UpdateTabModuleSetting(_tabModuleId, SettingName.TemplateLocation, TemplateLocation);
 
-
-            ModuleController.SynchronizeModule(_moduleId);
-            // DataCache.RemoveCache(ModuleController.CacheKey(_moduleId) + "_viewType");
-            // Module caching has been updated in 5.2.0, this method is no longer used
-
             DataCache.RemoveCache(CacheConstants.SettingsCacheKeyFormat(_moduleId, _tabModuleId));
-
         }
 
         public bool TryGetValue(string key, out string value)

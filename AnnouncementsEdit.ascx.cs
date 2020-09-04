@@ -161,7 +161,7 @@ namespace DotNetNuke.Modules.Announcements
                     announcement.ExpireDate = GetDateTimeValue(expireDate, expireTime);
                     announcement.LastModifiedByUserID = ModuleContext.PortalSettings.UserId;
                     announcement.LastModifiedOnDate = DateTime.UtcNow;
-                    if (string.IsNullOrWhiteSpace(txtViewOrder.Text))
+                    if (!string.IsNullOrWhiteSpace(txtViewOrder.Text))
                     {
                         announcement.ViewOrder = Convert.ToInt32(txtViewOrder.Text);
                     }
@@ -174,7 +174,6 @@ namespace DotNetNuke.Modules.Announcements
 
                     // redirect back to page
                     Response.Redirect(ReturnURL, true);
-
                 }
             }
             catch (Exception exc)
