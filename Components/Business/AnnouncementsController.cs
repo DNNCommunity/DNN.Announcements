@@ -1,7 +1,7 @@
 #region License
 
 //
-// DotNetNuke® - http://www.dotnetnuke.com
+// DotNetNukeÂ® - http://www.dotnetnuke.com
 // Copyright (c) 2002-2012
 // by DotNetNuke Corporation
 //
@@ -27,6 +27,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -38,12 +39,14 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Data;
 using DotNetNuke.Entities.Content;
 using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Portals;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Journal;
 using DotNetNuke.Services.Search;
 using DotNetNuke.Services.Search.Entities;
 using DotNetNuke.Services.Social.Messaging;
 using DotNetNuke.Services.Social.Notifications;
+using Microsoft.ApplicationBlocks.Data;
 
 #endregion
 
@@ -54,7 +57,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
     /// The AnnouncementsController Class represents the Announcments Business Layer
     /// Methods in this class call methods in the Data Layer
     /// </summary>
-    public class AnnouncementsController : ModuleSearchBase, IAnnouncementsController, IPortable
+    public class AnnouncementsController : ModuleSearchBase, IAnnouncementsController, IPortable, IUpgradeable
     {
 
         #region Public Methods
@@ -154,6 +157,19 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             return announcements;
         }
 
+        /// <summary>
+        /// Gets all the announcements for all modules.
+        /// </summary>
+        /// <returns>A list of all the announcements.</returns>
+        internal IEnumerable<AnnouncementInfo> GetAnnouncements()
+        {
+            using (IDataContext context = DataContext.Instance())
+            {
+                var repository = context.GetRepository<AnnouncementInfo>();
+                return repository.Get();
+            }
+        }
+
         public IEnumerable<AnnouncementInfo> GetCurrentAnnouncements(int moduleId)
         {
             return GetCurrentAnnouncements(moduleId, Null.NullDate);
@@ -167,11 +183,16 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             using (IDataContext context = DataContext.Instance())
             {
                 var repository = context.GetRepository<AnnouncementInfo>();
-                announcements = repository.Find("WHERE ModuleID = @0 " +
-                                                "AND ( ((PublishDate >= @1) OR @1 IS NULL) AND (PublishDate <= GETDATE()) ) " +
-                                                "AND ( (ExpireDate > GETDATE()) OR (ExpireDate IS NULL) )",
-                                                moduleId, Null.GetNull(startDate, DBNull.Value)).OrderBy(
-                                                    a => a.ViewOrder).ThenByDescending(a => a.PublishDate);
+                var query = new StringBuilder();
+                query.Append("WHERE ModuleID = @0 ")
+                    .AppendLine("AND ( ((PublishDate >= @1) OR @1 IS NULL) AND (PublishDate <= @2) )")
+                    .AppendLine("AND ( (ExpireDate > @2) OR (ExpireDate IS NULL) )");
+                announcements = repository.Find(
+                    query.ToString(),
+                    moduleId,
+                    Null.GetNull(startDate, DBNull.Value),
+                    DateTime.UtcNow
+                ).OrderBy(a => a.ViewOrder).ThenByDescending(a => a.PublishDate);
             }
             return announcements;
         }
@@ -184,9 +205,11 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             using (IDataContext context = DataContext.Instance())
             {
                 var repository = context.GetRepository<AnnouncementInfo>();
-                announcements =
-                    repository.Find("WHERE ModuleID = @0 AND ExpireDate <= GETDATE()", moduleId).OrderBy(
-                        a => a.ViewOrder).ThenByDescending(a => a.PublishDate);
+                announcements = repository.Find(
+                    "WHERE ModuleID = @0 AND ExpireDate <= @1",
+                    moduleId,
+                    DateTime.UtcNow
+                ).OrderBy(a => a.ViewOrder).ThenByDescending(a => a.PublishDate);
             }
             return announcements;
         }
@@ -254,11 +277,11 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
         public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo moduleInfo, DateTime beginDateUtc)
         {
             var moduleSettings = moduleInfo.ModuleSettings;
-            int descriptionLenght = 100;
-            if (moduleSettings["descriptionLength"].ToString() != "")
+            int descriptionLength = 100;
+            if (!string.IsNullOrWhiteSpace(moduleSettings["descriptionLength"].ToString()))
             {
-                int.TryParse(moduleSettings["descriptionLength"].ToString(), out descriptionLenght);
-                if (descriptionLenght < 1) { descriptionLenght = 1950; }                    
+                int.TryParse(moduleSettings["descriptionLength"].ToString(), out descriptionLength);
+                if (descriptionLength < 1) { descriptionLength = 1950; }                    
                     //max length of description is 2000 char, take a bit less to make sure it fits...                
             }
             var searchDocuments = new List<SearchDocument>();
@@ -269,9 +292,9 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                 document.AuthorUserId = announcement.CreatedByUserID;
                 document.Body = announcement.Description;
                 document.CultureCode = moduleInfo.CultureCode;
-                document.Description = announcement.Description;
+                document.Description = HtmlUtils.Shorten(announcement.Description, descriptionLength, "...");
                 document.IsActive = CheckIfAnnouncementIsActive(announcement);
-                document.ModifiedTimeUtc = announcement.LastModifiedOnDate;
+                document.ModifiedTimeUtc = announcement.LastModifiedOnDate.ToUniversalTime();
                 document.ModuleDefId = moduleInfo.ModuleDefID;
                 document.ModuleId = moduleInfo.ModuleID;
                 document.PortalId = moduleInfo.PortalID;
@@ -285,9 +308,33 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
 
         private bool CheckIfAnnouncementIsActive(AnnouncementInfo announcement)
         {
-            return (announcement.PublishDate < DateTime.Now && (announcement.ExpireDate == null || announcement.ExpireDate > DateTime.Now));
+            return (announcement.PublishDate < DateTime.UtcNow && (announcement.ExpireDate == null || announcement.ExpireDate > DateTime.UtcNow));
         }
 
+
+        #endregion
+
+        #region IUpgreadable implementation
+        public string UpgradeModule(string Version)
+        {
+            try
+            {
+                switch (Version)
+                {
+                    case "07.02.04":
+                        this.AdjustTimesToUTC();
+                        break;
+                    default:
+                        break;
+                }
+
+                return "Success";
+            }
+            catch (Exception)
+            {
+                return "Announcements module upgrade failed.";
+            }
+        }
 
         #endregion
 
@@ -353,7 +400,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                     {
                         objAnnouncement.ModuleID = ModuleID;
                         objAnnouncement.CreatedByUserID = UserId;
-                        objAnnouncement.CreatedOnDate = DateTime.Now;
+                        objAnnouncement.CreatedOnDate = DateTime.UtcNow;
 
                         AddAnnouncement(objAnnouncement);
 
@@ -402,7 +449,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                                 announcement.ItemID = Null.NullInteger;
                                 announcement.ModuleID = ModuleID;
                                 announcement.CreatedByUserID = UserId;
-                                announcement.CreatedOnDate = DateTime.Now;
+                                announcement.CreatedOnDate = DateTime.UtcNow;
 
                                 //Save announcement
                                 AddAnnouncement(announcement);
@@ -439,11 +486,50 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             {
                 return null;
             }
-        }        
+        }
 
         #endregion
 
+        /// <summary>
+        /// Prior to this version times where stored in local server timezone,
+        /// this is wrong, times should always be stored UTC at the DataStore level
+        /// and handled in code for timezone support depending on the needs.
+        /// This upgrade ensures that existing data is updated to that new logic.
+        /// </summary>
+        private void AdjustTimesToUTC()
+        {
+            var announcements = this.GetAnnouncements();
+            foreach (var announcement in announcements)
+            {
+                announcement.CreatedOnDate = TimeZoneInfo.ConvertTimeToUtc(announcement.CreatedOnDate);
+                announcement.LastModifiedOnDate = TimeZoneInfo.ConvertTimeToUtc(announcement.LastModifiedOnDate);
+                if (announcement.ExpireDate.HasValue)
+                {
+                    announcement.ExpireDate = TimeZoneInfo.ConvertTimeToUtc(announcement.ExpireDate.Value);
+                }
+                if (announcement.PublishDate.HasValue)
+                {
+                    announcement.PublishDate = TimeZoneInfo.ConvertTimeToUtc(announcement.PublishDate.Value);
+                }
+                this.UpdateAnnouncement(announcement);
+            }
+
+            var portals = PortalController.Instance.GetPortals();
+            foreach (PortalInfo portal in portals)
+            {
+                var modules = ModuleController.Instance.GetModules(portal.PortalID);
+                foreach (ModuleInfo module in modules)
+                {
+                    using (var context = DataContext.Instance())
+                    {
+                        context.Execute(
+                            System.Data.CommandType.Text,
+                            "UPDATE {databaseOwner}{objectQualifier}Modules SET LastContentModifiedOnDate = NULL WHERE ModuleID = @0",
+                            module.ModuleID);
+                    }
+                }
+            }
+        }
     }
 
 }
-
