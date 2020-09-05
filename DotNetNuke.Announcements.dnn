@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="DNN_Announcements" type="Module" version="07.02.03">
+    <package name="DNN_Announcements" type="Module" version="07.02.04">
       <friendlyName>Announcements</friendlyName>
       <description>This module renders a list of announcements. The way the announcements are rendered is completely customizable by templating.</description>
       <iconFile>~/DesktopModules/Announcements/Images/icon-announcements-32px.png</iconFile>
@@ -180,6 +180,15 @@
             <permission code="DNNANNOUNCEMENTS" key="EDITTEMPLATE" name="Edit Template" />
             <permission code="DNNANNOUNCEMENTS" key="CANSUBSCRIBE" name="Can Subscribe" />
           </permissions>
+          <eventMessage>
+            <processorType>DotNetNuke.Entities.Modules.EventMessageProcessor, DotNetNuke</processorType>
+            <processorCommand>UpgradeModule</processorCommand>
+            <attributes>
+              <businessControllerClass>DotNetNuke.Modules.Announcements.Components.Business.AnnouncementsController</businessControllerClass>
+              <desktopModuleID>[DESKTOPMODULEID]</desktopModuleID>
+              <upgradeVersionsList>07.02.04</upgradeVersionsList>
+            </attributes>
+          </eventMessage>
         </component>
         <component type="Assembly">
           <assemblies>

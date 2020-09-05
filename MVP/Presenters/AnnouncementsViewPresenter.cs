@@ -78,7 +78,7 @@ namespace DotNetNuke.Modules.Announcements.MVP.Presenters
             DateTime datStartDate = Null.NullDate;
             if (!View.Model.Settings.History.IsDnnNull())
             {
-                datStartDate = DateTime.Now.AddDays(-View.Model.Settings.History);
+                datStartDate = DateTime.UtcNow.AddDays(-View.Model.Settings.History);
             }
 
             switch (View.Model.Settings.DefaultViewType)
@@ -90,7 +90,7 @@ namespace DotNetNuke.Modules.Announcements.MVP.Presenters
                     View.Model.Announcements = _announcementsController.GetExpiredAnnouncements(ModuleId);
                     break;
                 case ViewTypes.Future:
-                    View.Model.Announcements = _announcementsController.GetAnnouncements(ModuleId, DateTime.Now, Null.NullDate);
+                    View.Model.Announcements = _announcementsController.GetAnnouncements(ModuleId, DateTime.UtcNow, Null.NullDate);
                     break;
                 case ViewTypes.All:
                     View.Model.Announcements = _announcementsController.GetAnnouncements(ModuleId, Null.NullDate, Null.NullDate);

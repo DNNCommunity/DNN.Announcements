@@ -30,6 +30,8 @@ using System.Globalization;
 
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Portals;
+using DotNetNuke.Entities.Users;
 using DotNetNuke.Framework;
 using DotNetNuke.Framework.JavaScriptLibraries;
 using DotNetNuke.Modules.Announcements.Components.Business;
@@ -38,6 +40,7 @@ using DotNetNuke.Modules.Announcements.MVP.Models;
 using DotNetNuke.Modules.Announcements.MVP.Presenters;
 using DotNetNuke.Modules.Announcements.MVP.Views;
 using DotNetNuke.Services.Exceptions;
+using DotNetNuke.Services.Localization;
 using DotNetNuke.Web.Client;
 using DotNetNuke.Web.Client.ClientResourceManagement;
 using DotNetNuke.Web.Mvp;
@@ -68,7 +71,6 @@ namespace DotNetNuke.Modules.Announcements
         override protected void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            
             JavaScript.RequestRegistration(CommonJs.DnnPlugins);
 
             ClientResourceManager.RegisterStyleSheet(Page, Globals.ApplicationPath + "/DesktopModules/Announcements/AnnouncementsEdit.css", FileOrder.Css.ModuleCss);
@@ -142,7 +144,7 @@ namespace DotNetNuke.Modules.Announcements
                                 ModuleID = ModuleContext.ModuleId,
                                 PortalID = ModuleContext.PortalId,
                                 CreatedByUserID = ModuleContext.PortalSettings.UserId,
-                                CreatedOnDate = DateTime.Now
+                                CreatedOnDate = DateTime.UtcNow
                             };
                     }
                     else
@@ -155,11 +157,11 @@ namespace DotNetNuke.Modules.Announcements
                     announcement.ImageSource = urlImage.FilePath;
                     announcement.Description = teDescription.Text;
                     announcement.URL = ctlURL.Url;
-                    announcement.PublishDate = GetDateTimeValue(publishDate, publishTime, DateTime.Now);
+                    announcement.PublishDate = GetDateTimeValue(publishDate, publishTime, DateTime.UtcNow);
                     announcement.ExpireDate = GetDateTimeValue(expireDate, expireTime);
                     announcement.LastModifiedByUserID = ModuleContext.PortalSettings.UserId;
-                    announcement.LastModifiedOnDate = DateTime.Now;
-                    if (txtViewOrder.Text != "")
+                    announcement.LastModifiedOnDate = DateTime.UtcNow;
+                    if (!string.IsNullOrWhiteSpace(txtViewOrder.Text))
                     {
                         announcement.ViewOrder = Convert.ToInt32(txtViewOrder.Text);
                     }
@@ -172,7 +174,6 @@ namespace DotNetNuke.Modules.Announcements
 
                     // redirect back to page
                     Response.Redirect(ReturnURL, true);
-
                 }
             }
             catch (Exception exc)
@@ -198,20 +199,29 @@ namespace DotNetNuke.Modules.Announcements
                     if ((!Null.IsNull(Model.AnnouncementInfo.PublishDate)) &&
                         (Model.AnnouncementInfo.PublishDate != (DateTime)SqlDateTime.Null))
                     {
-                        publishDate.SelectedDate = Model.AnnouncementInfo.PublishDate;
-                        publishTime.SelectedDate = Model.AnnouncementInfo.PublishDate;
+                        var portalDateTime = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.PublishDate.Value, ModuleContext.PortalSettings.TimeZone);
+                        publishDate.SelectedDate = portalDateTime;
+                        publishTime.SelectedDate = portalDateTime;
                     }
                     if ((!Null.IsNull(Model.AnnouncementInfo.ExpireDate)) &&
                         (Model.AnnouncementInfo.ExpireDate != (DateTime)SqlDateTime.Null))
                     {
-                        expireDate.SelectedDate = Model.AnnouncementInfo.ExpireDate;
-                        expireTime.SelectedDate = Model.AnnouncementInfo.ExpireDate;
+                        var portalDateTime = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.ExpireDate.Value, ModuleContext.PortalSettings.TimeZone);
+                        expireDate.SelectedDate = portalDateTime;
+                        expireTime.SelectedDate = portalDateTime;
                     }
 
-                    ctlAudit.CreatedDate = Model.AnnouncementInfo.CreatedOnDate.ToString(CultureInfo.InvariantCulture);
+                    var user = UserController.Instance.GetCurrentUserInfo();
+                    var userPreferredCulture = CultureInfo.InvariantCulture;
+                    if (user != null && !string.IsNullOrWhiteSpace(user.Profile.PreferredLocale))
+                    {
+                        userPreferredCulture = new CultureInfo(user.Profile.PreferredLocale);
+                    }
+                    
+                    ctlAudit.CreatedDate = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.CreatedOnDate, ModuleContext.PortalSettings.TimeZone).ToString(userPreferredCulture);
                     ctlAudit.CreatedByUser = Model.AnnouncementInfo.CreatedByUserID.ToString(CultureInfo.InvariantCulture);
                     ctlAudit.LastModifiedByUser = Model.AnnouncementInfo.LastModifiedByUserID.ToString(CultureInfo.InvariantCulture);
-                    ctlAudit.LastModifiedDate = Model.AnnouncementInfo.LastModifiedOnDate.ToString(CultureInfo.InvariantCulture);
+                    ctlAudit.LastModifiedDate = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.LastModifiedOnDate, ModuleContext.PortalSettings.TimeZone).ToString(userPreferredCulture);
                     ctlTracking.URL = Model.AnnouncementInfo.URL;
                     ctlTracking.ModuleID = ModuleContext.ModuleId;
                 }
@@ -274,11 +284,18 @@ namespace DotNetNuke.Modules.Announcements
             {
                 resultValue = dnnDatePicker.SelectedDate;
             }
+
             if ((dnnTimePicker.SelectedTime != null) && (resultValue.HasValue))
             {
                 resultValue = resultValue.Value.Add((TimeSpan)dnnTimePicker.SelectedTime);
             }
-            return resultValue;
+
+            if (resultValue.HasValue)
+            {
+                return TimeZoneInfo.ConvertTimeToUtc(resultValue.Value, ModuleContext.PortalSettings.TimeZone);
+            }
+
+            return null;
         }
 
         private DateTime? GetDateTimeValue(DnnDatePicker dnnDatePicker, DnnTimePicker dnnTimePicker, DateTime defaultValue)
