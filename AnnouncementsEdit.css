@@ -2,21 +2,16 @@
     width: 420px;
 }
 
-.dateDiv { display: inline-block;width: 75px; margin-bottom: 20px}
+.dateDiv { display: inline-block;width: 150px; margin-bottom: 20px;}
+
+.dnnFormItem .dateDiv input { width: 100%; }
 
 .urlControlLinkType span, .dnnFormItem .urlControlLinkType span {
-float: none;
-display: inline;
-width: auto;
-text-align: left;
+	float: none;
+	display: inline;
+	width: auto;
+	text-align: left;
 }
-
-/*.rcTimePopup {
-background-image: url('images/clock.gif');
-position: absolute!important;
-right: 3px;
-bottom: 5px;
-}*/
 
 table.RadCalendarTimeView {
     background-color: #fff!important;
