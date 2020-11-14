@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="DNN_Announcements" type="Module" version="07.02.03">
+    <package name="DNN_Announcements" type="Module" version="07.02.04">
       <friendlyName>Announcements</friendlyName>
       <description>This module renders a list of announcements. The way the announcements are rendered is completely customizable by templating.</description>
       <iconFile>~/DesktopModules/Announcements/Images/icon-announcements-32px.png</iconFile>
