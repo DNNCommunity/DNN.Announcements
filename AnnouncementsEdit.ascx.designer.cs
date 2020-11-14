@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DotNetNuke.Modules.Announcements {
-    
-    
-    public partial class AnnouncementsEdit {
-        
+namespace DotNetNuke.Modules.Announcements
+{
+
+
+    public partial class AnnouncementsEdit
+    {
+
         /// <summary>
         /// contentTab control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl contentTab;
-        
+
         /// <summary>
         /// imageLinksTab control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl imageLinksTab;
-        
+
         /// <summary>
         /// publishingTab control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl publishingTab;
-        
+
         /// <summary>
         /// auditingTab control.
         /// </summary>
@@ -47,16 +49,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl auditingTab;
-        
-        /// <summary>
-        /// plTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.LabelControl plTitle;
-        
+
         /// <summary>
         /// txtTitle control.
         /// </summary>
@@ -65,7 +58,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
-        
+
         /// <summary>
         /// valTitle control.
         /// </summary>
@@ -74,16 +67,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valTitle;
-        
-        /// <summary>
-        /// teDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.TextEditor teDescription;
-        
+
         /// <summary>
         /// valDescription control.
         /// </summary>
@@ -92,7 +76,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valDescription;
-        
+
         /// <summary>
         /// plImage control.
         /// </summary>
@@ -100,17 +84,8 @@ namespace DotNetNuke.Modules.Announcements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.LabelControl plImage;
-        
-        /// <summary>
-        /// urlImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.DnnFilePickerUploader urlImage;
-        
+        protected global::System.Web.UI.UserControl plImage;
+
         /// <summary>
         /// plURL control.
         /// </summary>
@@ -118,17 +93,8 @@ namespace DotNetNuke.Modules.Announcements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.LabelControl plURL;
-        
-        /// <summary>
-        /// ctlURL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.UrlControl ctlURL;
-        
+        protected global::System.Web.UI.UserControl plURL;
+
         /// <summary>
         /// plViewOrder control.
         /// </summary>
@@ -136,8 +102,8 @@ namespace DotNetNuke.Modules.Announcements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.LabelControl plViewOrder;
-        
+        protected global::System.Web.UI.UserControl plViewOrder;
+
         /// <summary>
         /// txtViewOrder control.
         /// </summary>
@@ -146,7 +112,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtViewOrder;
-        
+
         /// <summary>
         /// valViewOrder control.
         /// </summary>
@@ -155,7 +121,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator valViewOrder;
-        
+
         /// <summary>
         /// plPublishDate control.
         /// </summary>
@@ -163,8 +129,8 @@ namespace DotNetNuke.Modules.Announcements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.LabelControl plPublishDate;
-        
+        protected global::System.Web.UI.UserControl plPublishDate;
+
         /// <summary>
         /// publishDate control.
         /// </summary>
@@ -172,26 +138,8 @@ namespace DotNetNuke.Modules.Announcements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.DnnDatePicker publishDate;
-        
-        /// <summary>
-        /// plPublishTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.LabelControl plPublishTime;
-        
-        /// <summary>
-        /// publishTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.DnnTimePicker publishTime;
-        
+        protected global::DotNetNuke.Web.UI.WebControls.Internal.DnnDateTimePicker publishDate;
+
         /// <summary>
         /// plExpireDate control.
         /// </summary>
@@ -199,8 +147,8 @@ namespace DotNetNuke.Modules.Announcements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.LabelControl plExpireDate;
-        
+        protected global::System.Web.UI.UserControl plExpireDate;
+
         /// <summary>
         /// expireDate control.
         /// </summary>
@@ -208,44 +156,8 @@ namespace DotNetNuke.Modules.Announcements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.DnnDatePicker expireDate;
-        
-        /// <summary>
-        /// plExpireTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.LabelControl plExpireTime;
-        
-        /// <summary>
-        /// expireTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.DnnTimePicker expireTime;
-        
-        /// <summary>
-        /// ctlAudit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.ModuleAuditControl ctlAudit;
-        
-        /// <summary>
-        /// ctlTracking control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.URLTrackingControl ctlTracking;
-        
+        protected global::DotNetNuke.Web.UI.WebControls.Internal.DnnDateTimePicker expireDate;
+
         /// <summary>
         /// cmdUpdate control.
         /// </summary>
@@ -254,7 +166,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton cmdUpdate;
-        
+
         /// <summary>
         /// cmdDelete control.
         /// </summary>
@@ -263,7 +175,7 @@ namespace DotNetNuke.Modules.Announcements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton cmdDelete;
-        
+
         /// <summary>
         /// cancelHyperLink control.
         /// </summary>
