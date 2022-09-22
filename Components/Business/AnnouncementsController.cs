@@ -278,7 +278,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
         {
             var moduleSettings = moduleInfo.ModuleSettings;
             int descriptionLength = 100;
-            if (!string.IsNullOrWhiteSpace(moduleSettings["descriptionLength"].ToString()))
+            if (moduleSettings["descriptionLength"] != null && !string.IsNullOrWhiteSpace(moduleSettings["descriptionLength"].ToString()))
             {
                 int.TryParse(moduleSettings["descriptionLength"].ToString(), out descriptionLength);
                 if (descriptionLength < 1) { descriptionLength = 1950; }                    
