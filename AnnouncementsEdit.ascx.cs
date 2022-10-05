@@ -44,7 +44,6 @@ using DotNetNuke.Services.Localization;
 using DotNetNuke.Web.Client;
 using DotNetNuke.Web.Client.ClientResourceManagement;
 using DotNetNuke.Web.Mvp;
-using DotNetNuke.Web.UI.WebControls;
 using DotNetNuke.Web.UI.WebControls.Internal;
 using WebFormsMvp;
 
@@ -69,7 +68,7 @@ namespace DotNetNuke.Modules.Announcements
         public event EventHandler<EditItemEventArgs> UpdateAnnouncement;
 
         protected UI.UserControls.LabelControl plTitle;
-        protected DnnFilePickerUploader urlImage;
+        protected DotNetNuke.Web.UI.WebControls.DnnFilePickerUploader urlImage;
         protected UI.UserControls.TextEditor teDescription;
         protected UI.UserControls.UrlControl ctlURL;
         protected UI.UserControls.ModuleAuditControl ctlAudit;
