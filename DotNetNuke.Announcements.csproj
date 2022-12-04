@@ -39,7 +39,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <OldToolsVersion>4.0</OldToolsVersion>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -262,97 +262,93 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="App.config" />
+    <None Include="web.AutoInstallSourcePackage.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.DebugDeploy.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ClientDependency.Core">
-      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\ClientDependency.Core.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="DotNetNuke, Version=9.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Core.9.11.0\lib\net45\DotNetNuke.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke, Version=9.1.1.129, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DotNetNuke.Core.9.1.1.129\lib\net40\DotNetNuke.dll</HintPath>
+    <Reference Include="DotNetNuke.DependencyInjection, Version=9.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.DependencyInjection.9.11.0\lib\netstandard2.0\DotNetNuke.DependencyInjection.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetNuke.HttpModules">
-      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.HttpModules.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotNetNuke.Instrumentation">
-      <HintPath>packages\DotNetNuke.Instrumentation.9.1.1.129\lib\net40\DotNetNuke.Instrumentation.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotNetNuke.Log4Net, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\DotNetNuke.Instrumentation.9.1.1.129\lib\net40\DotNetNuke.Log4Net.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotNetNuke.Modules.DigitalAssets">
-      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Modules.DigitalAssets.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotNetNuke.Tests.Data">
-      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Tests.Data.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotNetNuke.Tests.Utilities">
-      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.Tests.Utilities.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotNetNuke.Web, Version=9.1.1.129, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DotNetNuke.Web.9.1.1.129\lib\net40\DotNetNuke.Web.dll</HintPath>
+    <Reference Include="DotNetNuke.Instrumentation, Version=9.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Instrumentation.9.11.0\lib\net45\DotNetNuke.Instrumentation.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetNuke.Web.Client, Version=9.1.1.129, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DotNetNuke.Web.Client.9.1.1.129\lib\net40\DotNetNuke.Web.Client.dll</HintPath>
+    <Reference Include="DotNetNuke.log4net, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Instrumentation.9.11.0\lib\net45\DotNetNuke.log4net.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetNuke.Web.Deprecated, Version=9.1.1.129, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DotNetNuke.Web.Deprecated.9.1.1.129\lib\net40\DotNetNuke.Web.Deprecated.dll</HintPath>
+    <Reference Include="DotNetNuke.Web, Version=9.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Web.9.11.0\lib\net45\DotNetNuke.Web.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetNuke.WebControls">
-      <HintPath>packages\DotNetNuke.Bundle.9.1.1.129\lib\DotNetNuke.WebControls.dll</HintPath>
+    <Reference Include="DotNetNuke.Web.Client, Version=9.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetNuke.Web.Client.9.11.0\lib\net45\DotNetNuke.Web.Client.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="DotNetNuke.WebUtility, Version=4.2.1.783, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DotNetNuke.Web.9.1.1.129\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+      <HintPath>packages\DotNetNuke.Web.9.11.0\lib\net45\DotNetNuke.WebUtility.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DotNetNuke.Core.9.1.1.129\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+      <HintPath>packages\DotNetNuke.Core.9.11.0\lib\net45\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.2.1.1\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\System.Net.Http.Formatting.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\System.Web.Http.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.XML" />
-    <Reference Include="Telerik.Web.UI, Version=2013.2.717.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <HintPath>packages\DotNetNuke.Web.Deprecated.9.1.1.129\lib\net40\Telerik.Web.UI.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebFormsMvp, Version=1.4.1.0, Culture=neutral, PublicKeyToken=537f18701145dff0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\WebFormsMvp.dll</HintPath>

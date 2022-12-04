@@ -44,8 +44,7 @@ using DotNetNuke.Services.Localization;
 using DotNetNuke.Web.Client;
 using DotNetNuke.Web.Client.ClientResourceManagement;
 using DotNetNuke.Web.Mvp;
-using DotNetNuke.Web.UI.WebControls;
-
+using DotNetNuke.Web.UI.WebControls.Internal;
 using WebFormsMvp;
 
 #endregion
@@ -67,6 +66,13 @@ namespace DotNetNuke.Modules.Announcements
         public event EventHandler GetAnnouncement;
         public event EventHandler<EditItemEventArgs> DeleteAnnouncement;
         public event EventHandler<EditItemEventArgs> UpdateAnnouncement;
+
+        protected UI.UserControls.LabelControl plTitle;
+        protected DotNetNuke.Web.UI.WebControls.DnnFilePickerUploader urlImage;
+        protected UI.UserControls.TextEditor teDescription;
+        protected UI.UserControls.UrlControl ctlURL;
+        protected UI.UserControls.ModuleAuditControl ctlAudit;
+        protected UI.UserControls.URLTrackingControl ctlTracking;
 
         override protected void OnInit(EventArgs e)
         {
@@ -157,8 +163,8 @@ namespace DotNetNuke.Modules.Announcements
                     announcement.ImageSource = urlImage.FilePath;
                     announcement.Description = teDescription.Text;
                     announcement.URL = ctlURL.Url;
-                    announcement.PublishDate = GetDateTimeValue(publishDate, publishTime, DateTime.UtcNow);
-                    announcement.ExpireDate = GetDateTimeValue(expireDate, expireTime);
+                    announcement.PublishDate = GetDateTimeValue(publishDate, DateTime.UtcNow);
+                    announcement.ExpireDate = GetDateTimeValue(expireDate);
                     announcement.LastModifiedByUserID = ModuleContext.PortalSettings.UserId;
                     announcement.LastModifiedOnDate = DateTime.UtcNow;
                     if (!string.IsNullOrWhiteSpace(txtViewOrder.Text))
@@ -201,14 +207,12 @@ namespace DotNetNuke.Modules.Announcements
                     {
                         var portalDateTime = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.PublishDate.Value, ModuleContext.PortalSettings.TimeZone);
                         publishDate.SelectedDate = portalDateTime;
-                        publishTime.SelectedDate = portalDateTime;
                     }
                     if ((!Null.IsNull(Model.AnnouncementInfo.ExpireDate)) &&
                         (Model.AnnouncementInfo.ExpireDate != (DateTime)SqlDateTime.Null))
                     {
                         var portalDateTime = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.ExpireDate.Value, ModuleContext.PortalSettings.TimeZone);
                         expireDate.SelectedDate = portalDateTime;
-                        expireTime.SelectedDate = portalDateTime;
                     }
 
                     var user = UserController.Instance.GetCurrentUserInfo();
@@ -276,18 +280,13 @@ namespace DotNetNuke.Modules.Announcements
             }
         }
 
-        private DateTime? GetDateTimeValue(DnnDatePicker dnnDatePicker, DnnTimePicker dnnTimePicker)
+        private DateTime? GetDateTimeValue(DnnDatePicker dnnDatePicker)
         {
             DateTime? resultValue = null;
 
             if (dnnDatePicker.SelectedDate != null)
             {
                 resultValue = dnnDatePicker.SelectedDate;
-            }
-
-            if ((dnnTimePicker.SelectedTime != null) && (resultValue.HasValue))
-            {
-                resultValue = resultValue.Value.Add((TimeSpan)dnnTimePicker.SelectedTime);
             }
 
             if (resultValue.HasValue)
@@ -298,9 +297,9 @@ namespace DotNetNuke.Modules.Announcements
             return null;
         }
 
-        private DateTime? GetDateTimeValue(DnnDatePicker dnnDatePicker, DnnTimePicker dnnTimePicker, DateTime defaultValue)
+        private DateTime? GetDateTimeValue(DnnDateTimePicker dnnDatePicker, DateTime defaultValue)
         {
-            DateTime? resultValue = GetDateTimeValue(dnnDatePicker, dnnTimePicker);
+            DateTime? resultValue = GetDateTimeValue(dnnDatePicker);
 
             if (!resultValue.HasValue)
             {
