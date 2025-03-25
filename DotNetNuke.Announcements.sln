@@ -1,19 +1,31 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2043
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2D426765-F89F-41C7-9650-A8A5758AE94B}"
 	ProjectSection(SolutionItems) = preProject
-		.tfignore = .tfignore
-		Providers\DataProviders\SqlDataProvider\07.00.00.SqlDataProvider = Providers\DataProviders\SqlDataProvider\07.00.00.SqlDataProvider
-		Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider = Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider
-		DotNetNuke.Announcements.dnn = DotNetNuke.Announcements.dnn
-		Installation\Project.targets = Installation\Project.targets
-		Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider = Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider
-		Installation\version.txt = Installation\version.txt
+		src\Providers\DataProviders\SqlDataProvider\07.00.00.SqlDataProvider = src\Providers\DataProviders\SqlDataProvider\07.00.00.SqlDataProvider
+		src\Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider = src\Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider
+		src\DotNetNuke.Announcements.dnn = src\DotNetNuke.Announcements.dnn
+		src\Installation\Project.targets = src\Installation\Project.targets
+		src\Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider = src\Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider
+		src\Installation\version.txt = src\Installation\version.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetNuke.Announcements", "DotNetNuke.Announcements.csproj", "{F2A89441-0CB8-4FB2-91BF-C81E9D2626E3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{BCBFC482-5036-4853-9D4F-7EE93052CA1A}"
+	ProjectSection(SolutionItems) = preProject
+		.github\CONTRIBUTING.md = .github\CONTRIBUTING.md
+		.github\PULL_REQUEST_TEMPLATE.md = .github\PULL_REQUEST_TEMPLATE.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISSUE_TEMPLATE", "ISSUE_TEMPLATE", "{B2545F93-62C8-46A8-A8AF-67723E6B8B93}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE\bug_report.md = .github\ISSUE_TEMPLATE\bug_report.md
+		.github\ISSUE_TEMPLATE\feature_request.md = .github\ISSUE_TEMPLATE\feature_request.md
+		.github\ISSUE_TEMPLATE\help-and-other-questions.md = .github\ISSUE_TEMPLATE\help-and-other-questions.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetNuke.Announcements", "src\DotNetNuke.Announcements.csproj", "{F2A89441-0CB8-4FB2-91BF-C81E9D2626E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,16 +44,11 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BCBFC482-5036-4853-9D4F-7EE93052CA1A} = {2D426765-F89F-41C7-9650-A8A5758AE94B}
+		{B2545F93-62C8-46A8-A8AF-67723E6B8B93} = {BCBFC482-5036-4853-9D4F-7EE93052CA1A}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A00AC28-D068-4148-BA12-01CF6269D9B3}
-	EndGlobalSection
-	GlobalSection(VaultVsipSolution-v1) = preSolution
-		VaultHost = http://source.dotnetnuke.com/VaultService
-		VaultRepositoryID = 9
-		VaultRepositoryGUID = 903b6ec9-202e-47f1-9171-d32957566e59
-		ProjectCount = 3
-		ProjectRelativeDiskPath1 = DotNetNuke.Announcements.sln
-		ProjectRelativeDiskPath2 = DotNetNuke.Announcements.vbproj
-		ProjectRelativeDiskPath3 = Providers\DataProviders\SqlDataProvider\DotNetNuke.Announcements.SqlDataProvider.vbproj
 	EndGlobalSection
 EndGlobal
