@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISSUE_TEMPLATE", "ISSUE_TEM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetNuke.Announcements", "src\DotNetNuke.Announcements.csproj", "{F2A89441-0CB8-4FB2-91BF-C81E9D2626E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetNuke.Announcements.Tests", "tests\DotNetNuke.Announcements.Tests.csproj", "{C54D4260-1018-42B6-A21A-CC5982351BB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,12 @@ Global
 		{F2A89441-0CB8-4FB2-91BF-C81E9D2626E3}.DebugDeploy|Any CPU.Build.0 = DebugDeploy|Any CPU
 		{F2A89441-0CB8-4FB2-91BF-C81E9D2626E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2A89441-0CB8-4FB2-91BF-C81E9D2626E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C54D4260-1018-42B6-A21A-CC5982351BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54D4260-1018-42B6-A21A-CC5982351BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C54D4260-1018-42B6-A21A-CC5982351BB3}.DebugDeploy|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54D4260-1018-42B6-A21A-CC5982351BB3}.DebugDeploy|Any CPU.Build.0 = Debug|Any CPU
+		{C54D4260-1018-42B6-A21A-CC5982351BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C54D4260-1018-42B6-A21A-CC5982351BB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
