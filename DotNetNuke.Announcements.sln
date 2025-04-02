@@ -5,12 +5,11 @@ VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2D426765-F89F-41C7-9650-A8A5758AE94B}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		src\Providers\DataProviders\SqlDataProvider\07.00.00.SqlDataProvider = src\Providers\DataProviders\SqlDataProvider\07.00.00.SqlDataProvider
 		src\Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider = src\Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider
 		src\DotNetNuke.Announcements.dnn = src\DotNetNuke.Announcements.dnn
-		src\Installation\Project.targets = src\Installation\Project.targets
 		src\Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider = src\Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider
-		src\Installation\version.txt = src\Installation\version.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{BCBFC482-5036-4853-9D4F-7EE93052CA1A}"
