@@ -61,6 +61,7 @@ class Build : NukeBuild
 
     Target Clean => _ => _
         .Before(Restore)
+        .Before(Compile)
         .Executes(() =>
         {
             ArtifactsDirectory.CreateOrCleanDirectory();
@@ -112,8 +113,39 @@ class Build : NukeBuild
                 .SetReporter(Xunit2ReporterType.Verbose));
         });
 
+    Target Package => _ => _
+        .DependsOn(Clean)
+        .DependsOn(Compile)
+        .Produces(ArtifactsDirectory)
+        .Executes(() =>
+        {
+            var packagingDir = ArtifactsDirectory / "packaging";
+
+            // Resources
+            var resourcesDir = packagingDir / "resources";
+            resourcesDir.CreateOrCleanDirectory();
+            DeployResourcesTo(resourcesDir);
+            resourcesDir.ZipTo(packagingDir / "resources.zip");
+            resourcesDir.DeleteDirectory();
+
+            // Other files
+            (SourcesDirectory / "Documentation").CopyToDirectory(packagingDir);
+            (SourcesDirectory / "Images").CopyToDirectory(packagingDir);
+            (SourcesDirectory / "Providers").CopyToDirectory(packagingDir);
+            SourcesDirectory.GlobFiles("*.dnn").ForEach(f => f.CopyToDirectory(packagingDir));
+            SourcesDirectory.GlobFiles("*.txt").ForEach(f => f.CopyToDirectory(packagingDir));
+
+            // Assembly
+            ModuleAssembly.CopyToDirectory(packagingDir / "bin", createDirectories: true);
+
+            // Package
+            packagingDir.ZipTo(ArtifactsDirectory / $"Announcements_Install_v{GitVersion.SemVer}.zip");
+            packagingDir.DeleteDirectory();
+        });
+
     Target CI => _ => _
-        .DependsOn(Test);
+        .DependsOn(Test)
+        .DependsOn(Package);
 
     private void DeployResourcesTo(AbsolutePath destination)
     {

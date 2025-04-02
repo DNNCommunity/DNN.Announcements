@@ -39,3 +39,8 @@ jobs:
         run: ./build.cmd CI
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'Publish: artifacts'
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts
+          path: artifacts
