@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Deploy": {
+      "commandName": "Project",
+      "commandLineArgs": "--Target Deploy"
+    }
+  }
+}

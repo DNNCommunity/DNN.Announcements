@@ -43,6 +43,12 @@ class Build : NukeBuild
 
     // DIRECTORIES
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
+    AbsolutePath SourcesDirectory => RootDirectory / "src";
+    AbsolutePath DeploymentDirectory => RootDirectory.Parent / "Announcements";
+    AbsolutePath WebsiteDirectory = RootDirectory.Parent.Parent;
+
+    // Files
+    AbsolutePath ModuleAssembly => SourcesDirectory / "bin" / "DotNetNuke.Modules.Announcements.dll";
 
     Target Clean => _ => _
         .Before(Restore)
@@ -58,6 +64,16 @@ class Build : NukeBuild
                 .SetTargetPath(Solution));
         });
 
+    Target Deploy => _ => _
+        .DependsOn(Restore)
+        .Executes(() =>
+        {
+            DeployResourcesTo(DeploymentDirectory);
+            var binDir = WebsiteDirectory / "bin";
+            Serilog.Log.Information($"Copying {ModuleAssembly} to {binDir}");
+            ModuleAssembly.CopyToDirectory(binDir, ExistsPolicy.FileOverwriteIfNewer);
+        });
+
     Target Compile => _ => _
         .DependsOn(Restore)
         .Executes(() =>
@@ -66,4 +82,24 @@ class Build : NukeBuild
                 .SetConfiguration(Configuration)
                 .SetProjectFile(Solution));
         });
+
+    private void DeployResourcesTo(AbsolutePath destination)
+    {
+        var dirs = new[] { "App_LocalResources", "Documentation", "Images", "Providers", "Templates" };
+        dirs.ForEach(dir =>
+        {
+            Serilog.Log.Information($"Copying {dir} to {destination}");
+            (SourcesDirectory / dir).CopyToDirectory(destination, ExistsPolicy.MergeAndOverwrite);
+        });
+        var extensions = new[] { ".ascx", ".css" };
+        extensions.ForEach(ext =>
+        {
+            SourcesDirectory.GlobFiles($"*{ext}")
+                .ForEach(file =>
+                {
+                    Serilog.Log.Information($"Copying {file} to {destination}");
+                    file.CopyToDirectory(destination, ExistsPolicy.MergeAndOverwrite);
+                });
+        });
+    }
 }
