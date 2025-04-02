@@ -11,12 +11,14 @@ using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Tools.NuGet;
+using Nuke.Common.Tools.Xunit;
 using Nuke.Common.Utilities.Collections;
 using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
 using static Nuke.Common.Tools.NuGet.NuGetTasks;
+using static Nuke.Common.Tools.Xunit.XunitTasks;
 
 [GitHubActions("CI",
     GitHubActionsImage.WindowsLatest,
@@ -25,7 +27,8 @@ using static Nuke.Common.Tools.NuGet.NuGetTasks;
     FetchDepth = 0,
     OnPullRequestBranches = new[] { "*" },
     OnPushBranches = new[] { "develop", "main", "master", "release/*" },
-    PublishArtifacts = true)]
+    PublishArtifacts = true,
+    InvokedTargets = [nameof(CI)])]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
@@ -82,6 +85,20 @@ class Build : NukeBuild
                 .SetConfiguration(Configuration)
                 .SetProjectFile(Solution));
         });
+
+    Target Test => _ => _
+        .DependsOn(Compile)
+        .Executes(() =>
+        {
+            var testAssembly = RootDirectory / "tests" / "bin" / Configuration / "DotNetNuke.Announcements.Tests.dll";
+            Xunit2(s => s
+                .AddTargetAssemblies(testAssembly)
+                .SetFramework("net472")
+                .SetReporter(Xunit2ReporterType.Verbose));
+        });
+
+    Target CI => _ => _
+        .DependsOn(Test);
 
     private void DeployResourcesTo(AbsolutePath destination)
     {

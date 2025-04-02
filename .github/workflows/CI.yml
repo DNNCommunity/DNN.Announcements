@@ -35,7 +35,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: 'Run: '
-        run: ./build.cmd 
+      - name: 'Run: CI'
+        run: ./build.cmd CI
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

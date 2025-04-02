@@ -3,6 +3,10 @@
     "Deploy": {
       "commandName": "Project",
       "commandLineArgs": "--Target Deploy"
+    },
+    "Test": {
+      "commandName": "Project",
+      "commandLineArgs": "--Target Test"
     }
   }
 }

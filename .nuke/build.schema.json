@@ -24,10 +24,12 @@
     "ExecutableTarget": {
       "type": "string",
       "enum": [
+        "CI",
         "Clean",
         "Compile",
         "Deploy",
-        "Restore"
+        "Restore",
+        "Test"
       ]
     },
     "Verbosity": {
