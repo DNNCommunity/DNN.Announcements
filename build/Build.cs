@@ -19,7 +19,7 @@ using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
 using static Nuke.Common.Tools.NuGet.NuGetTasks;
 
 [GitHubActions("CI",
-    GitHubActionsImage.Ubuntu2204,
+    GitHubActionsImage.WindowsLatest,
     CacheKeyFiles = new string[] { },
     EnableGitHubToken = true,
     FetchDepth = 0,
