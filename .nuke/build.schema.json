@@ -29,6 +29,7 @@
         "Compile",
         "Deploy",
         "Restore",
+        "SetVersion",
         "Test"
       ]
     },
