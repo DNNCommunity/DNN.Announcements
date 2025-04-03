@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="DNN_Announcements" type="Module" version="07.03.01">
+    <package name="DNN_Announcements" type="Module" version="7.4.0">
       <friendlyName>Announcements</friendlyName>
       <description>This module renders a list of announcements. The way the announcements are rendered is completely customizable by templating.</description>
       <iconFile>~/DesktopModules/Announcements/Images/icon-announcements-32px.png</iconFile>
@@ -10,7 +10,7 @@
         <url>http://www.dotnetnuke.com</url>
         <email>support@dotnetnuke.com</email>
       </owner>
-      <license src="Documentation\License.txt"/>
+      <license src="Documentation\License.txt" />
       <releaseNotes src="Documentation\ReleaseNotes.txt" />
       <azureCompatible>true</azureCompatible>
       <dependencies>
@@ -146,7 +146,7 @@
                     <controlTitle>Edit Announcements</controlTitle>
                     <controlType>Edit</controlType>
                     <iconFile />
-                    <helpUrl/>
+                    <helpUrl />
                     <supportsPopUps>True</supportsPopUps>
                     <viewOrder>0</viewOrder>
                   </moduleControl>
@@ -157,7 +157,7 @@
                     <controlTitle>Template Configuration</controlTitle>
                     <controlType>Edit</controlType>
                     <iconFile />
-                    <helpUrl/>
+                    <helpUrl />
                     <supportsPopUps>True</supportsPopUps>
                     <viewOrder>0</viewOrder>
                   </moduleControl>
@@ -168,7 +168,7 @@
                     <controlTitle>Announcement Settings</controlTitle>
                     <controlType>Edit</controlType>
                     <iconFile />
-                    <helpUrl/>
+                    <helpUrl />
                     <supportsPopUps>False</supportsPopUps>
                     <viewOrder>0</viewOrder>
                   </moduleControl>

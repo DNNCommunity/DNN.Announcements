@@ -28,15 +28,19 @@ on:
       - '*'
 
 jobs:
-  ubuntu-22_04:
-    name: ubuntu-22_04
-    runs-on: ubuntu-22.04
+  windows-latest:
+    name: windows-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          progress: true
-      - name: 'Run: '
-        run: ./build.cmd 
+      - name: 'Run: CI'
+        run: ./build.cmd CI
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'Publish: artifacts'
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts
+          path: artifacts

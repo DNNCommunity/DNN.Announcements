@@ -24,9 +24,14 @@
     "ExecutableTarget": {
       "type": "string",
       "enum": [
+        "CI",
         "Clean",
         "Compile",
-        "Restore"
+        "Deploy",
+        "Package",
+        "Restore",
+        "SetVersion",
+        "Test"
       ]
     },
     "Verbosity": {
@@ -107,6 +112,14 @@
             "Debug",
             "Release"
           ]
+        },
+        "GithubToken": {
+          "type": "string",
+          "description": "Github Token"
+        },
+        "Solution": {
+          "type": "string",
+          "description": "Path to a solution file that is automatically loaded"
         }
       }
     },
