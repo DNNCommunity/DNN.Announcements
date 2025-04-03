@@ -1,25 +1,23 @@
-using System;
-using System.Linq;
-using Microsoft.Build.Tasks;
 using Nuke.Common;
-using Nuke.Common.CI;
 using Nuke.Common.CI.GitHubActions;
-using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
+using Nuke.Common.Tools.GitHub;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Tools.NuGet;
+using Nuke.Common.Tools.Octopus;
 using Nuke.Common.Tools.Xunit;
 using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
-using static Nuke.Common.EnvironmentInfo;
+
+using Octokit;
+using System.IO;
 using static Nuke.Common.IO.XmlTasks;
-using static Nuke.Common.IO.PathConstruction;
-using static Nuke.Common.Tools.DotNet.DotNetTasks;
+using static Nuke.Common.Tools.Git.GitTasks;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
 using static Nuke.Common.Tools.NuGet.NuGetTasks;
 using static Nuke.Common.Tools.Xunit.XunitTasks;
@@ -45,6 +43,9 @@ class Build : NukeBuild
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+    
+    [Parameter("Github Token")]
+    readonly string GithubToken;
 
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
@@ -145,7 +146,14 @@ class Build : NukeBuild
 
     Target CI => _ => _
         .DependsOn(Test)
-        .DependsOn(Package);
+        .DependsOn(Package)
+        .Executes(() =>
+        {
+            if (GitRepository.IsOnMainBranch() || GitRepository.IsOnReleaseBranch())
+            {
+                CreateRelease();
+            }
+        });
 
     private void DeployResourcesTo(AbsolutePath destination)
     {
@@ -177,6 +185,55 @@ class Build : NukeBuild
                 "//packages/package/@version",
                 GitVersion.MajorMinorPatch);
             Serilog.Log.Information($"Updated version in {manifest} manifest file to {GitVersion.MajorMinorPatch}");
+        });
+    }
+
+    private void CreateRelease()
+    {
+        // Tag the release
+        var version = GitRepository.IsOnMainBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
+        Git($"tag v{version}");
+        Git("push --tags");
+
+        // Setup client (octokit)
+        var client = new GitHubClient(new ProductHeaderValue("Nuke"));
+        var tokenAuth = new Credentials(GithubToken);
+        client.Credentials = tokenAuth;
+
+        // Release
+        var newRelease = new NewRelease($"v{version}")
+        {
+            Body = $"Release {version}",
+            Draft = true,
+            GenerateReleaseNotes = true,
+            Name = $"v{version}",
+            Prerelease = GitRepository.IsOnReleaseBranch(),
+            TargetCommitish = GitVersion.Sha,
+        };
+        var release = client.Repository.Release
+            .Create(
+                GitRepository.GetGitHubOwner(),
+                GitRepository.GetGitHubName(),
+                newRelease)
+            .Result;
+        Serilog.Log.Information($"Release created: {release.HtmlUrl}");
+
+        // Add artifacts
+        var artifacts = ArtifactsDirectory.GlobFiles("*.zip");
+        artifacts.ForEach(artifact =>
+        {
+            var fileContent = File.OpenRead(artifact);
+            var fileInfo = new FileInfo(artifact);
+            var assetUpload = new ReleaseAssetUpload
+            {
+                FileName = fileInfo.Name,
+                ContentType = "application/zip",
+                RawData = fileContent,
+            };
+            var asset = client.Repository.Release
+                .UploadAsset(release, assetUpload)
+                .Result;
+            Serilog.Log.Information($"Asset {asset.Name} uploaded at {asset.BrowserDownloadUrl}");
         });
     }
 }
