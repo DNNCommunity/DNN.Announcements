@@ -342,7 +342,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
 
         /// <summary>
         /// ExportModule implements the IPortable ExportModule Interface using an XmlWriter
-        /// and the IXmlSerializable Interface on the AnnoucnementInfo object
+        /// and the IXmlSerializable Interface on the AnnouncementInfo object
         /// </summary>
         /// <param name="ModuleID">The Id of the module to be exported</param>
         public string ExportModule(int ModuleID)
@@ -360,7 +360,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
             {
                 XmlWriter writer = XmlWriter.Create(sb, settings);
 
-                //Write start of Annoucements Node
+                //Write start of Announcements Node
                 writer.WriteStartElement("Announcements");
 
                 foreach (AnnouncementInfo announcement in announcementInfos)
@@ -368,7 +368,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
                     announcement.WriteXml(writer);
                 }
 
-                //Write end of Annoucements Node
+                //Write end of Announcements Node
                 writer.WriteEndElement();
 
                 writer.Close();

@@ -201,7 +201,7 @@ namespace DotNetNuke.Modules.Announcements.Components.Business
         [IgnoreColumn]
         public bool TrackClicks
         {
-            get { return UrlTrackingInfo.TrackClicks; }
+            get { return UrlTrackingInfo != null && UrlTrackingInfo.TrackClicks; }
             set { _trackClicks = value; }
         }
 

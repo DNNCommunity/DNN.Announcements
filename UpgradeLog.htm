@@ -1,0 +1,375 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+ <html xmlns:msxsl="urn:schemas-microsoft-com:xslt"><head><meta content="en-us" http-equiv="Content-Language" /><meta content="text/html; charset=utf-16" http-equiv="Content-Type" /><title _locID="ConversionReport0">
+          Migration Report
+        </title><style> 
+                    /* Body style, for the entire document */
+                    body
+                    {
+                        background: #F3F3F4;
+                        color: #1E1E1F;
+                        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    /* Header1 style, used for the main title */
+                    h1
+                    {
+                        padding: 10px 0px 10px 10px;
+                        font-size: 21pt;
+                        background-color: #E2E2E2;
+                        border-bottom: 1px #C1C1C2 solid; 
+                        color: #201F20;
+                        margin: 0;
+                        font-weight: normal;
+                    }
+
+                    /* Header2 style, used for "Overview" and other sections */
+                    h2
+                    {
+                        font-size: 18pt;
+                        font-weight: normal;
+                        padding: 15px 0 5px 0;
+                        margin: 0;
+                    }
+
+                    /* Header3 style, used for sub-sections, such as project name */
+                    h3
+                    {
+                        font-weight: normal;
+                        font-size: 15pt;
+                        margin: 0;
+                        padding: 15px 0 5px 0;
+                        background-color: transparent;
+                    }
+
+                    /* Color all hyperlinks one color */
+                    a
+                    {
+                        color: #1382CE;
+                    }
+
+                    /* Table styles */ 
+                    table
+                    {
+                        border-spacing: 0 0;
+                        border-collapse: collapse;
+                        font-size: 10pt;
+                    }
+
+                    table th
+                    {
+                        background: #E7E7E8;
+                        text-align: left;
+                        text-decoration: none;
+                        font-weight: normal;
+                        padding: 3px 6px 3px 6px;
+                    }
+
+                    table td
+                    {
+                        vertical-align: top;
+                        padding: 3px 6px 5px 5px;
+                        margin: 0px;
+                        border: 1px solid #E7E7E8;
+                        background: #F7F7F8;
+                    }
+
+                    /* Local link is a style for hyperlinks that link to file:/// content, there are lots so color them as 'normal' text until the user mouse overs */
+                    .localLink
+                    {
+                        color: #1E1E1F;
+                        background: #EEEEED;
+                        text-decoration: none;
+                    }
+
+                    .localLink:hover
+                    {
+                        color: #1382CE;
+                        background: #FFFF99;
+                        text-decoration: none;
+                    }
+
+                    /* Center text, used in the over views cells that contain message level counts */ 
+                    .textCentered
+                    {
+                        text-align: center;
+                    }
+
+                    /* The message cells in message tables should take up all avaliable space */
+                    .messageCell
+                    {
+                        width: 100%;
+                    }
+
+                    /* Padding around the content after the h1 */ 
+                    #content 
+                    {
+	                    padding: 0px 12px 12px 12px; 
+                    }
+
+                    /* The overview table expands to width, with a max width of 97% */ 
+                    #overview table
+                    {
+                        width: auto;
+                        max-width: 75%; 
+                    }
+
+                    /* The messages tables are always 97% width */
+                    #messages table
+                    {
+                        width: 97%;
+                    }
+
+                    /* All Icons */
+                    .IconSuccessEncoded, .IconInfoEncoded, .IconWarningEncoded, .IconErrorEncoded
+                    {
+                        min-width:18px;
+                        min-height:18px; 
+                        background-repeat:no-repeat;
+                        background-position:center;
+                    }
+
+                    /* Success icon encoded */
+                    .IconSuccessEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconSuccess#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABcElEQVR4Xq2TsUsCURzHv15g8ZJcBWlyiYYgCIWcb9DFRRwMW5TA2c0/QEFwFkxxUQdxVlBwCYWOi6IhWgQhBLHJUCkhLr/BW8S7gvrAg+N+v8/v+x68Z8MGy+XSCyABQAXgBgHGALoASkIIDWSLeLBetdHryMjd5IxQPWT4rn1c/P7+xxp72Cs9m5SZ0Bq2vPnbPFafK2zDvmNHypdC0BPkLlQhxJsCAhQoZwdZU5mwxh720qGo8MzTxTTKZDPCx2HoVzp6lz0Q9tKhyx0kGs8Ny+TkWRKk8lCROwEduhyg9l/6lunOPSfmH3NUH6uQ0KHLAe7JYvJjevm+DAMGJHToKtigE+vwvIidxLamb8IBY9e+C5LiXREkfho3TSd06HJA13/oh6T51MTsfQbHrsMynQ5dDihFjiK8JJAU9AKIWTp76dCVN7HWHrajmUEGvyF9nkbAE6gLIS7kTUyuf2gscLoJrElZo/Mvj+nPz/kLTmfnEwP3tB0AAAAASUVORK5CYII=);
+                    }
+
+                    /* Information icon encoded */
+                    .IconInfoEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconInformation#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHElEQVR4Xs2TsUoDQRRF7wwoziokjZUKadInhdhukR9YP8DMX1hYW+QvdsXa/QHBbcXC7W0CamWTQnclFutceIQJwwaWNLlwm5k5d94M76mmaeCrrmsLYOocY12FcxZFUeozCqKqqgYA8uevv1H6VuPxcwlfk5N92KHBxfFeCSAxxswlYAW/Xr989x/mv9gkhtyMDhcAxgzRsp7flj8B/HF1RsMXq+NZMkopaHe7lbKxQUEIGbKsYNoGn969060hZBkQex/W8oRQwsQaW2o3Ago2SVcJUzAgY3N0lTCZZm+zPS8HB51gMmS1DEYyOz9acKO1D8JWTlafKIMxdhvlfdyT94Vv5h7P8Ky7nQzACmhvKq3zk3PjW9asz9D/1oigecsioooAAAAASUVORK5CYII=);
+                    }
+
+                    /* Warning icon encoded */
+                    .IconWarningEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconWarning#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAx0lEQVR4XpWSMQ7CMAxFf4xAyBMLCxMrO8dhaBcuwdCJS3RJBw7SA/QGTCxdWJgiQYWKXJWKIXHIlyw5lqr34tQgEOdcBsCOx5yZK3hCCKdYXneQkh4pEfqzLfu+wVDSyyzFoJjfz9NB+pAF+eizx2Vruts0k15mPgvS6GYvpVtQhB61IB/dk6AF6fS4Ben0uIX5odtFe8Q/eW1KvFeH4e8khT6+gm5B+t3juyDt7n0jpe+CANTd+oTUjN/U3yVaABnSUjFz/gFq44JaVSCXeQAAAABJRU5ErkJggg==);
+                    }
+
+                    /* Error icon encoded */
+                    .IconErrorEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconError#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABQElEQVR4XqWTvUoEQRCE6wYPZUA80AfwAQz23uCMjA7MDRQEIzPBVEyNTQUFIw00vcQTTMzuAh/AxEQQT8HF/3G/oGGnEUGuoNnd6qoZuqltyKEsyzVJq5I6rnUp6SjGeGhESikzzlc1eL7opfuVbrqbU1Zw9NCgtQMaZpY0eNnaaL2fHusvTK5vKu7sjSS1Y4y3QUA6K3e3Mau5UFDyMP7tYF9o8cAHZv68vipoIJg971PZIZ5HiwdvYGGvFVFHmGmZ2MxwmQYPXubPl9Up0tfoMQGetXd6mRbvhBw+boZ6WF7Mbv1+GsHRk0fQmPAH1GfmZirbCfDJ61tw3Px8/8pZsPAG4jlVhcPgZ7adwNWBB68lkRQWFiTgFlbnLY3DGGM7izIJIyT/jjIvEJw6fdJTc6krDzh6aMwMP9bvDH4ADSsa9uSWVJkAAAAASUVORK5CYII=);
+                    }
+                 </style><script type="text/javascript" language="javascript"> 
+          
+            // Startup 
+            // Hook up the the loaded event for the document/window, to linkify the document content
+            var startupFunction = function() { linkifyElement("messages"); };
+            
+            if(window.attachEvent)
+            {
+              window.attachEvent('onload', startupFunction);
+            }
+            else if (window.addEventListener) 
+            {
+              window.addEventListener('load', startupFunction, false);
+            }
+            else 
+            {
+              document.addEventListener('load', startupFunction, false);
+            } 
+            
+            // Toggles the visibility of table rows with the specified name 
+            function toggleTableRowsByName(name)
+            {
+               var allRows = document.getElementsByTagName('tr');
+               for (i=0; i < allRows.length; i++)
+               {
+                  var currentName = allRows[i].getAttribute('name');
+                  if(!!currentName && currentName.indexOf(name) == 0)
+                  {
+                      var isVisible = allRows[i].style.display == ''; 
+                      isVisible ? allRows[i].style.display = 'none' : allRows[i].style.display = '';
+                  }
+               }
+            }
+            
+            function scrollToFirstVisibleRow(name) 
+            {
+               var allRows = document.getElementsByTagName('tr');
+               for (i=0; i < allRows.length; i++)
+               {
+                  var currentName = allRows[i].getAttribute('name');
+                  var isVisible = allRows[i].style.display == ''; 
+                  if(!!currentName && currentName.indexOf(name) == 0 && isVisible)
+                  {
+                     allRows[i].scrollIntoView(true); 
+                     return true; 
+                  }
+               }
+               
+               return false;
+            }
+            
+            // Linkifies the specified text content, replaces candidate links with html links 
+            function linkify(text)
+            {
+                 if(!text || 0 === text.length)
+                 {
+                     return text; 
+                 }
+
+                 // Find http, https and ftp links and replace them with hyper links 
+                 var urlLink = /(http|https|ftp)\:\/\/[a-zA-Z0-9\-\.]+(:[a-zA-Z0-9]*)?\/?([a-zA-Z0-9\-\._\?\,\/\\\+&%\$#\=~;\{\}])*/gi;
+                 
+                 return text.replace(urlLink, '<a href="$&">$&</a>') ;
+            }
+            
+            // Linkifies the specified element by ID
+            function linkifyElement(id)
+            {
+                var element = document.getElementById(id);
+                if(!!element)
+                {
+                  element.innerHTML = linkify(element.innerHTML); 
+                }
+            }
+            
+            function ToggleMessageVisibility(projectName)
+            {
+              if(!projectName || 0 === projectName.length)
+              {
+                return; 
+              }
+              
+              toggleTableRowsByName("MessageRowClass" + projectName);
+              toggleTableRowsByName('MessageRowHeaderShow' + projectName);
+              toggleTableRowsByName('MessageRowHeaderHide' + projectName); 
+            }
+            
+            function ScrollToFirstVisibleMessage(projectName)
+            {
+              if(!projectName || 0 === projectName.length)
+              {
+                return; 
+              }
+              
+              // First try the 'Show messages' row
+              if(!scrollToFirstVisibleRow('MessageRowHeaderShow' + projectName))
+              {
+                // Failed to find a visible row for 'Show messages', try an actual message row 
+                scrollToFirstVisibleRow('MessageRowClass' + projectName); 
+              }
+            }
+           </script></head><body><h1 _locID="ConversionReport">
+          Migration Report - DotNetNuke.Announcements</h1><div id="content"><h2 _locID="OverviewTitle">Overview</h2><div id="overview"><table><tr><th></th><th _locID="ProjectTableHeader">Project</th><th _locID="PathTableHeader">Path</th><th _locID="ErrorsTableHeader">Errors</th><th _locID="WarningsTableHeader">Warnings</th><th _locID="MessagesTableHeader">Messages</th></tr><tr><td class="IconWarningEncoded" /><td><strong><a href="#DotNetNuke.Announcements">DotNetNuke.Announcements</a></strong></td><td>src\DotNetNuke.Announcements.csproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#DotNetNuke.AnnouncementsWarning">2</a></td><td class="textCentered"><a href="#" onclick="ScrollToFirstVisibleMessage('DotNetNuke.Announcements'); return false;">102</a></td></tr></table></div><h2 _locID="SolutionAndProjectsTitle">Solution and projects</h2><div id="messages"><a name="DotNetNuke.Announcements" /><h3>DotNetNuke.Announcements</h3><table><tr id="DotNetNuke.AnnouncementsHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="WarningRowClassDotNetNuke.Announcements"><td class="IconWarningEncoded"><a name="DotNetNuke.AnnouncementsWarning" /></td><td class="messageCell"><strong>src\DotNetNuke.Announcements.csproj:
+        </strong><span>Visual Studio needs to make non-functional changes to this project in order to enable the project to open in released versions of Visual Studio newer than Visual Studio 2010 SP1 without impacting project behavior.</span></td></tr><tr name="WarningRowClassDotNetNuke.Announcements"><td class="IconWarningEncoded"><a name="DotNetNuke.AnnouncementsWarning" /></td><td class="messageCell"><strong>src\DotNetNuke.Announcements.csproj:
+        </strong><span>Visual Studio has made non-functional changes to this project in order to enable the project to open in released versions of Visual Studio newer than Visual Studio 2010 SP1 without impacting project behavior.</span></td></tr><tr name="MessageRowHeaderShowDotNetNuke.Announcements"><td class="IconInfoEncoded" /><td class="messageCell"><a _locID="ShowAdditionalMessages" href="#" name="DotNetNuke.AnnouncementsMessage" onclick="ToggleMessageVisibility('DotNetNuke.Announcements'); return false;">
+          Show 102 additional messages
+        </a></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\DotNetNuke.Announcements.csproj:
+        </strong><span>Project file successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\DotNetNuke.Announcements.csproj</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\DotNetNuke.Announcements.csproj.user:
+        </strong><span>Project user file successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\DotNetNuke.Announcements.csproj.user</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Business\AnnouncementInfo.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Business\AnnouncementInfo.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Business\AnnouncementsController.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Business\AnnouncementsController.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Business\AnnouncementsSubscriberInfo.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Business\AnnouncementsSubscriberInfo.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Business\IAnnouncementsController.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Business\IAnnouncementsController.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Business\SubscriberController.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Business\SubscriberController.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Common\AnnouncementTokenReplace.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Common\AnnouncementTokenReplace.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Settings\ISettingsController.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Settings\ISettingsController.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Common\EventArguments.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Common\EventArguments.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Common\GlobalConstants.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Common\GlobalConstants.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Common\ExtensionMethods.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Common\ExtensionMethods.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Common\ModuleSecurity.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Common\ModuleSecurity.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Settings\Settings.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Settings\Settings.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Settings\SettingsController.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Settings\SettingsController.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Template\ITemplateController.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Template\ITemplateController.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Template\SimpleTemplate.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Template\SimpleTemplate.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Template\BaseTemplate.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Template\BaseTemplate.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Template\ITemplate.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Template\ITemplate.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Template\TemplateController.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Template\TemplateController.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Template\TemplateInfo.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Template\TemplateInfo.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Models\TemplateConfigurationModel.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Models\TemplateConfigurationModel.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Presenters\AnnouncementsSettingsPresenter.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Presenters\AnnouncementsSettingsPresenter.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Models\AnnouncementsSettingsModel.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Models\AnnouncementsSettingsModel.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\AnnouncementsEdit.ascx.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\AnnouncementsEdit.ascx.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\AnnouncementsEdit.ascx.designer.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\AnnouncementsEdit.ascx.designer.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Presenters\AnnouncementsEditPresenter.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Presenters\AnnouncementsEditPresenter.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Presenters\AnnouncementsViewPresenter.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Presenters\AnnouncementsViewPresenter.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Common\Utilities.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Common\Utilities.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Components\Common\ViewTypes.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Components\Common\ViewTypes.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Presenters\TemplateConfigurationPresenter.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Presenters\TemplateConfigurationPresenter.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Properties\AssemblyInfo.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Properties\AssemblyInfo.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Models\AnnouncementsEditModel.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Models\AnnouncementsEditModel.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Models\AnnouncementsViewModel.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Models\AnnouncementsViewModel.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\AnnouncementsView.ascx.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\AnnouncementsView.ascx.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\AnnouncementsView.ascx.designer.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\AnnouncementsView.ascx.designer.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Services\AnnouncementInfo.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Services\AnnouncementInfo.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Services\AnnouncementsController.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Services\AnnouncementsController.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Services\AnnouncementsModule.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Services\AnnouncementsModule.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Services\RouteMapper.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Services\RouteMapper.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Services\SyndicationFeedFormatter.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Services\SyndicationFeedFormatter.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\TemplateConfiguration.ascx.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\TemplateConfiguration.ascx.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\TemplateConfiguration.ascx.designer.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\TemplateConfiguration.ascx.designer.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Views\IAnnouncementsSettings.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Views\IAnnouncementsSettings.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Views\IAnnouncementsEdit.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Views\IAnnouncementsEdit.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Views\IAnnouncementsView.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Views\IAnnouncementsView.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\AnnouncementsSettings.ascx.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\AnnouncementsSettings.ascx.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\AnnouncementsSettings.ascx.designer.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\AnnouncementsSettings.ascx.designer.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\MVP\Views\ITemplateConfiguration.cs:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\MVP\Views\ITemplateConfiguration.cs</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\packages.config:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\packages.config</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\web.AutoInstallSourcePackage.config:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\web.AutoInstallSourcePackage.config</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\web.Debug.config:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\web.Debug.config</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\web.DebugDeploy.config:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\web.DebugDeploy.config</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\web.Release.config:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\web.Release.config</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\07.00.00.txt:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\07.00.00.txt</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\AnnouncementsEdit.ascx:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\AnnouncementsEdit.ascx</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Images\clock.gif:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Images\clock.gif</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Images\icon-announcements-32px.png:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Images\icon-announcements-32px.png</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\AnnouncementsEdit.css:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\AnnouncementsEdit.css</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Documentation\License.txt:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Documentation\License.txt</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\module.css:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\module.css</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Documentation\releasenotes.txt:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Documentation\releasenotes.txt</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\TemplateConfiguration.ascx:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\TemplateConfiguration.ascx</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\ModernAnnouncements\alternatingitem.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\ModernAnnouncements\alternatingitem.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\ModernAnnouncements\detail.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\ModernAnnouncements\detail.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\ModernAnnouncements\footer.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\ModernAnnouncements\footer.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\ModernAnnouncements\header.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\ModernAnnouncements\header.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\ModernAnnouncements\item.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\ModernAnnouncements\item.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\ModernAnnouncements\separator.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\ModernAnnouncements\separator.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\ModernAnnouncements\template.xml:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\ModernAnnouncements\template.xml</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\SimpleAnnouncements\alternatingitem.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\SimpleAnnouncements\alternatingitem.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\SimpleAnnouncements\detail.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\SimpleAnnouncements\detail.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\SimpleAnnouncements\footer.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\SimpleAnnouncements\footer.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\SimpleAnnouncements\header.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\SimpleAnnouncements\header.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\SimpleAnnouncements\item.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\SimpleAnnouncements\item.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\SimpleAnnouncements\separator.htm:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\SimpleAnnouncements\separator.htm</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Templates\SimpleAnnouncements\template.xml:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Templates\SimpleAnnouncements\template.xml</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\AnnouncementsView.ascx:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\AnnouncementsView.ascx</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\AnnouncementsSettings.ascx:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\AnnouncementsSettings.ascx</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\App_LocalResources\AnnouncementsView.ascx.resx:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\App_LocalResources\AnnouncementsView.ascx.resx</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\App_LocalResources\AnnouncementsEdit.ascx.resx:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\App_LocalResources\AnnouncementsEdit.ascx.resx</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\App_LocalResources\AnnouncementsSettings.ascx.resx:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\App_LocalResources\AnnouncementsSettings.ascx.resx</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\App_LocalResources\SharedResources.resx:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\App_LocalResources\SharedResources.resx</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\03.01.00.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\03.01.00.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\03.03.00.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\03.03.00.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\03.03.02.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\03.03.02.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\03.03.04.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\03.03.04.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\03.03.05.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\03.03.05.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\03.04.00.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\03.04.00.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\04.00.00.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\04.00.00.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\07.00.00.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\07.00.00.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\03.03.01.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\03.03.01.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\04.00.01.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\04.00.01.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\04.00.02.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\04.00.02.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\04.00.03.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\04.00.03.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\App_LocalResources\TemplateConfiguration.ascx.resx:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\App_LocalResources\TemplateConfiguration.ascx.resx</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\DotNetNuke.Announcements.dnn:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\DotNetNuke.Announcements.dnn</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\Install.07.00.00.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\Install.07.00.00.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\Providers\DataProviders\SqlDataProvider\07.00.01.SqlDataProvider</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\App.config:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\App.config</span></td></tr><tr name="MessageRowClassDotNetNuke.Announcements" style="display: none"><td class="IconInfoEncoded"><a name="DotNetNuke.AnnouncementsMessage" /></td><td class="messageCell"><strong>src\web.config:
+        </strong><span>File successfully backed up as D:\websites\announcements\Website\DesktopModules\DNN.Announcements\Backup2\web.config</span></td></tr><tr style="display: none" name="MessageRowHeaderHideDotNetNuke.Announcements"><td class="IconInfoEncoded" /><td class="messageCell"><a _locID="HideAdditionalMessages" href="#" name="DotNetNuke.AnnouncementsMessage" onclick="ToggleMessageVisibility('DotNetNuke.Announcements'); return false;">
+          Hide 102 additional messages
+        </a></td></tr></table></div></div></body></html>
