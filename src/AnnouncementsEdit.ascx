@@ -1,6 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="AnnouncementsEdit.ascx.cs"
-    Inherits="DotNetNuke.Modules.Announcements.AnnouncementsEdit" %>
-<%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.UserControls" TagPrefix="dnn" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="AnnouncementsEdit.ascx.cs" Inherits="DotNetNuke.Modules.Announcements.AnnouncementsEdit" %>
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Tracking" Src="~/controls/URLTrackingControl.ascx" %>
@@ -8,8 +6,6 @@
 <%@ Register TagPrefix="dnn" TagName="URL" Src="~/controls/URLControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="FilePickerUploader" Src="~/controls/filepickeruploader.ascx" %>
 <%@ Import Namespace="DotNetNuke.Services.Localization" %>
-<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
-<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls.Internal" Assembly="DotNetNuke.Web" %>
 <div class="dnnForm dnnAnnouncementForm dnnClear" id="AnnouncementsForm">
     <ul class="dnnAdminTabNav dnnClear" id="">
         <li id="contentTab" runat="server"><a href="#dnnContent"><%=LocalizeString("content.Tab")%></a></li>
@@ -67,11 +63,11 @@
             </div>
             <div class="dnnFormItem">
                 <dnn:Label ID="plPublishDate" Suffix=":" ControlName="publishDate" runat="server" />
- 			    <div class="dateDiv"><dnn:DnnDateTimePicker ID="publishDate" runat="server" /></div>
+ 			    <div class="dateDiv"><asp:TextBox ID="publishDate" type="datetime-local" runat="server" /></div>
             </div>
             <div class="dnnFormItem">
                 <dnn:Label ID="plExpireDate" Suffix=":" ControlName="expireDate" runat="server" />
- 			    <div class="dateDiv"><dnn:DnnDateTimePicker ID="expireDate" runat="server" /></div>
+ 			    <div class="dateDiv"><asp:TextBox ID="expireDate" type="datetime-local" runat="server" /></div>
             </div>
         </fieldset>
     </div>

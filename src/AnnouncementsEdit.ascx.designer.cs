@@ -138,7 +138,7 @@ namespace DotNetNuke.Modules.Announcements
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.Internal.DnnDateTimePicker publishDate;
+        protected global::System.Web.UI.WebControls.TextBox publishDate;
 
         /// <summary>
         /// plExpireDate control.
@@ -156,7 +156,7 @@ namespace DotNetNuke.Modules.Announcements
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.Internal.DnnDateTimePicker expireDate;
+        protected global::System.Web.UI.WebControls.TextBox expireDate;
 
         /// <summary>
         /// cmdUpdate control.
