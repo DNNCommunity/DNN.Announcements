@@ -5,8 +5,8 @@ DNN Announcements is a basic module used for displaying news items on your DNN s
 | DNN Announcements version | Min Tested DNN version | Max Tested DNN version |
 |---------------------------|------------------------|------------------------|
 | Included or use 04.00.03  | 00.00.00               | 08.00.04               |
-| 07.02.00                  | 08.00.00               | 09.02.00               |
-| 07.03.00                  | 09.11.00               | 09.11.00               |
+| 07.02.xx                  | 08.00.00               | 09.02.00               |
+| 07.03.xx                  | 09.11.00               | 10.00.01               |
 
 ## Building the module from source and submitting pull requests
 1. Install Dnn (latest stable version) from https://github.com/dnnsoftware/Dnn.Platform/releases
