@@ -27,12 +27,10 @@
 using System;
 using System.Data.SqlTypes;
 using System.Globalization;
-
+using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Portals;
 using DotNetNuke.Entities.Users;
-using DotNetNuke.Framework;
 using DotNetNuke.Framework.JavaScriptLibraries;
 using DotNetNuke.Modules.Announcements.Components.Business;
 using DotNetNuke.Modules.Announcements.Components.Common;
@@ -40,11 +38,9 @@ using DotNetNuke.Modules.Announcements.MVP.Models;
 using DotNetNuke.Modules.Announcements.MVP.Presenters;
 using DotNetNuke.Modules.Announcements.MVP.Views;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Web.Client;
 using DotNetNuke.Web.Client.ClientResourceManagement;
 using DotNetNuke.Web.Mvp;
-using DotNetNuke.Web.UI.WebControls.Internal;
 using WebFormsMvp;
 
 #endregion
@@ -206,13 +202,13 @@ namespace DotNetNuke.Modules.Announcements
                         (Model.AnnouncementInfo.PublishDate != (DateTime)SqlDateTime.Null))
                     {
                         var portalDateTime = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.PublishDate.Value, ModuleContext.PortalSettings.TimeZone);
-                        publishDate.SelectedDate = portalDateTime;
+                        publishDate.Text = portalDateTime.ToString("yyyy-MM-dd'T'HH:mm", CultureInfo.InvariantCulture);
                     }
                     if ((!Null.IsNull(Model.AnnouncementInfo.ExpireDate)) &&
                         (Model.AnnouncementInfo.ExpireDate != (DateTime)SqlDateTime.Null))
                     {
                         var portalDateTime = TimeZoneInfo.ConvertTimeFromUtc(Model.AnnouncementInfo.ExpireDate.Value, ModuleContext.PortalSettings.TimeZone);
-                        expireDate.SelectedDate = portalDateTime;
+                        expireDate.Text = portalDateTime.ToString("yyyy-MM-dd'T'HH:mm", CultureInfo.InvariantCulture);
                     }
 
                     var user = UserController.Instance.GetCurrentUserInfo();
@@ -280,13 +276,13 @@ namespace DotNetNuke.Modules.Announcements
             }
         }
 
-        private DateTime? GetDateTimeValue(DnnDatePicker dnnDatePicker)
+        private DateTime? GetDateTimeValue(TextBox datePicker)
         {
             DateTime? resultValue = null;
 
-            if (dnnDatePicker.SelectedDate != null)
+            if (DateTime.TryParseExact(datePicker.Text, ["yyyy-MM-dd'T'HH:mm", "yyyy-MM-dd"], CultureInfo.InvariantCulture, DateTimeStyles.None, out var selectedDate))
             {
-                resultValue = dnnDatePicker.SelectedDate;
+                resultValue = selectedDate;
             }
 
             if (resultValue.HasValue)
@@ -297,18 +293,10 @@ namespace DotNetNuke.Modules.Announcements
             return null;
         }
 
-        private DateTime? GetDateTimeValue(DnnDateTimePicker dnnDatePicker, DateTime defaultValue)
+        private DateTime? GetDateTimeValue(TextBox datePicker, DateTime defaultValue)
         {
-            DateTime? resultValue = GetDateTimeValue(dnnDatePicker);
-
-            if (!resultValue.HasValue)
-            {
-                resultValue = defaultValue;
-            }
-
-            return resultValue;
+            return GetDateTimeValue(datePicker) ?? defaultValue;
         }
-
 
     }
 

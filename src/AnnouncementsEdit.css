@@ -2,7 +2,7 @@
     width: 420px;
 }
 
-.dateDiv { display: inline-block;width: 150px; margin-bottom: 20px;}
+.dateDiv { display: inline-block; margin-bottom: 20px;}
 
 .dnnFormItem .dateDiv input { width: 100%; }
 
